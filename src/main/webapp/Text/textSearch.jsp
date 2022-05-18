@@ -8,7 +8,9 @@
 </head>
 <body>
 
-<form action="test.php" method="post">
+<h2>教科書検索</h2>
+
+<form action="textSearchResult.jsp" method="post">
 		<p>ISBN<input type="text" name="ISBN" size="40"> <p>
 		<p>タイトル<input type="text" name="title" size="40"> <p>
 		   <p>分類 <select size="1" name="sort">
