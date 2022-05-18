@@ -10,7 +10,7 @@
 
 <h2>教科書検索</h2>
 
-<form action="textSearchResult.jsp" method="post">
+<form action="TextServlet?action=search" method="post">
 		<p>ISBN<input type="text" name="ISBN" size="40"> <p>
 		<p>タイトル<input type="text" name="title" size="40"> <p>
 		   <p>分類 <select size="1" name="sort">
@@ -27,9 +27,10 @@
 		<option value="10">農学部系</option>
 		</select>
 		<p>著者<input type="text" name="author" size="40"> <p>
-		<p><input type="submit" value="検索"></p>
-		<p><input type="submit" value="戻る"></p>
-	</form>
+	<p><input type="submit" value="検索"></p>
+</form>
+
+<a href="/Login/top.html?action=back">戻る</a>
 
 </body>
 </html>
