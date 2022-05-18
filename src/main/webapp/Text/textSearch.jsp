@@ -10,7 +10,7 @@
 
 <h2>教科書検索</h2>
 
-<form action="TextServlet?action=search" method="post">
+<form action="/TextServlet" method="post">
 		<p>ISBN<input type="text" name="ISBN" size="40"> <p>
 		<p>タイトル<input type="text" name="title" size="40"> <p>
 		   <p>分類 <select size="1" name="sort">
@@ -28,6 +28,7 @@
 		</select>
 		<p>著者<input type="text" name="author" size="40"> <p>
 	<p><input type="submit" value="検索"></p>
+	<input type ="hidden" name="action" value="search">
 </form>
 
 <a href="/Login/top.html?action=back">戻る</a>
