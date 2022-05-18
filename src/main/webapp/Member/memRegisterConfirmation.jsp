@@ -10,7 +10,7 @@
 
 	<h3>ご登録情報確認</h3>
 
-	<form action="/textbook/MemberServlet?action=confirm" method="post">
+	<form action="/textbook/MemberServlet?action=registerConfirm" method="post">
 		<p>名前:いがいがいがいが
 		<p>
 		<p>メール:iga

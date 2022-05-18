@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,18 +8,23 @@
 </head>
 <body>
 
-<h3>退会確認画面</h3>
+	<h3>退会確認画面</h3>
 
-<form action="test.php" method="post">
-			<p>名前:いがいがいがいが<p>
-			<p>メール:iga<p>
-			<p>パスワード:iga<p>
-			<p>ユーザーID:igaiga555
-			<h5>上記の内容でお間違えありませんか？</h5>
-		<p><input type="submit" value="決定"></p> 
-		<a href="/memDelete.jsp">戻る</a>
-		
+	<form action="/textbook/MemberServlet?action=deleteConfirm" method="post">
+		<p>名前:いがいがいがいが
+		<p>
+		<p>メール:iga
+		<p>
+		<p>パスワード:iga
+		<p>
+		<p>ユーザーID:igaiga555
+		<h5>上記の内容でお間違えありませんか？</h5>
+		<p>
+			<input type="submit" value="決定">
+		</p>
+
+
 	</form>
-
+	<a href="/memDelete.jsp">戻る</a>
 </body>
 </html>

@@ -10,19 +10,15 @@
 
 	<h3>会員退会</h3>
 
-	<form action="test.php" method="post">
+	<form action="/textbook/MemberServlet?action=delete" method="post">
 
 		<p>
 			メール<input type="email" name="email" size="40">
 		<p>
 		<p>
-			パスワード<input type="pass" name="pass">
+			パスワード<input type="password" name="pass">
 		<p>
-		<p>
-			<input type="submit" value="送信"> <input type="submit"
-				value="戻る">
-		</p>
 	</form>
-
+	<a href="/memHome.jsp">戻る</a>
 </body>
 </html>

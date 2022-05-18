@@ -10,7 +10,7 @@
 
 	<h3>変更内容確認</h3>
 
-	<form action="/textbook/MemberServlet?action=confirm" method="post">
+	<form action="/textbook/MemberServlet?action=changeConfirm" method="post">
 		<p>名前:いがいがいがいが
 		<p>
 		<p>メール:iga
