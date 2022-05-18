@@ -4,21 +4,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ご登録情報確認</title>
+<title>DeleteConfirmation</title>
 </head>
 <body>
 
+<h3>退会確認画面</h3>
+
 <form action="test.php" method="post">
-			<p>ISBN:<p>
-			<p>タイトル:<p>
-			<p>分類:<p>
-			<p>著者:<p>
-			<p>金額:<p>
+			<p>名前:いがいがいがいが<p>
+			<p>メール:iga<p>
+			<p>パスワード:iga<p>
+			<p>ユーザーID:igaiga555
 			<h5>上記の内容でお間違えありませんか？</h5>
-		<p><input type="submit" value="送信"><p>
-		<a href="/textRegister.jsp">戻る</a>
+		<p><input type="submit" value="決定"></p> 
+		<a href="/memDelete.jsp">戻る</a>
 		
-</form>
+	</form>
 
 </body>
 </html>
