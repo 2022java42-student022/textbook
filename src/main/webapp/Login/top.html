@@ -5,24 +5,25 @@
 <title>ログイン</title>
 </head>
 <body>
-<form name="login_form">
-  <div class="login_form_top">
-    <h1>ログイン画面</h1>
-    <p>ユーザーID、パスワードをご入力の上、「ログイン」ボタンをクリックしてください。</p>
-  </div>
-  <div class="login_form_btm">
-    <input type="id" name="user_id" placeholder="ユーザーIDを入力してください"><br>
-    <input type="password" name="pass"placeholder="パスワードを入力してください">
-  </div>
-  <button type="submit">ログイン</button>
-  <select>
-  <option>会員</option>
-  <option>管理者</option>
-  </select>
-  <br>
-  <br>
-  <hr>
-  <a href="">初めての方はこちら</a>
-</form>
+	<div class="login_form_top">
+		<h1>ログイン画面</h1>
+		<p>ユーザーID、パスワードをご入力の上、「ログイン」ボタンをクリックしてください。</p>
+	</div>
+
+	<form action="/textbook/LoginServlet">
+
+
+		<input type="text" name="user_id" placeholder="ユーザーIDを入力してください"><br>
+		<input type="password" name="pass" placeholder="パスワードを入力してください">
+
+		<input type="submit" value="ログイン"> <select name="login">
+			<option value="member">会員</option>
+			<option value="manager">管理者</option>
+		</select> <br> <br>
+		<hr>
+
+	</form>
+
+	<a href="/memRegister.jsp">初めての方はこちら</a>
 </body>
 </html>
