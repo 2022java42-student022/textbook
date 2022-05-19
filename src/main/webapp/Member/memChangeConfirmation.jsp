@@ -20,7 +20,7 @@
 		<p>ユーザーID:igaiga555
 		<h5>上記の内容でお間違えありませんか？</h5>
 
-
+<input type="submit" value="変更">
 	</form>
 	<a href="/memChange.jsp">戻る</a>
 </body>
