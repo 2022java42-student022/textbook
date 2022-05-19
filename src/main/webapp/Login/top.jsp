@@ -9,13 +9,13 @@
 <body>
 	<div class="login_form_top">
 		<h1>ログイン画面</h1>
-		<p>ユーザーID、パスワードをご入力の上、「ログイン」ボタンをクリックしてください。</p>
+		<p>ID、パスワードをご入力の上、「ログイン」ボタンをクリックしてください。</p>
 	</div>
 
 	<form action="/textbook/LoginServlet">
 
 
-		<input type="text" name="user_id" placeholder="ユーザーIDを入力してください"><br>
+		<input type="text" name="user_id" placeholder="IDを入力してください"><br>
 		<input type="password" name="pass" placeholder="パスワードを入力してください">
 
 		<input type="submit" value="ログイン"> <select name="login">
