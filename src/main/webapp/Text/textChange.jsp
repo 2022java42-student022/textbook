@@ -31,7 +31,7 @@
 
 	<input type="submit" value="変更">
 	&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="button_test" value="キャンセル" onclick="javascript:history.back()">
+<input type="button" name="button_test" value="戻る" onclick="javascript:history.back()">
 </form>	
 
 
