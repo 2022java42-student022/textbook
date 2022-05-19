@@ -8,7 +8,11 @@
 </head>
 <body>
 
+<form action="/textbook/TextServlet?action=return" method="post">
+
 <h1>処理完了メッセージの表示</h1>
+
+</form>
 
 <a href="">ホームに戻る</a>
 </body>
