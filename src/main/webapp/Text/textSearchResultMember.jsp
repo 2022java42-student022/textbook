@@ -18,17 +18,7 @@
 	<tr><th>....</th><th>....</th><th>....</th><th>....</th></tr>
 </table>
 
-<br><br>
 
-<form action="/TextServlet?" method="post">削除
-<input type ="hidden" name="action" value="delete">
-<input type ="hidden" name="text_id" value="">
-</form>
-
-<form action="/TextServlet?" method="post">登録内容変更
-<input type ="hidden" name="action" value="change">
-<input type ="hidden" name="text_id" value="">
-</form>
 
 </body>
 </html>
