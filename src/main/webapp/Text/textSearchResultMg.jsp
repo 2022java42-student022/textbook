@@ -61,7 +61,7 @@
 
 		<br>
 		<br>
-
+	<a href ="/Text/textSearchMember" method="post">戻る</a>
 
 	</form>
 
