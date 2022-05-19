@@ -10,7 +10,7 @@
 
 <h2>教科書登録画面</h2>
 
-<form>
+<form action="/Text/textRegisterConfimation" method="post">
 	ISBN <input type="text" name="ISBN"><br> 
 	タイトル <input type="text" name="title"><br> 
 	分類 <select size="1" name="sort">
@@ -27,11 +27,12 @@
 		<option value="10">農学部系</option>
 	</select> <br>
 	著者名 <input type="text" name="author"><br>
-	値段 <input type="number" name="value"><br><br>
+	金額 <input type="number" name="value"><br><br>
 
 	<input type="submit" value="登録">
-	<input type="submit" value="キャンセル">
+	
 </form>
+<a href ="/Login/memHome">戻る</a>
 
 </body>
 </html>
