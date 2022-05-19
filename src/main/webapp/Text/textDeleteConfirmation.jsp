@@ -19,6 +19,6 @@
 		<p><input type="submit" value="決定"></p> 
 		
 	</form>
-<a href="/textDelete.jsp">戻る</a>
+<a href="/textbook/Text/textSearchResultMg.jsp">戻る</a>
 </body>
 </html>

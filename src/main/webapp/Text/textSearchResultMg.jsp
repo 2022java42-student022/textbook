@@ -10,7 +10,7 @@
 
 	<h2>教科書検索結果画面</h2>
 
-	<form action="/textbook/Text/textDelete.jsp" metdod="post">
+	<form action="/textbook/Text/textDelete.jsp" method="post">
 		<table border="1">
 			<tr>
 				<th>ISBN</th>
@@ -56,6 +56,8 @@
 <input type="button" name="button_test" value="変更" onclick="javascript.location.href='/textbook/Text/textChange.jsp'"></td>
 			</tr>
 		</table>
+		
+		<a href = "/textbook/Text/textSearchMg.jsp">戻る</a>
 
 		<br>
 		<br>

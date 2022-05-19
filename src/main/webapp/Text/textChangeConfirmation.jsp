@@ -10,7 +10,7 @@
 
 <h2>教科書変更確認画面</h2>
 
-<form action="test.php" method="post">
+<form action="/textbook/complete.jsp" method="post">
 			<p>ISBN:<p>
 			<p>タイトル:<p>
 			<p>分類:<p>
@@ -18,7 +18,7 @@
 			<p>金額:<p>
 			<h5>上記の内容で変更します。よろしいですか？</h5>
 		<p><input type="submit" value="決定"></p> 
-		<a href="/textChange.jsp">戻る</a>
+		<a href="/textbook/Text/textChange.jsp">戻る</a>
 		
 	</form>
 

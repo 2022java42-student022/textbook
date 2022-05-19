@@ -18,7 +18,7 @@
 			<p>金額:<p>
 			<h5>上記の内容でお間違えありませんか？</h5>
 		<p><input type="submit" value="送信"><p>
-		<a href="/textRegister.jsp">戻る</a>
+		<a href="/textbook/Text/textRegister.jsp">戻る</a>
 		
 </form>
 
