@@ -22,7 +22,7 @@
 <p><input type="submit" value="登録内容変更"></p>
 </form>
 
-<a href="/memHome.jsp">戻る</a>
+<a href="/textbook/Login/memHome.jsp">戻る</a>
 
 </body>
 </html>

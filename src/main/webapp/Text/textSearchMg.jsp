@@ -31,7 +31,7 @@
 	<input type ="hidden" name="action" value="search">
 </form>
 
-<a href="/Login/top.html?action=back">戻る</a>
+<a href="/textbook/Login/mgHome.jsp">戻る</a>
 
 </body>
 </html>
