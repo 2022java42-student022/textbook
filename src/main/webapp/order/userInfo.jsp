@@ -38,7 +38,7 @@
 	</table>
 	
 	<h4>お客様情報を入力してください。</h4>
-	<form action = "url" method = "post">
+	<form action = "/textbook/OrderServlet?action=confirm" method = "post">
 	　　　　　名前：<input type = "text" name = "name"><br>
 	　　　　　住所：<input type = "text" name = "name"><br>
 	　　　電話番号：<input type = "text" name = "name"><br>

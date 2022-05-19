@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +8,15 @@
 </head>
 <body>
 
-<h4>ご注文ありがとうございました。</h4>
+	<h4>ご注文ありがとうございました。</h4>
 
-お客様の注文番号は
+	お客様の注文番号は
 
-<h4>「00000000000」</h4>
+	<h4>「00000000000」</h4>
 
-になります。
+	になります。<br>
 
+	<a href = "/memHome.jsp">HOMEへ戻る</a>
+	
 </body>
 </html>

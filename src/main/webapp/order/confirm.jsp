@@ -43,7 +43,7 @@
 	</table>
 
 	お客様情報
-	<form action = "url" method = "post">
+	<form action = "/textbook/OrderServlet?action=order" method = "post">
 		<table border="1">
 			<tr>
 				<td>名前</td>
