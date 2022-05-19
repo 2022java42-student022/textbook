@@ -30,7 +30,7 @@
 	著者名 <input type="text" name="author"><br><br>
 
 	<input type="submit" value="検索">
-	&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp; <!-- JavaScript -->
 	<input type="button" name="button_test" value="戻る" onclick="javascript:history.back()">
 	</form>
 
