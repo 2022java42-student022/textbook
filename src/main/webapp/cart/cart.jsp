@@ -30,7 +30,7 @@
 					<td align="right"></td>
 					<td align="right"></td>
 					<td>
-						<form action="" method="post">
+						<form action="/textbook/CartServlet?action=delete" method="post">
 							<input type="hidden" name="" value="">
 							<input type="submit" value="削除">
 						</form>
@@ -39,10 +39,11 @@
 			<td align="right" colspan="6">総計：円</td>
 		</tr>
 	</table>
-	<form action="" method="post">
+	<form action="/textbook/OrderServlet?action=inputMember" method="post">
 		<input type="submit" value="注文する"><br>
 		<br>
-		<a href="/textbook//Member/memSearchResult.jsp">戻る</a>
+		
 	</form>
+	<a href="/textbook//Text/textSearchResultMember.jsp">戻る</a>
 </body>
 </html>
