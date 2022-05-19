@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h3>ユーザー検索結果</h3>
+<h3>検索結果</h3>
 
 <table border="1">
 	<tr><th>ユーザーID</th><th>名前</th><th>メールアドレス</th></tr>
@@ -27,6 +27,7 @@
 	<tr><th>67891</th><th>伊賀</th><th>igaiga<th></tr>
 	<tr><th>....</th><th>....</th><th>....<th></tr>
 </table>
-
+<br>
+<a href="/Member/memSearch.jsp">戻る</a>
 </body>
 </html>
