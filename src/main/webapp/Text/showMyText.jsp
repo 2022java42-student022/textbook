@@ -10,16 +10,16 @@
 
 <h3>登録済み教科書</h3>
 
-<form action="/textbook/TextServlet?action=inputChange" method="post">
+<form action="/textbook/TextServlet?action=inputChange" metdod="post">
 
 <table border="1">
 	<tr><th>ISBN</th><th>タイトル</th><th>分類</th><th>著者名</th></tr>
-	<tr><th>....</th><th>....</th><th>....</th><th>....</th></tr>
-	<tr><th>12345678</th><th>文学部の本</th><th>文学部系</th><th>著者1</th></tr>
-	<tr><th>98765432</th><th>教育学部の本</th><th>教育学部系</th><th>著者2</th></tr>
-	<tr><th>....</th><th>....</th><th>....</th><th>....</th></tr>
+	<tr><td>....</td><td>....</td><td>....</td><td>....</td><td><input type="submit" value="登録内容変更"></td></tr>
+	<tr><td>12345678</td><td>文学部の本</td><td>文学部系</td><td>著者1</td><td><input type="submit" value="登録内容変更"></td></tr>
+	<tr><td>98765432</td><td>教育学部の本</td><td>教育学部系</td><td>著者2</td><td><input type="submit" value="登録内容変更"></td></tr>
+	<tr><td>....</td><td>....</td><td>....</td><td>....</td><td><input type="submit" value="登録内容変更"></td></tr>
 </table>
-<p><input type="submit" value="登録内容変更"></p>
+
 </form>
 
 <a href="/textbook/Login/memHome.jsp">戻る</a>
