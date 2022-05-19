@@ -19,7 +19,7 @@
 		<p>
 		<h5>上記の内容でお間違えありませんか？</h5>
 
-
+<input type="submit" value="登録">
 	</form>
 	<a href="/Member/memRegister.jsp">戻る</a>
 

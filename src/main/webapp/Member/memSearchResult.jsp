@@ -10,24 +10,18 @@
 
 <h3>検索結果</h3>
 
-<table border="1">
-	<tr><th>ユーザーID</th><th>名前</th><th>メールアドレス</th></tr>
-	<tr><th>....</th><th>....</th><th>....</th></tr>
-	<tr><th>12345</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>67891</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>12345</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>67891</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>12345</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>67891</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>12345</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>67891</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>12345</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>67891</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>12345</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>67891</th><th>伊賀</th><th>igaiga<th></tr>
-	<tr><th>....</th><th>....</th><th>....<th></tr>
-</table>
-<br>
+<form action="/textbook/MemberServlet?action=changeConfirm" method="post">
+		<p>名前:いがいがいがいが
+		<p>
+		<p>メール:iga
+		<p>
+		<p>パスワード:iga
+		<p>
+		<p>ユーザーID:igaiga555
+		<h5>上記の内容でお間違えありませんか？</h5>
+
+<input type="submit" value="削除">　<input type="submit" value="変更">
+	</form>
 <a href="/Member/memSearch.jsp">戻る</a>
 </body>
 </html>
