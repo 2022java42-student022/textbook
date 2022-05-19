@@ -10,7 +10,7 @@
 
 	<h3>ご登録情報確認</h3>
 
-	<form action="/textbook/MemberServlet?action=registerConfirm" method="post">
+	<form action="/textbook/MemberServlet?action=register" method="post">
 		<p>名前:いがいがいがいが
 		<p>
 		<p>メール:iga
@@ -21,7 +21,7 @@
 
 
 	</form>
-	<a href="/memRegister.jsp">戻る</a>
+	<a href="/Member/memRegister.jsp">戻る</a>
 
 </body>
 </html>

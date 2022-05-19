@@ -10,7 +10,7 @@
 
 <h3>会員登録</h3>
 
-<form action="/textbook/MemberServlet?action=register" method="post">
+<form action="/textbook/MemberServlet?action=preRegister" method="post">
 			<p>名前<input type="text" name="name"> <p>
 			<p>メール<input type="email"name="email" size="40"><p>
 			<p>パスワード<input type="password" name="pass"><p>

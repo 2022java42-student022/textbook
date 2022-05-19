@@ -26,6 +26,6 @@
 
 	</form>
 
-	<a href="/memRegister.jsp">初めての方はこちら</a>
+	<a href="Member/memRegister.jsp">初めての方はこちら</a>
 </body>
 </html>
