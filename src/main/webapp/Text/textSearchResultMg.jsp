@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,27 +8,60 @@
 </head>
 <body>
 
-<h2>教科書検索結果画面</h2>
+	<h2>教科書検索結果画面</h2>
 
-<table border="1">
-	<tr><th>ISBN</th><th>タイトル</th><th>分類</th><th>著者名</th></tr>
-	<tr><th>....</th><th>....</th><th>....</th><th>....</th></tr>
-	<tr><th>12345678</th><th>文学部の本</th><th>文学部系</th><th>著者1</th></tr>
-	<tr><th>98765432</th><th>教育学部の本</th><th>教育学部系</th><th>著者2</th></tr>
-	<tr><th>....</th><th>....</th><th>....</th><th>....</th></tr>
-</table>
+	<form action="/textbook/Text/textDelete.jsp" metdod="post">
+		<table border="1">
+			<tr>
+				<th>ISBN</th>
+				<th>タイトル</th>
+				<th>分類</th>
+				<th>著者名</th>
+			</tr>
+			<tr>
+				<td>....</td>
+				<td>....</td>
+				<td>....</td>
+				<td>....</td>
+				<td><input type="submit" value="削除"></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" name="button_test" value="変更" onclick="javascript.location.href='/textbook/Text/textChange.jsp'"></td>
+				
+			</tr>
+			<tr>
+				<td>12345678</td>
+				<td>文学部の本</td>
+				<td>文学部系</td>
+				<td>著者1</td>
+				<td><input type="submit" value="削除"></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" name="button_test" value="変更" onclick="javascript.location.href='/textbook/Text/textChange.jsp'"></td>
+			</tr>
+			<tr>
+				<td>98765432</td>
+				<td>教育学部の本</td>
+				<td>教育学部系</td>
+				<td>著者2</td>
+				<td><input type="submit" value="削除"></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" name="button_test" value="変更" onclick="javascript.location.href='/textbook/Text/textChange.jsp'"></td>
+			</tr>
+			<tr>
+				<td>....</td>
+				<td>....</td>
+				<td>....</td>
+				<td>....</td>
+				<td><input type="submit" value="削除"></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" name="button_test" value="変更" onclick="javascript.location.href='/textbook/Text/textChange.jsp'"></td>
+			</tr>
+		</table>
 
-<br><br>
+		<br>
+		<br>
 
-<form action="/TextServlet?" method="post">削除
-<input type ="hidden" name="action" value="delete">
-<input type ="hidden" name="text_id" value="">
-</form>
 
-<form action="/TextServlet?" method="post">登録内容変更
-<input type ="hidden" name="action" value="change">
-<input type ="hidden" name="text_id" value="">
-</form>
+	</form>
 
 </body>
 </html>

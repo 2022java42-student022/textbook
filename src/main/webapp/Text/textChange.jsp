@@ -30,8 +30,11 @@
 	金額 <input type="number" name="price"><br><br>
 
 	<input type="submit" value="変更">
-	<input type="submit" value="キャンセル">
+	&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" name="button_test" value="キャンセル" onclick="javascript:history.back()">
 </form>	
+
+
 
 </body>
 </html>

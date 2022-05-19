@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<h2>教科書登録確認画面</h2>
+
 <form action="test.php" method="post">
 			<p>ISBN:<p>
 			<p>タイトル:<p>
