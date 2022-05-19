@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MgComplete</title>
+<title>Member Complete</title>
 </head>
 <body>
 
