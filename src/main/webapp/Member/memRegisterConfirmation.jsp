@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h3>ご登録情報確認</h3>
+	<h3>登録情報確認</h3>
 
 	<form action="/textbook/MemberServlet?action=register" method="post">
 		<p>名前:いがいがいがいが
