@@ -10,7 +10,7 @@
 
 	<h3>会員退会</h3>
 
-	<form action="/textbook/MemberServlet?action=delete" method="post">
+	<form action="/textbook/MemberServlet?action=preDelete" method="post">
 
 		<p>
 			メール<input type="email" name="email" size="40">
@@ -19,6 +19,6 @@
 			パスワード<input type="password" name="pass">
 		<p>
 	</form>
-	<a href="/memHome.jsp">戻る</a>
+	<a href="Member/memHome.jsp">戻る</a>
 </body>
 </html>
