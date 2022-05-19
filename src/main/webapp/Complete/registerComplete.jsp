@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Complete</title>
+<title>RegisterComplete</title>
 </head>
 <body>
 
 <h1>処理完了メッセージの表示</h1>
 
-<a href="">ホームに戻る</a>
+<a href="">ログインページに戻る</a>
 </body>
 </html>
