@@ -4,16 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MgComplete</title>
+<title>Mg Change Text Complete</title>
 </head>
 <body>
 
-<form action="/textbook/TextServlet?action=return" method="post">
-
 <h1>処理完了メッセージの表示</h1>
 
-</form>
-
-<a href="">ホームに戻る</a>
+<a href="/Login/mgHome.jsp">ホームに戻る</a>
 </body>
 </html>
