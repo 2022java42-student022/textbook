@@ -10,12 +10,13 @@
 
 	<h3>会員変更</h3>
 
-	<form action="/textbook/MemberServlet?action=change" method="post">
+	<form action="/textbook/MemberServlet?action=preChange" method="post">
 			<p>名前<input type="text" name="name"> <p>
 			<p>メール<input type="email"name="email" size="40"><p>
 			<p>パスワード<input type="pass" name="pass"><p>
 		<p><input type="submit" value="送信"></p>
-		<a href="/Login/memHome.jsp">戻る</a>
+		
 	</form>
+	<a href="/Login/memHome.jsp">戻る</a>
 </body>
 </html>
