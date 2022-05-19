@@ -14,6 +14,7 @@
 			<p>ユーザーID<input type="text" name="user_id" size="40"> <p>
 			
 		<p><input type="submit" value="検索"></p>
+		<a href="/Login/memHome.jsp">戻る</a>
 	</form>
 
 </body>

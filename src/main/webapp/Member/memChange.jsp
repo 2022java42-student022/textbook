@@ -15,6 +15,7 @@
 			<p>メール<input type="email"name="email" size="40"><p>
 			<p>パスワード<input type="pass" name="pass"><p>
 		<p><input type="submit" value="送信"></p>
+		<a href="/Login/memHome.jsp">戻る</a>
 	</form>
 </body>
 </html>
