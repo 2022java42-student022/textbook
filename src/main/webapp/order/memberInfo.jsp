@@ -48,7 +48,8 @@
 	<input type = "radio" name = "pay" value = "card">クレジットカード<br>
 	<input type = "radio" name = "pay" value = "bank">銀行振込<br>
 	<input type = "radio" name = "pay" value = "cash">代引き<br><br>
-	<input type = "submit" value = "確認画面へ">
+	<input type = "submit" value = "確認画面へ"><br>
+	<a href = "/textbook/cart/cart.jsp">戻る</a>
 	</form>
 	
 </body>

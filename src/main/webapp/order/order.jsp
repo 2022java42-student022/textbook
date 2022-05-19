@@ -16,7 +16,7 @@
 
 	になります。<br>
 
-	<a href = "/memHome.jsp">HOMEへ戻る</a>
+	<a href = "/textbook/Login/memHome.jsp">HOMEへ戻る</a>
 	
 </body>
 </html>

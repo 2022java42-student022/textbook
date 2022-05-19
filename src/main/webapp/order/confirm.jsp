@@ -67,7 +67,8 @@
 			</tr>
 		</table>
 		<br>
-		<input type="submit" value="この内容で注文">
+		<input type="submit" value="この内容で注文"><br>
+		<a href = "/textbook/order/memberInfo.jsp">戻る</a>
 	</form>
 
 </body>
