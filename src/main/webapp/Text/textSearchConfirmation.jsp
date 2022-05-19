@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="test.php" method="post">
+<form action="/TextServlet?" method="post">
 			<p>ISBN:<p>
 			<p>タイトル:<p>
 			<h5>上記の内容でお間違えありませんか？</h5>
