@@ -9,11 +9,13 @@
 <body>
 
 	<h2>教科書削除画面</h2>
-	<form>
+	
+<form action="/textbook/TextServlet?action=delete" method="post">
+	
 		ISBN <input type="text" name="ISBN"><br> タイトル <input
 			type="text" name="title"><br> <br> <input
-			type="submit" value="削除"> <input type="submit" value="キャンセル">
+			type="submit" value="削除"> 
 	</form>
-
+<a href="/memHome.jsp">戻る</a>
 </body>
 </html>

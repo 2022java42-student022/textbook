@@ -18,7 +18,9 @@
 		<p>
 			パスワード<input type="password" name="pass">
 		<p>
+		<input type="submit" value="検索">
 	</form>
+	
 	<a href="/memHome.jsp">戻る</a>
 </body>
 </html>

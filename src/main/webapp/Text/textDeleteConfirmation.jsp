@@ -8,15 +8,17 @@
 </head>
 <body>
 
-<form action="test.php" method="post">
+<h3>削除確認</h3>
+
+<form action="/textbook/TextServlet?action=delete" method="post">
+
 			<p>ISBN:iga666<p>
 			<p>タイトル:伊賀、Javaやめるってよ<p>
 			
 			<h5>上記の内容でお間違えありませんか？</h5>
 		<p><input type="submit" value="決定"></p> 
-		<a href="/textDelete.jsp">戻る</a>
 		
 	</form>
-
+<a href="/textDelete.jsp">戻る</a>
 </body>
 </html>
