@@ -7,7 +7,7 @@
 <title>Cart</title>
 </head>
 <body>
-<a href="">教科書検索</a>|<a href="">カートの確認</a>
+<a href="/textbook/Text/textSearchMember.jsp">教科書検索</a>|<a href="/textbook/cart/cart.jsp">カートの確認</a>
 
 <hr>
 	<h3>現在のカートの中身</h3>
@@ -42,7 +42,7 @@
 	<form action="" method="post">
 		<input type="submit" value="注文する"><br>
 		<br>
-		<a href="/Member/memSearchResult.jsp">戻る</a>
+		<a href="/textbook//Member/memSearchResult.jsp">戻る</a>
 	</form>
 </body>
 </html>

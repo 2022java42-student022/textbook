@@ -20,33 +20,38 @@
 				<th></th>
 			</tr>
 			<tr>
-				<th>....</th>
-				<th>....</th>
-				<th>....</th>
-				<th>....</th>
-				<th>....</th>
+				<td>....</td>
+				<td>....</td>
+				<td>....</td>
+				<td>....</td>
+				<td>....</td>
 			</tr>
 			<tr>
-				<th>12345678</th>
-				<th>文学部の本</th>
-				<th>文学部系</th>
-				<th>著者1</th>
-				<th><input type = "submit" value = "カートに追加する"></th>
+				<td>12345678</td>
+				<td>文学部の本</td>
+				<td>文学部系</td>
+				<td>著者1</td>
+				<td><input type = "submit" value = "カートに追加する"></td>
 			</tr>
 			<tr>
-				<th>98765432</th>
-				<th>教育学部の本</th>
-				<th>教育学部系</th>
-				<th>著者2</th>
-				<th><input type = "submit" value = "カートに追加する"></th>
+				<td>98765432</td>
+				<td>教育学部の本</td>
+				<td>教育学部系</td>
+				<td>著者2</td>
+				<td><input type = "submit" value = "カートに追加する"></td>
 			</tr>
 			<tr>
-				<th>....</th>
-				<th>....</th>
-				<th>....</th>
-				<th>....</th>
+				<td>....</td>
+				<td>....</td>
+				<td>....</td>
+				<td>....</td>
 			</tr>
 		</table>
+		<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; <!-- JavaScript -->
+	<input type="button" name="button_test" value="カートを見る" onclick="javascript:location.href='/textbook/cart/cart.jsp'">
+		&nbsp;&nbsp;&nbsp;&nbsp; <!-- JavaScript -->
+	<input type="button" name="button_test" value="戻る" onclick="javascript:history.back()">
 	</form>
 
 
