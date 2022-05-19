@@ -40,7 +40,9 @@
 		</tr>
 	</table>
 	<form action="" method="post">
-		<input type="submit" value="注文する">
+		<input type="submit" value="注文する"><br>
+		<br>
+		<a href="/Member/memSearchResult.jsp">戻る</a>
 	</form>
 </body>
 </html>
