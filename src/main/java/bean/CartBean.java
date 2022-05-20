@@ -23,7 +23,7 @@ public class CartBean implements Serializable {
 
 	public void deleteCart(int text_id) {
 		for (TextBean text : texts) {
-			if (text.getCode() == text_id) {
+			if (text.getText_id() == text_id) {
 				texts.remove(text);
 				break;
 			}
