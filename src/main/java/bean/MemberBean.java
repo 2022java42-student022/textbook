@@ -1,13 +1,27 @@
 package bean;
 
-public class MemberBean {
+import java.io.Serializable;
+
+public class MemberBean implements Serializable {
 	private String name;
 	private String email;
 	private String pass;
 	private String address;
-	private int tel_no;
+	private String tel;
 	private String pay;
 	
+	public MemberBean(String name, String email, String pass, String address, String tel, String pay) {
+		this.name = name;
+		this.email = email;
+		this.pass = pass;
+		this.address = address;
+		this.tel = tel;
+		this.pay = pay;
+	}
+	
+	public MemberBean() {
+		
+	}
 	
 	public String getName() {
 		return name;
@@ -33,11 +47,11 @@ public class MemberBean {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getTel_no() {
-		return tel_no;
+	public String getTel() {
+		return tel;
 	}
-	public void setTel_no(int tel_no) {
-		this.tel_no = tel_no;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	public String getPay() {
 		return pay;
