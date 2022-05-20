@@ -34,6 +34,7 @@
 			<td></td>
 			<td>
 			<form action="/textbook/CartServlet?action=add" method="post">
+			<input type="hidden" name="text_id" value="${text.text_id}">
 			<input type="submit" value="カートに追加">
 			</form>
 			</td>
