@@ -1,67 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>Test Serch Result Member</title>
 </head>
 <body>
 
 	<h2>教科書検索結果画面</h2>
 
-	<form action="/textbook/Text/textDelete.jsp" metdod="post">
-		<table border="1">
-			<tr>
-				<th>ISBN</th>
-				<th>タイトル</th>
-				<th>分類</th>
-				<th>著者名</th>
-			</tr>
-			<tr>
-				<td>....</td>
-				<td>....</td>
-				<td>....</td>
-				<td>....</td>
-				<td><input type="submit" value="削除"></td>
-				<td>&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="button_test" value="変更" onclick="javascript.location.href='/textbook/Text/textChange.jsp'"></td>
-				
-			</tr>
-			<tr>
-				<td>12345678</td>
-				<td>文学部の本</td>
-				<td>文学部系</td>
-				<td>著者1</td>
-				<td><input type="submit" value="削除"></td>
-				<td>&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="button_test" value="変更" onclick="javascript.location.href='/textbook/Text/textChange.jsp'"></td>
-			</tr>
-			<tr>
-				<td>98765432</td>
-				<td>教育学部の本</td>
-				<td>教育学部系</td>
-				<td>著者2</td>
-				<td><input type="submit" value="削除"></td>
-				<td>&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="button_test" value="変更" onclick="javascript.location.href='/textbook/Text/textChange.jsp'"></td>
-			</tr>
-			<tr>
-				<td>....</td>
-				<td>....</td>
-				<td>....</td>
-				<td>....</td>
-				<td><input type="submit" value="削除"></td>
-				<td>&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="button_test" value="変更" onclick="javascript.location.href='/textbook/Text/textChange.jsp'"></td>
-			</tr>
-		</table>
 
-		<br>
-		<br>
-	<a href ="/Text/textSearchMember" method="post">戻る</a>
+	<table border="1">
+		<tr>
+			<th>教科書ID</th>
+			<th>ISBN</th>
+			<th>タイトル</th>
+			<th>分類</th>
+			<th>著者</th>
+			<th>金額</th>
+			<th>使用状況</th>
+			<th>カートに追加</th>
+		</tr>
+		<c:forEach items="${texts}}" var="text">
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>
+			<form action="/textbook/CartServlet?action=add" method="post">
+			<input type="submit" value="カートに追加">
+			</form>
+			</td>
+		</tr>
+		</c:forEach>
+	</table>
 
-	</form>
+	<br>
+	<br>
 
+	<input type="button" name="back" value="戻る"
+		onclick="javascript:history.back()">
 </body>
 </html>
