@@ -2,20 +2,20 @@ package bean;
 
 public class TextBean {
 	
-	private int ISBN;
+	private String ISBN;
 	private String title;
-	private String sort;
+	private int sort_id;
 	private String author;
 	private int price;
 	private String use;
 	private int total;
 	
 	
-	public int getISBN() {
+	public String getISBN() {
 		return ISBN;
 	}
-	public void setISBN(int iSBN) {
-		ISBN = iSBN;
+	public void setISBN(String ISBN) {
+		ISBN = ISBN;
 	}
 	public String getTitle() {
 		return title;
@@ -23,11 +23,11 @@ public class TextBean {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getSort() {
-		return sort;
+	public int getSort_id() {
+		return sort_id;
 	}
-	public void setSort(String sort) {
-		this.sort = sort;
+	public void setSort_id(int sort_id) {
+		this.sort_id = sort_id;
 	}
 	public String getAuthor() {
 		return author;
