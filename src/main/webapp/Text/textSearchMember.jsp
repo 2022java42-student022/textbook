@@ -17,7 +17,7 @@
 	</form>
 	
 	<form action="/TextServlet?action=search_sort_id" method="post">
-	分類 <select size="1" name="sort">
+	分類 <select size="1" name="sort_id">
 		<option value="1">文学部系</option> <!-- valueは0から -->
 		<option value="2">教育学部系</option>
 		<option value="3">法学部系</option>
