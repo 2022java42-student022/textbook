@@ -20,8 +20,26 @@ public class LoginDAO {
 		}
 	}
 
-	public boolean findAccount(String email, String pass) throws DAOException {
+	public boolean findMgAccount(String email, String pass) throws DAOException {
 		String sql = "SELECT * FROM manager WHERE email = ? AND pass = ?;";
+		try (Connection con = DriverManager.getConnection(url, id, password)) {
+
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, email);
+			ps.setString(2, pass);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+		return false;
+	}
+	public boolean findMemAccount(String email, String pass) throws DAOException {
+		String sql = "SELECT * FROM member WHERE email = ? AND pass = ?;";
 		try (Connection con = DriverManager.getConnection(url, id, password)) {
 
 			PreparedStatement ps = con.prepareStatement(sql);

@@ -9,7 +9,7 @@
 <body>
 	<div class="login_form_top">
 		<h1>ログイン画面</h1>
-		<p>ID、パスワードをご入力の上、「ログイン」ボタンをクリックしてください。</p>
+		<p>メールアドレス、パスワードをご入力の上、「ログイン」ボタンをクリックしてください。</p>
 	</div>
 
 	<form action="/textbook/LoginServlet" method="post">
