@@ -26,10 +26,9 @@ public class LoginServlet extends HttpServlet {
 				LoginDAO dao = new LoginDAO();
 				if (dao.findMgAccount(email, pass)) {
 					HttpSession session = request.getSession();
-					session.setAttribute("login", "manager" );
+					session.setAttribute("login", "manager");
 					gotoPage(request, response, "Login/mgHome.jsp");
-				}
-				else { 
+				} else {
 					request.setAttribute("messeage", "メールアドレスまたはパスワードが違います。");
 					gotoPage(request, response, "error.jsp");
 				}
@@ -38,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+
 		else if (action.equals("login") && login.equals("member")) {
 			String email = request.getParameter("user_id");
 			String pass = request.getParameter("pass");
@@ -46,10 +45,9 @@ public class LoginServlet extends HttpServlet {
 				LoginDAO dao = new LoginDAO();
 				if (dao.findMemAccount(email, pass)) {
 					HttpSession session = request.getSession();
-					session.setAttribute("login", "member" );
+					session.setAttribute("login", "member");
 					gotoPage(request, response, "Login/memHome.jsp");
-				}
-				else { 
+				} else {
 					request.setAttribute("messeage", "メールアドレスまたはパスワードが違います。");
 					gotoPage(request, response, "error.jsp");
 				}
