@@ -11,17 +11,17 @@
 	<h3>登録情報確認</h3>
 
 	<form action="/textbook/MemberServlet?action=register" method="post">
-		<p>名前:いがいがいがいが
+		<p>名前:${member.name}
 		<p>
-		<p>メール:iga
+		<p>メール:${member.email}
 		<p>
-		<p>パスワード:iga
+		<p>パスワード:${member.pass}
 		<p>
 		<h5>上記の内容でお間違えありませんか？</h5>
 
 <input type="submit" value="登録">
 	</form>
-	<a href="/Member/memRegister.jsp">戻る</a>
+	<a href="Member/memRegister.jsp">戻る</a>
 
 </body>
 </html>

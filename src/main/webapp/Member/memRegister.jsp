@@ -17,6 +17,7 @@
 		<p><input type="submit" value="送信"></p>
 		
 	</form>
-<a href="/Login/memHome.jsp">戻る</a>
+<input type="button" name="restart" value="ログインページへ"
+			onclick="javascript:location.href='/textbook/Login/top.jsp'">
 </body>
 </html>

@@ -28,6 +28,6 @@
 
 	</form>
 
-	<a href="Member/memRegister.jsp">初めての方はこちら</a>
+	<a href="/textbook/Member/memRegister.jsp">初めての方はこちら</a>
 </body>
 </html>
