@@ -10,7 +10,7 @@
 
 	<h3>変更内容確認</h3>
 
-	<form action="/textbook/MemberServlet?action=changeConfirm" method="post">
+	<form action="/textbook/MemberServlet?action=change2" method="post">
 		<p>名前:いがいがいがいが
 		<p>
 		<p>メール:iga
@@ -21,6 +21,8 @@
 		<h5>上記の内容でお間違えありませんか？</h5>
 
 <input type="submit" value="変更">
+
+
 	</form>
 	<a href="/memChange.jsp">戻る</a>
 </body>

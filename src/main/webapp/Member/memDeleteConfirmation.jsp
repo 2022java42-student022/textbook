@@ -10,7 +10,7 @@
 
 	<h3>退会確認画面</h3>
 
-	<form action="/textbook/MemberServlet?action=delete" method="post">
+	<form action="/textbook/MemberServlet?action=decision" method="post">
 		<p>名前:いがいがいがいが
 		<p>
 		<p>メール:iga
