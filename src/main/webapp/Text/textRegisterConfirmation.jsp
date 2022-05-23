@@ -11,11 +11,12 @@
 <h2>教科書登録確認画面</h2>
 
 <form action="/complete.jsp" method="post">
-			<p>ISBN:<p>
-			<p>タイトル:<p>
-			<p>分類:<p>
-			<p>著者:<p>
-			<p>金額:<p>
+			<p>ISBN:${text.ISBN}<p>
+			<p>タイトル:${text.title}<p>
+			<p>分類:${text.sort_id}<p>
+			<p>著者:${text.author}<p>
+			<p>金額:${text.price}<p>
+			<p>使用状況:${text.use}<p>
 			<h5>上記の内容でお間違えありませんか？</h5>
 		<p><input type="submit" value="送信"><p>
 		<a href="/textbook/Text/textRegister.jsp">戻る</a>
