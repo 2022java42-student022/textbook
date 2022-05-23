@@ -12,7 +12,7 @@
 		<p>メールアドレス、パスワードをご入力の上、「ログイン」ボタンをクリックしてください。</p>
 	</div>
 
-	<form action="/textbook/LoginServlet" method="post">
+	<form action="/textbook/LoginServlet?action=login" method="post">
 
 
 		<input type="text" name="user_id" placeholder="IDを入力してください"><br>
