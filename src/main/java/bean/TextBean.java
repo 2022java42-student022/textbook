@@ -8,8 +8,15 @@ public class TextBean {
 	private String author;
 	private int price;
 	private String use;
+<<<<<<< Updated upstream
 	private String dep_name;
 
+=======
+	private int total;
+	private int user_id;
+	
+	
+>>>>>>> Stashed changes
 	public TextBean(int sort_id, String title) {
 		this.sort_id = sort_id;
 		this.title = title;
@@ -18,7 +25,13 @@ public class TextBean {
 	public TextBean() {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
+<<<<<<< Updated upstream
 
+=======
+	public TextBean(int user_id) {
+		this.user_id = user_id;
+	}
+>>>>>>> Stashed changes
 	public String getISBN() {
 		return ISBN;
 	}
@@ -70,9 +83,22 @@ public class TextBean {
 	public String getDep_name() {
 		return dep_name;
 	}
+<<<<<<< Updated upstream
 
 	public void setDep_name(String dep_name) {
 		this.dep_name = dep_name;
 	}
 
 }
+=======
+	public void setTotal(int user_id) {
+		this.total = total;
+	}
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+}
+>>>>>>> Stashed changes
