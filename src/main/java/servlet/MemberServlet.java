@@ -26,32 +26,54 @@ public class MemberServlet extends HttpServlet {
 
 		try {
 
-			MemberDAO dao = new MemberDAO();
-			if (action.equals("search")) {
-				gotoPage(request, response, "/Member/memSearchResult.jsp");
+			if (action == null || action.length() == 0 || action.equals("search")) {
 
-			}
+				int user_id = Integer.parseInt(request.getParameter("user_id"));
+				MemberDAO dao = new MemberDAO();
+				MemberBean2 bean = dao.SearchMember2(user_id);
 
-			// パラメータの解析
-			else if (action.equals("change")) {
-				{
-					gotoPage(request, response, "/Member/memChange.jsp");
+				if (bean == null) {
+					request.setAttribute("message", "正しい会員番号を入力してください。");
+					gotoPage(request, response, "/error.jsp");
 				}
-			}
-			// パラメータの解析
-			else if (action.equals("delete")) {
-				gotoPage(request, response, "/Member/memDeleteConfirmation.jsp");
-			} else {
+				
+				// リクエストスコープに入れてJSPへフォーワードする
 
-			}
+				HttpSession session = request.getSession();
 
-			if (action.equals("decision")) {
-				gotoPage(request, response, "/complete.jsp");
+				session.setAttribute("member2", bean);
+				gotoPage(request, response, "/Member/memSearchResult.jsp");
 			}
+		} catch (DAOException e) {
+			e.printStackTrace();
+			request.setAttribute("message", "内部エラーが発生しました。");
+			gotoPage(request, response, "/error.jsp");
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			request.setAttribute("message", "数字を入力してください。");
+			gotoPage(request, response, "/error.jsp");
+		}
 
-			if (action.equals("change2")) {
-				gotoPage(request, response, "/complete.jsp");
+		// パラメータの解析
+		if (action.equals("change"))	{
+			{
+				gotoPage(request, response, "/Member/memChange.jsp");
 			}
+		}
+		// パラメータの解析
+		else if (action.equals("delete")) {
+			gotoPage(request, response, "/Member/memDeleteConfirmation.jsp");
+		} else {
+
+		}
+
+		if (action.equals("decision")) {
+			gotoPage(request, response, "/complete.jsp");
+		}
+
+		if (action.equals("change2")) {
+			gotoPage(request, response, "/complete.jsp");
+    }
 
 			if (action.equals("preRegister")) {
 				String name = request.getParameter("name");
