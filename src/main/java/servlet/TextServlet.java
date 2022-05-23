@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import bean.TextBean;
 import dao.DAOException;
-import dao.SortDAO;
 import dao.TextDAO;
 
 @WebServlet("/TextServlet")
@@ -52,12 +51,11 @@ public class TextServlet extends HttpServlet {
 				TextBean bean = new TextBean();
 				bean.setPrice(text_price);
 				bean.setSort_id(text_sort_id);
-				SortDAO sort_dao = new SortDAO();
-				sort_dao.findDep_name(text_sort_id);
 				bean.setISBN(ISBN);
 				bean.setTitle(title);
 				bean.setAuthor(author);
 				bean.setUse(use);
+				dao.RegisterAllCategory(bean);
 				session.setAttribute("text", bean);
 				gotoPage(request, response, "/textRegisterConfirmation.jsp");
 				} catch (NumberFormatException e) {
@@ -84,6 +82,7 @@ public class TextServlet extends HttpServlet {
 				request.setAttribute("text", list);
 				gotoPage(request, response, "/textSerchResultMember.jsp");
 		} 
+			
 		} catch (DAOException e) {
 			request.setAttribute("message","内部エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");
