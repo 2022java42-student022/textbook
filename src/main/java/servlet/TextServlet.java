@@ -68,6 +68,7 @@ public class TextServlet extends HttpServlet {
 			} else if (action.equals("register")) {
 				TextBean bean = (TextBean) session.getAttribute("text");
 				dao.RegisterAllCategory(bean);
+				request.setAttribute("message", "教科書の登録が完了しました！");
 				gotoPage(request, response, "/complete.jsp");
 
 				// 分類IDで検索
