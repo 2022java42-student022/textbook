@@ -16,7 +16,7 @@ public class MemberDAO {
 	public MemberDAO() throws DAOException {
 		try {
 			// JDBCドライバの登録
-			Class.forName("org.postgreaql.Driver");
+			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			throw new DAOException("JDBCドライバの登録に失敗しました。");

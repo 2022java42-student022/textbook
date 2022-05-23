@@ -23,7 +23,7 @@ public class MemberServlet extends HttpServlet {
 
 		// パラメータの解析
 		String action = request.getParameter("action");
-		
+
 		try {
 
 			MemberDAO dao = new MemberDAO();
@@ -62,6 +62,7 @@ public class MemberServlet extends HttpServlet {
 				bean2.setEmail(email);
 				bean2.setPass(pass);
 				HttpSession session = request.getSession(true);
+				session.setAttribute("login", "");
 				session.setAttribute("member", bean2);
 				gotoPage(request, response, "/Member/memRegisterConfirmation.jsp");
 			}
@@ -70,7 +71,7 @@ public class MemberServlet extends HttpServlet {
 				MemberBean2 bean2 = (MemberBean2) session.getAttribute("member");
 				dao.addMember(bean2);
 				request.setAttribute("message", "会員登録が完了しました。");
-				gotoPage(request,response,"/complete.jsp");
+				gotoPage(request, response, "/complete.jsp");
 
 			}
 		} catch (DAOException e) {
