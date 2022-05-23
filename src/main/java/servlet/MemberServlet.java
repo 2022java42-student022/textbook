@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +15,44 @@ public class MemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//パラメータの解析
+		// パラメータの解析
 		String action = request.getParameter("action");
-		if ( action.equals("search")) {
-			
+		if (action.equals("search")) {
+			gotoPage(request, response, "/Member/memSearchResult.jsp");
+
 			
 			
 		}
+
+		// パラメータの解析
+		else if (action.equals("change")) {
+			{
+				gotoPage(request, response, "/Member/memChange.jsp");
+			}
+		}
+		// パラメータの解析
+		else if (action.equals("delete")) {
+			gotoPage(request, response, "/Member/memDeleteConfirmation.jsp");
+		} else {
+			
+		}
 		
+		if (action.equals("decision")) {
+			gotoPage(request, response, "/complete.jsp");
+		}
+		
+		if (action.equals("change2")) {
+			gotoPage(request, response, "/complete.jsp");
+		}
 	}
 	
+	
+
+	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)
+			throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher(page);
+		rd.forward(request, response);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
