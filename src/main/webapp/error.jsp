@@ -28,5 +28,9 @@
 		<input type="button" name="back" value="前ページに戻る"
 			onclick="javascript:history.back()">
 	</c:if>
+	<c:if test="${login ne manager or login ne member}">
+		<input type="button" name="restart" value="ログインページへ"
+			onclick="javascript:location.href='/textbook/Login/top.jsp'">
+	</c:if>
 </body>
 </html>

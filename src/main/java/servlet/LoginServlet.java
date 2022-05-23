@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("login", "manager");
 					gotoPage(request, response, "Login/mgHome.jsp");
 				} else {
-					request.setAttribute("messeage", "メールアドレスまたはパスワードが違います。");
+					request.setAttribute("message", "メールアドレスまたはパスワードが違います。");
 					gotoPage(request, response, "error.jsp");
 				}
 
@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("login", "member");
 					gotoPage(request, response, "Login/memHome.jsp");
 				} else {
-					request.setAttribute("messeage", "メールアドレスまたはパスワードが違います。");
+					request.setAttribute("message", "メールアドレスまたはパスワードが違います。");
 					gotoPage(request, response, "error.jsp");
 				}
 
