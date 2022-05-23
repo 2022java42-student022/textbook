@@ -55,22 +55,22 @@ public class MemberDAO {
 
 	}
 
-	public int addMember(String name, String email, String pass) throws DAOException {
+	public void addMember(MemberBean2 bean2) throws DAOException {
 		String sql = "INSERT INTO member(name, email, pass) VALUES(?, ?, ?)";
-		int rows = 0;
+	
 
 		try (Connection con = DriverManager.getConnection(url, user, passwd);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, name);
-			st.setString(2, email);
-			st.setString(3, pass);
+			st.setString(1, bean2.getName());
+			st.setString(2, bean2.getEmail());
+			st.setString(3, bean2.getPass());
 
-			rows = st.executeUpdate();
+			st.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 
 		}
-		return rows;
+		
 	}
 }

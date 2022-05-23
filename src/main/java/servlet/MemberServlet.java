@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.MemberBean2;
+import dao.DAOException;
+import dao.MemberDAO;
 
 @WebServlet("/MemberServlet")
 public class MemberServlet extends HttpServlet {
@@ -21,44 +23,58 @@ public class MemberServlet extends HttpServlet {
 
 		// パラメータの解析
 		String action = request.getParameter("action");
-		if (action.equals("search")) {
-			gotoPage(request, response, "/Member/memSearchResult.jsp");
+		
+		try {
 
-		}
+			MemberDAO dao = new MemberDAO();
+			if (action.equals("search")) {
+				gotoPage(request, response, "/Member/memSearchResult.jsp");
 
-		// パラメータの解析
-		else if (action.equals("change")) {
-			{
-				gotoPage(request, response, "/Member/memChange.jsp");
 			}
-		}
-		// パラメータの解析
-		else if (action.equals("delete")) {
-			gotoPage(request, response, "/Member/memDeleteConfirmation.jsp");
-		} else {
 
-		}
+			// パラメータの解析
+			else if (action.equals("change")) {
+				{
+					gotoPage(request, response, "/Member/memChange.jsp");
+				}
+			}
+			// パラメータの解析
+			else if (action.equals("delete")) {
+				gotoPage(request, response, "/Member/memDeleteConfirmation.jsp");
+			} else {
 
-		if (action.equals("decision")) {
-			gotoPage(request, response, "/complete.jsp");
-		}
+			}
 
-		if (action.equals("change2")) {
-			gotoPage(request, response, "/complete.jsp");
-		}
+			if (action.equals("decision")) {
+				gotoPage(request, response, "/complete.jsp");
+			}
 
-		if (action.equals("preRegister")) {
-			String name = request.getParameter("name");
-			String email = request.getParameter("email");
-			String pass = request.getParameter("pass");
-			MemberBean2 bean2 = new MemberBean2();
-			bean2.setName(name);
-			bean2.setEmail(email);
-			bean2.setPass(pass);
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("member", bean2);
-			gotoPage(request, response, "/Member/memRegisterConfirmation.jsp");
+			if (action.equals("change2")) {
+				gotoPage(request, response, "/complete.jsp");
+			}
+
+			if (action.equals("preRegister")) {
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String pass = request.getParameter("pass");
+				MemberBean2 bean2 = new MemberBean2();
+				bean2.setName(name);
+				bean2.setEmail(email);
+				bean2.setPass(pass);
+				HttpSession session = request.getSession(true);
+				session.setAttribute("member", bean2);
+				gotoPage(request, response, "/Member/memRegisterConfirmation.jsp");
+			}
+			if (action.equals("register")) {
+				HttpSession session = request.getSession(false);
+				MemberBean2 bean2 = (MemberBean2) session.getAttribute("member");
+				dao.addMember(bean2);
+				request.setAttribute("message", "会員登録が完了しました。");
+				gotoPage(request,response,"/complete.jsp");
+
+			}
+		} catch (DAOException e) {
+			e.printStackTrace();
 		}
 	}
 
