@@ -11,11 +11,18 @@ public class TextBean {
 	private int total;
 	
 	
+	public TextBean(int sort_id, String title) {
+		this.sort_id = sort_id;
+		this.title = title;
+	}
+	public TextBean() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
 	public String getISBN() {
 		return ISBN;
 	}
 	public void setISBN(String ISBN) {
-		ISBN = ISBN;
+		this.ISBN = ISBN;
 	}
 	public String getTitle() {
 		return title;

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import bean.TextBean;
 import dao.DAOException;
 import dao.SortDAO;
+import dao.TextDAO;
 
 @WebServlet("/TextServlet")
 public class TextServlet extends HttpServlet {
@@ -35,8 +37,11 @@ public class TextServlet extends HttpServlet {
 			gotoPage(request,response,"/error.jsp");
 			return;
 		}
+		
 
+		//エラー処理の記述・数字を数値に変換
 		try {
+			TextDAO dao = new TextDAO();
 			if (action == null || action.length() == 0) {
 				gotoPage(request, response, "/error.jsp");
 			} else if (action.equals("preRegister")) {
@@ -47,8 +52,8 @@ public class TextServlet extends HttpServlet {
 				TextBean bean = new TextBean();
 				bean.setPrice(text_price);
 				bean.setSort_id(text_sort_id);
-				SortDAO dao = new SortDAO();
-				dao.findDep_name(text_sort_id);
+				SortDAO sort_dao = new SortDAO();
+				sort_dao.findDep_name(text_sort_id);
 				bean.setISBN(ISBN);
 				bean.setTitle(title);
 				bean.setAuthor(author);
@@ -60,7 +65,25 @@ public class TextServlet extends HttpServlet {
 					request.setAttribute("message","値段に数値を入力してください");
 					gotoPage(request, response, "/error.jsp");
 				}
-			}
+		
+				
+			//分類IDで検索	
+			} else if (action.equals("search")) {
+					int text_sort_id = Integer.parseInt(request.getParameter(sort_id));
+					
+				    List<TextBean>list = dao.findBySort_id(text_sort_id);
+					request.setAttribute("text", list);
+					gotoPage(request, response, "/textSerchResultMember.jsp");
+					
+					
+			//タイトルで検索		
+			} else if (action.equals("search")) {
+				int text_sort_id = Integer.parseInt(request.getParameter(sort_id));
+				
+			    List<TextBean>list = dao.findByTitle(title);
+				request.setAttribute("text", list);
+				gotoPage(request, response, "/textSerchResultMember.jsp");
+		} 
 		} catch (DAOException e) {
 			request.setAttribute("message","内部エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");
