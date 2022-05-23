@@ -19,15 +19,15 @@ public class MemberDAO {
 			Class.forName("org.postgreaql.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			throw new DAOExeception("JDBCドライバの登録に失敗しました。");
+			throw new DAOException("JDBCドライバの登録に失敗しました。");
 		}
 	}
 
 	public MemberBean2 SearchMember(int user_id) throws DAOException {
 
-		String name=null;
-		String email=null;
-		String pass=null;
+		String name = null;
+		String email = null;
+		String pass = null;
 
 		// SQL文の作成
 		String sql = "SELECT * FROM member WHERE user_id =?";
@@ -43,15 +43,53 @@ public class MemberDAO {
 				name = rs.getString("name");
 				email = rs.getString("email");
 				pass = rs.getString("pass");
-
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
+		MemberBean2 bean = new MemberBean2(name, email, pass, user_id);
+		return bean;
+	}
+
+	public MemberBean2 SearchMember2(int user_id) throws DAOException {
+
+		String name = null;
+		String email = null;
+		String pass = null;
+		int userid = 0;
+		// SQL文の作成
+		String sql = "SELECT * FROM member WHERE user_id =?";
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, passwd);
+				// PreparidStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+
+			st.setInt(1, user_id);
+			try (// SQLの実行)
+					ResultSet rs = st.executeQuery();) {
+				// 結果の取得
+				MemberBean2 bean = null;
+				while (rs.next()) {
+					name = rs.getString("name");
+					email = rs.getString("email");
+					pass = rs.getString("pass");
+					userid = rs.getInt("userid");
+					bean = new MemberBean2(name, email, pass, userid);
+				}
+				// 会員情報の有無を返す
+				return bean;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+
 			// いっちせんとあかん
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
 		}
-		MemberBean2 bean = new MemberBean2(name, email, pass,user_id);
-		return bean;
 
 	}
 }
