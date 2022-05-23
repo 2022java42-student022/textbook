@@ -1,24 +1,46 @@
 package bean;
 
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartBean {
-	private List<TextBean> text = new ArrayList<TextBean>();
+
+public class CartBean implements Serializable {
+	private List<TextBean> texts = new ArrayList<TextBean>();
 	private int total;
-	
-	public List<TextBean> getText() {
-		return text;
+
+	public CartBean() {
+
 	}
-	public void setText(List<TextBean> text) {
-		this.text = text;
+
+	public List<TextBean> getItems() {
+		return texts;
 	}
+
+	public void addCart(TextBean bean) {
+		texts.add(bean);
+		recalcTotal();
+	}
+
+	public void deleteCart(int text_id) {
+		for (TextBean text : texts) {
+			if (text.getText_id() == text_id) {
+				texts.remove(text);
+				break;
+			}
+		}
+		recalcTotal();
+	}
+
 	public int getTotal() {
 		return total;
 	}
-	public void setTotal(int total) {
-		this.total = total;
-	}
-	
 
+	public void recalcTotal() {
+		total = 0;
+		for (TextBean text : texts) {
+			total += text.getPrice();
+		}
+	}
 }
