@@ -1,8 +1,10 @@
 package bean;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class CartBean implements Serializable {
 	private List<TextBean> texts = new ArrayList<TextBean>();
