@@ -21,6 +21,6 @@
 		<input type="submit" value="検索">
 	</form>
 	
-	<a href="/memHome.jsp">戻る</a>
+	<a href="Login/memHome.jsp">戻る</a>
 </body>
 </html>
