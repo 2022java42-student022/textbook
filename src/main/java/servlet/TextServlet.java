@@ -25,18 +25,13 @@ public class TextServlet extends HttpServlet {
 
 		String action = request.getParameter("action");
 		String sort_id = request.getParameter("sort_id");
-		
+
 		String ISBN = request.getParameter("ISBN");
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String price = request.getParameter("price");
 		String use = request.getParameter("use");
-<<<<<<< Updated upstream
 
-=======
-		String user_id = request.getParameter("user_id");
-		
->>>>>>> Stashed changes
 		HttpSession session = request.getSession(false);
 		if (session == null) {
 			request.setAttribute("message", "セッションが切れています。もう一度トップページより操作してください。");
@@ -44,11 +39,8 @@ public class TextServlet extends HttpServlet {
 			return;
 		}
 
-<<<<<<< Updated upstream
-		// エラー処理の記述・数字を数値に変換
-=======
-		//教科書の登録
->>>>>>> Stashed changes
+		// 教科書の登録
+
 		try {
 			TextDAO dao = new TextDAO();
 			if (action == null || action.length() == 0) {
@@ -83,7 +75,6 @@ public class TextServlet extends HttpServlet {
 				// 分類IDで検索
 
 			} else if (action.equals("search")) {
-<<<<<<< Updated upstream
 				int text_sort_id = Integer.parseInt(request.getParameter(sort_id));
 
 				List<TextBean> list = dao.findBySort_id(text_sort_id);
@@ -95,35 +86,21 @@ public class TextServlet extends HttpServlet {
 				List<TextBean> list = dao.findByTitle(title);
 				request.setAttribute("text", list);
 				gotoPage(request, response, "/textSerchResultMember.jsp");
+				
+				// 登録している教科書を参照
+			} else if (action.equals("reference")) {
+				int user_id = (int) session.getAttribute("user_id");
+				List<TextBean> list = dao.findByUser_id(user_id);
+				request.setAttribute("texts", list);
+				gotoPage(request, response, "/showMyText.jsp");
 			}
 
-		} catch (
-
-		DAOException e) {
-			request.setAttribute("message", "内部エラーが発生しました。");
-=======
-				
-			    List<TextBean>list = dao.findByTitle(title);
-				request.setAttribute("text", list);
-				gotoPage(request, response, "/textSerchResultMember.jsp");
-				
-				
-				
-			//登録している教科書を参照	
-			} else if (action.equals("reference")) {
-				session.getAttribute("user_id");
-				
-				List<TextBean>list = dao.findByUser_id(user_id);
-				request.setAttribute("texts",list );
-				gotoPage(request, response, "/showMyText.jsp");
-			} 
-			
 		} catch (DAOException e) {
-			request.setAttribute("message","内部エラーが発生しました。");
->>>>>>> Stashed changes
+			request.setAttribute("message", "内部エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");
 		}
 
+	
 	}
 
 	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)

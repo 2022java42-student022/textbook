@@ -114,6 +114,7 @@ public class TextDAO {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
 		}
+	}
 		
 		
 		public List<TextBean> findByUser_id(int user_id)  throws DAOException {
