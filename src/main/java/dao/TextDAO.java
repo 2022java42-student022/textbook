@@ -114,5 +114,31 @@ public class TextDAO {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
 		}
+		
+		
+		public List<TextBean> findByUser_id(int user_id)  throws DAOException {
+			String sql = "SElECT ISBN,title,sort_id,author FROM text WHERE user_id = ?";
+					
+			try(
+					Connection con = DriverManager.getConnection(url,user,pass);
+					PreparedStatement st = con.prepareStatement(sql);) {
+				st.setInt(1,user_id);
+				try(
+						ResultSet rs = st.executeQuery();) {
+					List<TextBean> list = new ArrayList<TextBean>();
+					while(rs.next()) {
+						int text_user_id =rs.getInt("user_id");
+						TextBean bean = new TextBean(user_id);
+						list.add(bean);
+					} return list;
+				} catch (SQLException e) {
+					e.printStackTrace();
+					throw new DAOException("レコードの取得に失敗しました。");
+				}
+			}catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+
+		}
 	}
 }
