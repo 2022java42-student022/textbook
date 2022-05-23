@@ -46,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 				if (dao.findMemAccount(email, pass)) {
 					HttpSession session = request.getSession();
 					session.setAttribute("login", "member");
+					session.setAttribute("email", email);
 					gotoPage(request, response, "Login/memHome.jsp");
 				} else {
 					request.setAttribute("message", "メールアドレスまたはパスワードが違います。");

@@ -16,7 +16,7 @@ public class MemberDAO {
 	public MemberDAO() throws DAOException {
 		try {
 			// JDBCドライバの登録
-			Class.forName("org.postgreaql.Driver");
+			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			throw new DAOException("JDBCドライバの登録に失敗しました。");
@@ -91,5 +91,25 @@ public class MemberDAO {
 			throw new DAOException("レコードの取得に失敗しました。");
 		}
 
+
+	}
+
+	public void addMember(MemberBean2 bean2) throws DAOException {
+		String sql = "INSERT INTO member(name, email, pass) VALUES(?, ?, ?)";
+	
+
+		try (Connection con = DriverManager.getConnection(url, user, passwd);
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setString(1, bean2.getName());
+			st.setString(2, bean2.getEmail());
+			st.setString(3, bean2.getPass());
+
+			st.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+		
 	}
 }

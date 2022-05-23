@@ -19,11 +19,13 @@ public class MemberServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 
 		// パラメータの解析
 		String action = request.getParameter("action");
 
 		try {
+
 			if (action == null || action.length() == 0 || action.equals("search")) {
 
 				int user_id = Integer.parseInt(request.getParameter("user_id"));
@@ -53,9 +55,7 @@ public class MemberServlet extends HttpServlet {
 		}
 
 		// パラメータの解析
-		if (action.equals("change"))
-
-		{
+		if (action.equals("change"))	{
 			{
 				gotoPage(request, response, "/Member/memChange.jsp");
 			}
@@ -73,6 +73,31 @@ public class MemberServlet extends HttpServlet {
 
 		if (action.equals("change2")) {
 			gotoPage(request, response, "/complete.jsp");
+    }
+
+			if (action.equals("preRegister")) {
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String pass = request.getParameter("pass");
+				MemberBean2 bean2 = new MemberBean2();
+				bean2.setName(name);
+				bean2.setEmail(email);
+				bean2.setPass(pass);
+				HttpSession session = request.getSession(true);
+				session.setAttribute("login", "");
+				session.setAttribute("member", bean2);
+				gotoPage(request, response, "/Member/memRegisterConfirmation.jsp");
+			}
+			if (action.equals("register")) {
+				HttpSession session = request.getSession(false);
+				MemberBean2 bean2 = (MemberBean2) session.getAttribute("member");
+				dao.addMember(bean2);
+				request.setAttribute("message", "会員登録が完了しました。");
+				gotoPage(request, response, "/complete.jsp");
+
+			}
+		} catch (DAOException e) {
+			e.printStackTrace();
 		}
 	}
 
