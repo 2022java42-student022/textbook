@@ -16,7 +16,11 @@
 
 	になります。<br>
 
-	<a href = "/textbook/Login/memHome.jsp">HOMEへ戻る</a>
+	<input type="button" name="restart" value="ホームページへ"
+			onclick="javascript:location.href='/textbook/Login/memHome.jsp'">
+	<input type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+	
 	
 </body>
 </html>

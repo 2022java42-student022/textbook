@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ユーザー情報確認</title>
+<title>お客様情報確認</title>
 </head>
 <body>
 
@@ -49,7 +49,10 @@
 	<input type = "radio" name = "pay" value = "bank">銀行振込<br>
 	<input type = "radio" name = "pay" value = "cash">代引き<br><br>
 	<input type = "submit" value = "確認画面へ"><br>
-	<a href = "/textbook/cart/cart.jsp">戻る</a>
+	<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+	<input type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 	</form>
 	
 </body>
