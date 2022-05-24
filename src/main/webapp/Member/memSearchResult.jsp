@@ -11,14 +11,15 @@
 <h3>検索結果</h3>
 
 <form action="/textbook/MemberServlet?action=delete" method="post">
-		<p>名前:
-		<p>
-		<p>メール:
-		<p>
-		<p>パスワード:
-		<p>
-		<p>ユーザーID:
-		<h5>上記の内容でお間違えありませんか？</h5>
+
+<table border="1">
+<tr><td>ID</td><td>名前</td><td>メール</td><td>パスワード</td></tr>
+
+<c:forEach items="${}" var="item">
+<tr><td>${.user_id}</td><td>${.name}</td><td>${.email}</td><td>${.pass}</td></tr>
+</c:forEach>
+</table>
+		
 
 <input type="submit" value="削除">
 </form>
