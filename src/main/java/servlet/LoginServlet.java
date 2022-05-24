@@ -47,7 +47,8 @@ public class LoginServlet extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("login", "member");
 					MemberDAO memDao = new MemberDAO();
-					session.setAttribute("user_id", memDao.searchByEmail(email));
+					int user_id = memDao.searchByEmail(email);
+					session.setAttribute("user_id",user_id );
 					gotoPage(request, response, "Login/memHome.jsp");
 				} else {
 					request.setAttribute("message", "メールアドレスまたはパスワードが違います。");
@@ -56,6 +57,8 @@ public class LoginServlet extends HttpServlet {
 
 			} catch (DAOException e) {
 				e.printStackTrace();
+				request.setAttribute("message", "内部エラーが発生しました。");
+				gotoPage(request, response, "error.jsp");
 			}
 		}
 		
