@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -38,7 +39,6 @@ public class TextServlet extends HttpServlet {
 			return;
 		}
 
-
 		// 教科書の登録
 		try {
 			TextDAO dao = new TextDAO();
@@ -58,6 +58,7 @@ public class TextServlet extends HttpServlet {
 					bean.setUse(use);
 					SortDAO sortDAO = new SortDAO();
 					bean.setDep_name(sortDAO.findDep_name(text_sort_id));
+					bean.setUser_id((int) session.getAttribute("user_id"));
 					session.setAttribute("text", bean);
 					gotoPage(request, response, "/Text/textRegisterConfirmation.jsp");
 				} catch (NumberFormatException e) {
@@ -65,34 +66,85 @@ public class TextServlet extends HttpServlet {
 					request.setAttribute("message", "値段に数値を入力してください");
 					gotoPage(request, response, "/error.jsp");
 				}
+				// 教科書登録
 			} else if (action.equals("register")) {
 				TextBean bean = (TextBean) session.getAttribute("text");
 				dao.RegisterAllCategory(bean);
 				request.setAttribute("message", "教科書の登録が完了しました！");
 				gotoPage(request, response, "/complete.jsp");
-
-				// 分類IDで検索
-
-			} else if (action.equals("search")) {
+				// 全ての教科書表示
+			} else if (action.equals("searchAll")) {
+				List<TextBean> list = dao.findAll();
+				request.setAttribute("texts", list);
+				String login = (String) session.getAttribute("login");
+				if (login.equals("member")) {
+					gotoPage(request, response, "/Text/textSerchResultMember.jsp");
+				} else if (login.equals("manager")) {
+					gotoPage(request, response, "/Text/textSerchResultMg.jsp");
+				} else {
+					request.setAttribute("message", "セッションが途切れています。もう一度ログインしなおしてください。");
+					gotoPage(request, response, "error.jsp");
+				}
+				// 分類名で検索
+			} else if (action.equals("search_sort_id")) {
 				int text_sort_id = Integer.parseInt(request.getParameter(sort_id));
-
 				List<TextBean> list = dao.findBySort_id(text_sort_id);
-				request.setAttribute("text", list);
-				gotoPage(request, response, "/textSerchResultMember.jsp");
-
+				request.setAttribute("texts", list);
+				String login = (String) session.getAttribute("login");
+				if (login.equals("member")) {
+					gotoPage(request, response, "/Text/textSerchResultMember.jsp");
+				} else if (login.equals("manager")) {
+					gotoPage(request, response, "/Text/textSerchResultMg.jsp");
+				} else {
+					request.setAttribute("message", "セッションが途切れています。もう一度ログインしなおしてください。");
+					gotoPage(request, response, "error.jsp");
+				}
 				// タイトルで検索
-			} else if (action.equals("search")) {
+			} else if (action.equals("search_title")) {
 				List<TextBean> list = dao.findByTitle(title);
-				request.setAttribute("text", list);
-				gotoPage(request, response, "/textSerchResultMember.jsp");
+				request.setAttribute("texts", list);
+				String login = (String) session.getAttribute("login");
+				if (login.equals("member")) {
+					gotoPage(request, response, "/Text/textSerchResultMember.jsp");
+				} else if (login.equals("manager")) {
+					gotoPage(request, response, "/Text/textSerchResultMg.jsp");
+				} else {
+					request.setAttribute("message", "セッションが途切れています。もう一度ログインしなおしてください。");
+					gotoPage(request, response, "error.jsp");
+				}
 
 				// 登録している教科書を参照
 			} else if (action.equals("reference")) {
 				int user_id = (int) session.getAttribute("user_id");
 				List<TextBean> list = dao.findByUser_id(user_id);
-				request.setAttribute("text", list);
-				gotoPage(request, response, "/showMyText.jsp");
+				request.setAttribute("textbooks", list);
+				gotoPage(request, response, "Text/showMyText.jsp");
+			
+				// 選択した教科書を変更画面に移動
+
+				// 登録している教科書の内容変更
+
+			} else if (action.equals("inputChange")) {
+
+
+
 			}
+
+				int text_id = (int) session.getAttribute("text_id");
+				List<TextBean> list = new ArrayList<TextBean>();
+				request.setAttribute("textbooks", list);
+				gotoPage(request, response, "Text/textChange.jsp");
+			
+				// 教科書の内容変更
+			} else if (action.equals("change")) {
+				int text_id = (int) session.getAttribute("text_id");
+				List<TextBean> list = dao.changeText(text_id);
+				request.setAttribute("textbooks", list);
+			
+			}
+
+			
+
 
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");

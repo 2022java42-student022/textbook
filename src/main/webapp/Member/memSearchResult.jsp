@@ -13,7 +13,6 @@
 <table border="1">
 <tr><td>ID</td><td>名前</td><td>メール</td><td>パスワード</td></tr>
 
-
 <tr><td>${member2.user_id}</td><td>${member2.name}</td><td>${member2.email}</td><td>${member2.pass}</td></tr>
 
 </table>
@@ -25,9 +24,11 @@
 </form></td>
 <td><form action="/textbook/MemberServlet?action=change" method="post">
 <input type="submit" value="変更">
-</form></td></tr>
-</table>
-	
-<a href="/Member/memSearch.jsp">戻る</a>
+
+	</form>
+	<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+	<input type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 </body>
 </html>

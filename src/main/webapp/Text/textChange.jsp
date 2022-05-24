@@ -10,7 +10,7 @@
 
 <h2>教科書変更画面</h2>
 
-<form action="test.php" method="post">
+<form action="testChangeConfirmation.jsp" method="post">
 	ISBN <input type="text" name="ISBN"><br> 
 	タイトル <input type="text" name="title"><br> 
 	分類 <select size="1" name="sort">
@@ -31,7 +31,11 @@
 
 	<input type="submit" value="変更">
 	&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="button_test" value="戻る" onclick="javascript:history.back()">
+
+<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+<input type="button" name="logout" value="ログアウト"
+		    onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 </form>	
 
 
