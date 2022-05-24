@@ -57,11 +57,10 @@
 			</tr>
 		</table>
 		
-		<a href = "/textbook/Text/textSearchMg.jsp">戻る</a>
-
-		<br>
-		<br>
-	<a href ="/Text/textSearchMember" method="post">戻る</a>
+<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+<input type="button" name="logout" value="ログアウト"
+		    onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 
 	</form>
 
