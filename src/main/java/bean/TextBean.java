@@ -9,7 +9,6 @@ public class TextBean {
 	private String author;
 	private int price;
 	private String use;
-	private int quantity;
 	private String dep_name;
 	private int user_id;
 
@@ -20,7 +19,7 @@ public class TextBean {
 		this.title = title;
 	}
 
-	public TextBean(int text_id, String ISBN, String title, int sort_id, String author, int price, String use, int quantity) {
+	public TextBean(int text_id, String ISBN, String title, int sort_id, String author, int price, String use) {
 		this.text_id = text_id;
 		this.ISBN = ISBN;
 		this.title = title;
@@ -28,7 +27,6 @@ public class TextBean {
 		this.author = author;
 		this.price = price;
 		this.use = use;
-		this.quantity = quantity;
 	}
 
 
@@ -97,12 +95,6 @@ public class TextBean {
 		this.use = use;
 	}
 
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-  }
 
 	public String getDep_name() {
 		return dep_name;
