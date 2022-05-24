@@ -129,7 +129,7 @@ public class TextDAO {
 					int sort_id = rs.getInt("sort_id");
 					String author = rs.getString("author");
 					int price = rs.getInt("price");
-					TextBean bean = new TextBean(ISBN,title,sort_id,author,price);
+					TextBean bean = new TextBean(ISBN, title, sort_id, author, price);
 					list.add(bean);
 				}
 				return list;
@@ -140,7 +140,40 @@ public class TextDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
-		
+
+		}
+	}
+
+	public List<TextBean> changeText(int text_id) throws DAOException {
+		String sql = "UPDATE text SET ISBN = ?,title = ?,sort_id = ?,author = ?,price = ? WHERE text_id = ?";
+
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setString(1, ISBN);
+			st.setString(2, title);
+			st.setInt(3, sort_id);
+			st.setString(4, author);
+			st.setInt(5, price);
+			st.setInt(6, text_id);
+			try (ResultSet rs = st.executeUpdate();) {
+				List<TextBean> list = new ArrayList<TextBean>();
+				while (rs.next()) {
+					String ISBN = rs.getString("ISBN");
+					String title = rs.getString("title");
+					int sort_id = rs.getInt("sort_id");
+					String author = rs.getString("author");
+					int price = rs.getInt("price");
+					TextBean bean = new TextBean(ISBN, title, sort_id, author, price);
+					list.add(bean);
+				}
+				return list;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
 		}
 	}
 }

@@ -49,8 +49,12 @@ public class TextBean {
 		this.user_id = user_id;
 	}
 
+<<<<<<< HEAD
+	public TextBean(String ISBN, String title, int sort_id, String author, int price) {
+=======
 
 	public TextBean(String iSBN, String title, int sort_id, String author, int price) {
+>>>>>>> 5f6d7a0d12a51b59834e37b941153b38fadf9b9a
 		// TODO 自動生成されたコンストラクター・スタブ
 		this.ISBN = ISBN;
 		this.title = title;
