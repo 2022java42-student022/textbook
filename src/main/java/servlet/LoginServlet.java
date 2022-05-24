@@ -37,8 +37,7 @@ public class LoginServlet extends HttpServlet {
 			} catch (DAOException e) {
 				e.printStackTrace();
 			}
-		}
-
+		} 
 		else if (action.equals("login") && login.equals("member")) {
 			String email = request.getParameter("user_id");
 			String pass = request.getParameter("pass");
@@ -57,6 +56,16 @@ public class LoginServlet extends HttpServlet {
 
 			} catch (DAOException e) {
 				e.printStackTrace();
+			}
+		}
+		
+		if (action.equals("logout")) {
+			HttpSession session = request.getSession();
+			if(session != null) {
+			session.invalidate();
+			}else {
+				request.setAttribute("message", "セッションがありません、ログインし直してください。");
+				gotoPage(request, response, "error.jsp");
 			}
 		}
 
