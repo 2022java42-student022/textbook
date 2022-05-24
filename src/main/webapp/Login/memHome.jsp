@@ -13,7 +13,7 @@
 <a href="/textbook/Text/textSearchMember.jsp">教科書の検索</a><br> 
 <a href="/textbook/Text/textRegister.jsp">教科書の登録</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/textbook/MemberServlet?action=inputChange">会員情報の変更</a><br>
 
-<a href="/textbook/TextServret?action=reference">登録済み教科書参照</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="/textbook/Member/memDelete.jsp">会員の退会</a><br>
+<a href="/textbook/TextServlet?action=reference">登録済み教科書参照</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="/textbook/Member/memDelete.jsp">会員の退会</a><br>
 <br>
 <input type="button" name="logout" value="ログアウト"
 		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">

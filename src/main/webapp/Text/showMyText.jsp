@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<jsp:include page="/Text/showMyText.jsp" /><br>
+	
 	<h3>登録済み教科書</h3>
 
 	<c:if test="${empty text}">
@@ -25,7 +25,7 @@
 				<th>分類</th>
 				<th>著者名</th>
 			</tr>
-			<c:forEach items="${text}" var="text">
+			<c:forEach items="${textbooks}" var="text">
 				<tr>
 					<td align="center">${text.ISBN}</td>
 					<td align="center">${text.title}</td>
