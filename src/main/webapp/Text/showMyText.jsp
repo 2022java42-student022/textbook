@@ -10,7 +10,7 @@
 
 <h3>登録済み教科書</h3>
 
-<form action="/textbook/TextServlet?action=inputChange" metdod="post">
+<form action="/textbook/TextServlet?action=inputChange" method="post">
 
 <table border="1">
 	<tr><th>ISBN</th><th>タイトル</th><th>分類</th><th>著者名</th></tr>
