@@ -118,13 +118,13 @@ public class MemberDAO {
 
 	public int searchByEmail(String email) throws DAOException {
 		int user_id = 0;
-		String sql = "SELECT * FROM member WHERE email=?";
+		String sql = "SELECT * FROM member WHERE email = ?;";
 		try (Connection con = DriverManager.getConnection(url, user, passwd);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, email);
 			try (ResultSet rs = st.executeQuery();) {
 				while (rs.next()) {
-					user_id = rs.getInt(user_id);
+					user_id = rs.getInt(1);
 				}
 				return user_id;
 			} catch (SQLException e) {

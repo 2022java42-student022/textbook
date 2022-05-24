@@ -15,6 +15,6 @@
 	<br>
 	<br>
 	<input type="button" name="logout" value="ログアウト"
-		onclick="javascript:location.href='/textbook/LoginServlet'">
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 </body>
 </html>
