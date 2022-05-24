@@ -51,9 +51,16 @@ public class TextDAO {
 				ResultSet rs = st.executeQuery();) {
 			List<TextBean> list = new ArrayList<TextBean>();
 			while (rs.next()) {
-				int sort_id = rs.getInt("sort_id");
+				int text_id = rs.getInt("text_id");
+				String ISBN = rs.getString("ISBN");
 				String title = rs.getString("title");
-				TextBean bean = new TextBean(sort_id, title);
+				int sort_id = rs.getInt("sort_id");
+				SortDAO sortDAO = new SortDAO();
+				String dep_name = sortDAO.findDep_name(sort_id);
+				String author = rs.getString("author");
+				int price = rs.getInt("price");
+				String use = rs.getString("use");
+				TextBean bean = new TextBean(text_id, ISBN, title, sort_id, dep_name, author, price, use);
 				list.add(bean);
 			}
 			return list;
@@ -72,9 +79,16 @@ public class TextDAO {
 			try (ResultSet rs = st.executeQuery();) {
 				List<TextBean> list = new ArrayList<TextBean>();
 				while (rs.next()) {
-					int sort_id = rs.getInt("sort_id");
+					int text_id = rs.getInt("text_id");
+					String ISBN = rs.getString("ISBN");
 					String title = rs.getString("title");
-					TextBean bean = new TextBean(sort_id, title);
+					int sort_id = rs.getInt("sort_id");
+					SortDAO sortDAO = new SortDAO();
+					String dep_name = sortDAO.findDep_name(sort_id);
+					String author = rs.getString("author");
+					int price = rs.getInt("price");
+					String use = rs.getString("use");
+					TextBean bean = new TextBean(text_id, ISBN, title, sort_id, dep_name, author, price, use);
 					list.add(bean);
 				}
 				return list;
@@ -98,9 +112,16 @@ public class TextDAO {
 			try (ResultSet rs = st.executeQuery();) {
 				List<TextBean> list = new ArrayList<TextBean>();
 				while (rs.next()) {
-					int sort_id = rs.getInt("sort_id");
+					int text_id = rs.getInt("text_id");
+					String ISBN = rs.getString("ISBN");
 					String title = rs.getString("title");
-					TextBean bean = new TextBean(sort_id, title);
+					int sort_id = rs.getInt("sort_id");
+					SortDAO sortDAO = new SortDAO();
+					String dep_name = sortDAO.findDep_name(sort_id);
+					String author = rs.getString("author");
+					int price = rs.getInt("price");
+					String use = rs.getString("use");
+					TextBean bean = new TextBean(text_id, ISBN, title, sort_id, dep_name, author, price, use);
 					list.add(bean);
 				}
 				return list;
@@ -124,12 +145,16 @@ public class TextDAO {
 			try (ResultSet rs = st.executeQuery();) {
 				List<TextBean> list = new ArrayList<TextBean>();
 				while (rs.next()) {
+					int text_id = rs.getInt("text_id");
 					String ISBN = rs.getString("ISBN");
 					String title = rs.getString("title");
 					int sort_id = rs.getInt("sort_id");
+					SortDAO sortDAO = new SortDAO();
+					String dep_name = sortDAO.findDep_name(sort_id);
 					String author = rs.getString("author");
 					int price = rs.getInt("price");
-					TextBean bean = new TextBean(ISBN, title, sort_id, author, price);
+					String use = rs.getString("use");
+					TextBean bean = new TextBean(text_id, ISBN, title, sort_id, dep_name, author, price, use);
 					list.add(bean);
 				}
 				return list;
@@ -144,7 +169,7 @@ public class TextDAO {
 		}
 	}
 
-	public List<TextBean> changeText(int text_id) throws DAOException {
+	public List<TextBean> changeText(String ISBN,String title,int sort_id,String author,int price,int text_id) throws DAOException {
 		String sql = "UPDATE text SET ISBN = ?,title = ?,sort_id = ?,author = ?,price = ? WHERE text_id = ?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
@@ -158,11 +183,11 @@ public class TextDAO {
 			try (ResultSet rs = st.executeUpdate();) {
 				List<TextBean> list = new ArrayList<TextBean>();
 				while (rs.next()) {
-					String ISBN = rs.getString("ISBN");
-					String title = rs.getString("title");
-					int sort_id = rs.getInt("sort_id");
-					String author = rs.getString("author");
-					int price = rs.getInt("price");
+					ISBN = rs.getString("ISBN");
+					title = rs.getString("title");
+					sort_id = rs.getInt("sort_id");
+					author = rs.getString("author");
+					price = rs.getInt("price");
 					TextBean bean = new TextBean(ISBN, title, sort_id, author, price);
 					list.add(bean);
 				}
@@ -174,6 +199,7 @@ public class TextDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
+
 		}
 	}
 }

@@ -10,7 +10,7 @@
 
 <h2>教科書変更画面</h2>
 
-<form action="test.php" method="post">
+<form action="testChangeConfirmation.jsp" method="post">
 	ISBN <input type="text" name="ISBN"><br> 
 	タイトル <input type="text" name="title"><br> 
 	分類 <select size="1" name="sort">
