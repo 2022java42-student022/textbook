@@ -18,7 +18,10 @@
 			<p>金額:<p>
 			<h5>上記の内容で変更します。よろしいですか？</h5>
 		<p><input type="submit" value="決定"></p> 
-		<a href="/textbook/Text/textChange.jsp">戻る</a>
+<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+<input type="button" name="logout" value="ログアウト"
+		    onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 		
 	</form>
 
