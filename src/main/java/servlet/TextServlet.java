@@ -96,10 +96,11 @@ public class TextServlet extends HttpServlet {
 			
 				//登録している教科書の内容変更
 			} else if (action.equals("inputChange")) {
-				
+				int text_id = (int) session.getAttribute("text_id");
+				List<TextBean> list = dao.changeText(text_id);
+				request.setAttribute("textbooks", list);
+				gotoPage(request, response, "Text/textChange.jsp");
 			}
-			
-			
 			
 
 		} catch (DAOException e) {

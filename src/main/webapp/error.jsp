@@ -18,7 +18,7 @@
 			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 		</c:when>
 		 --%>
-		<c:when test="${login eq 'maneger'}">
+		<c:when test="${login eq 'manager'}">
 			<input type="button" name="restart" value="ホームページへ"
 				onclick="javascript:location.href='/textbook/Login/mgHome.jsp'">
 			<input type="button" name="back" value="前ページに戻る"

@@ -50,7 +50,9 @@ public class TextBean {
 	}
 
 
-	public TextBean(String iSBN, String title, int sort_id, String author, int price) {
+	public TextBean(String ISBN, String title, int sort_id, String author, int price) {
+
+
 		// TODO 自動生成されたコンストラクター・スタブ
 		this.ISBN = ISBN;
 		this.title = title;
@@ -59,9 +61,7 @@ public class TextBean {
 		this.price = price;
 	}
 
-	public TextBean() {
-		// TODO 自動生成されたコンストラクター・スタブ
-	}
+	
 
 
 	public String getISBN() {
