@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.DAOException;
 import dao.LoginDAO;
+import dao.MemberDAO;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -45,7 +46,8 @@ public class LoginServlet extends HttpServlet {
 				if (dao.findMemAccount(email, pass)) {
 					HttpSession session = request.getSession();
 					session.setAttribute("login", "member");
-					session.setAttribute("email", email);
+					MemberDAO memDao = new MemberDAO();
+					session.setAttribute("user_id", memDao.searchByEmail(email));
 					gotoPage(request, response, "Login/memHome.jsp");
 				} else {
 					request.setAttribute("message", "メールアドレスまたはパスワードが違います。");

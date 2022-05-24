@@ -43,21 +43,58 @@ public class MemberDAO {
 				name = rs.getString("name");
 				email = rs.getString("email");
 				pass = rs.getString("pass");
-
 			}
-			// いっちせんとあかん
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
 		}
 		MemberBean2 bean = new MemberBean2(name, email, pass, user_id);
 		return bean;
+	}
+
+	public MemberBean2 SearchMember2(int user_id) throws DAOException {
+
+		String name = null;
+		String email = null;
+		String pass = null;
+		int userid = 0;
+		// SQL文の作成
+		String sql = "SELECT * FROM member WHERE user_id =?";
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, passwd);
+				// PreparidStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+
+			st.setInt(1, user_id);
+			try (// SQLの実行)
+					ResultSet rs = st.executeQuery();) {
+				// 結果の取得
+				MemberBean2 bean = null;
+				while (rs.next()) {
+					name = rs.getString("name");
+					email = rs.getString("email");
+					pass = rs.getString("pass");
+					userid = rs.getInt("userid");
+					bean = new MemberBean2(name, email, pass, userid);
+				}
+				// 会員情報の有無を返す
+				return bean;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+
+			// いっちせんとあかん
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
 
 	}
 
 	public void addMember(MemberBean2 bean2) throws DAOException {
 		String sql = "INSERT INTO member(name, email, pass) VALUES(?, ?, ?)";
-	
 
 		try (Connection con = DriverManager.getConnection(url, user, passwd);
 				PreparedStatement st = con.prepareStatement(sql);) {
@@ -71,6 +108,29 @@ public class MemberDAO {
 			e.printStackTrace();
 
 		}
-		
+
+	}
+
+	public int searchByEmail(String email) throws DAOException {
+		int user_id = 0;
+		String sql = "SELECT * FROM member WHERE email=?";
+		try (Connection con = DriverManager.getConnection(url, user, passwd);
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setString(1, email);
+			try (ResultSet rs = st.executeQuery();) {
+				while (rs.next()) {
+					user_id = rs.getInt(user_id);
+				}
+				return user_id;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+
+			// いっちせんとあかん
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
 	}
 }
