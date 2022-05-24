@@ -27,54 +27,39 @@ public class MemberServlet extends HttpServlet {
 		try {
 
 			if (action == null || action.length() == 0 || action.equals("search")) {
-
-				int user_id = Integer.parseInt(request.getParameter("user_id"));
-				MemberDAO dao = new MemberDAO();
-				MemberBean2 bean = dao.SearchMember2(user_id);
-
-				if (bean == null) {
-					request.setAttribute("message", "正しい会員番号を入力してください。");
+				try {
+					int user_id = Integer.parseInt(request.getParameter("user_id"));
+					MemberDAO dao = new MemberDAO();
+					MemberBean2 bean = dao.SearchMember2(user_id);
+					if (bean == null) {
+						request.setAttribute("message", "正しい会員番号を入力してください。");
+						gotoPage(request, response, "/error.jsp");
+					}
+					// リクエストスコープに入れてJSPへフォーワードする
+					HttpSession session = request.getSession();
+					session.setAttribute("member2", bean);
+					gotoPage(request, response, "/Member/memSearchResult.jsp");
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					request.setAttribute("message", "数字を入力してください。");
 					gotoPage(request, response, "/error.jsp");
 				}
-				
-				// リクエストスコープに入れてJSPへフォーワードする
-
-				HttpSession session = request.getSession();
-
-				session.setAttribute("member2", bean);
-				gotoPage(request, response, "/Member/memSearchResult.jsp");
 			}
-		} catch (DAOException e) {
-			e.printStackTrace();
-			request.setAttribute("message", "内部エラーが発生しました。");
-			gotoPage(request, response, "/error.jsp");
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-			request.setAttribute("message", "数字を入力してください。");
-			gotoPage(request, response, "/error.jsp");
-		}
-
-		// パラメータの解析
-		if (action.equals("change"))	{
-			{
+			// パラメータの解析
+			if (action.equals("change")) {
 				gotoPage(request, response, "/Member/memChange.jsp");
+				// パラメータの解析
+			} else if (action.equals("delete")) {
+				gotoPage(request, response, "/Member/memDeleteConfirmation.jsp");
+			} else {
+
 			}
-		}
-		// パラメータの解析
-		else if (action.equals("delete")) {
-			gotoPage(request, response, "/Member/memDeleteConfirmation.jsp");
-		} else {
-
-		}
-
-		if (action.equals("decision")) {
-			gotoPage(request, response, "/complete.jsp");
-		}
-
-		if (action.equals("change2")) {
-			gotoPage(request, response, "/complete.jsp");
-    }
-
+			if (action.equals("decision")) {
+				gotoPage(request, response, "/complete.jsp");
+			}
+			if (action.equals("change2")) {
+				gotoPage(request, response, "/complete.jsp");
+			}
 			if (action.equals("preRegister")) {
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
@@ -91,14 +76,17 @@ public class MemberServlet extends HttpServlet {
 			if (action.equals("register")) {
 				HttpSession session = request.getSession(false);
 				MemberBean2 bean2 = (MemberBean2) session.getAttribute("member");
+				MemberDAO dao = new MemberDAO();
 				dao.addMember(bean2);
 				request.setAttribute("message", "会員登録が完了しました。");
 				gotoPage(request, response, "/complete.jsp");
-
 			}
+
 		} catch (DAOException e) {
-			e.printStackTrace();
+			request.setAttribute("message", "内部エラーが発生しました。");
+			gotoPage(request, response, "/error.jsp");
 		}
+
 	}
 
 	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)
