@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -118,15 +119,32 @@ public class TextServlet extends HttpServlet {
 				List<TextBean> list = dao.findByUser_id(user_id);
 				request.setAttribute("textbooks", list);
 				gotoPage(request, response, "Text/showMyText.jsp");
+			
+				// 選択した教科書を変更画面に移動
 
 				// 登録している教科書の内容変更
+
 			} else if (action.equals("inputChange")) {
 
+
+
+			}
+
+				int text_id = (int) session.getAttribute("text_id");
+				List<TextBean> list = new ArrayList<TextBean>();
+				request.setAttribute("textbooks", list);
+				gotoPage(request, response, "Text/textChange.jsp");
+			
+				// 教科書の内容変更
+			} else if (action.equals("change")) {
 				int text_id = (int) session.getAttribute("text_id");
 				List<TextBean> list = dao.changeText(text_id);
 				request.setAttribute("textbooks", list);
-				gotoPage(request, response, "Text/textChange.jsp");
+			
 			}
+
+			
+
 
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");

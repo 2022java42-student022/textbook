@@ -169,7 +169,7 @@ public class TextDAO {
 		}
 	}
 
-	public List<TextBean> changeText(int text_id) throws DAOException {
+	public List<TextBean> changeText(String ISBN,String title,int sort_id,String author,int price,int text_id) throws DAOException {
 		String sql = "UPDATE text SET ISBN = ?,title = ?,sort_id = ?,author = ?,price = ? WHERE text_id = ?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
@@ -183,11 +183,11 @@ public class TextDAO {
 			try (ResultSet rs = st.executeUpdate();) {
 				List<TextBean> list = new ArrayList<TextBean>();
 				while (rs.next()) {
-					String ISBN = rs.getString("ISBN");
-					String title = rs.getString("title");
-					int sort_id = rs.getInt("sort_id");
-					String author = rs.getString("author");
-					int price = rs.getInt("price");
+					ISBN = rs.getString("ISBN");
+					title = rs.getString("title");
+					sort_id = rs.getInt("sort_id");
+					author = rs.getString("author");
+					price = rs.getInt("price");
 					TextBean bean = new TextBean(ISBN, title, sort_id, author, price);
 					list.add(bean);
 				}
