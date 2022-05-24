@@ -14,7 +14,6 @@
 
 	<table border="1">
 		<tr>
-			<th>教科書ID</th>
 			<th>ISBN</th>
 			<th>タイトル</th>
 			<th>分類</th>
@@ -24,28 +23,29 @@
 			<th>カートに追加</th>
 		</tr>
 		<c:forEach items="${texts}}" var="text">
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td>
-			<form action="/textbook/CartServlet?action=add" method="post">
-			<input type="hidden" name="text_id" value="${text.text_id}">
-			<input type="submit" value="カートに追加">
-			</form>
-			</td>
-		</tr>
+			<tr>
+				<td>${text.ISBN}</td>
+				<td>${text.title}</td>
+				<td>${text.dep_name}</td>
+				<td>${text.author}</td>
+				<td>${text.price}</td>
+				<td>${text.use}</td>
+				<td>
+					<form action="/textbook/CartServlet?action=add" method="post">
+						<input type="hidden" name="text_id" value="${text.text_id}">
+						<input type="submit" value="カートに追加">
+					</form>
+				</td>
+			</tr>
 		</c:forEach>
 	</table>
 
 	<br>
 	<br>
 
-	<input type="button" name="back" value="戻る"
-		onclick="javascript:history.back()">
+	<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+    <input type="button" name="logout" value="ログアウト"
+		    onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 </body>
 </html>

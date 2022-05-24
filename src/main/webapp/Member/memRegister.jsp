@@ -17,6 +17,9 @@
 		<p><input type="submit" value="送信"></p>
 		
 	</form>
-<a href="/Login/memHome.jsp">戻る</a>
+	<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+	<input type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 </body>
 </html>

@@ -10,7 +10,7 @@
 
 	<h3>退会確認画面</h3>
 
-	<form action="/textbook/MemberServlet?action=delete" method="post">
+	<form action="/textbook/MemberServlet?action=decision" method="post">
 		<p>名前:いがいがいがいが
 		<p>
 		<p>メール:iga
@@ -25,6 +25,9 @@
 
 
 	</form>
-	<a href="/Member/memDelete.jsp">戻る</a>
+		<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+	<input type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 </body>
 </html>
