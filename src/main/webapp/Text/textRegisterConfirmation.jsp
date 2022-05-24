@@ -19,7 +19,10 @@
 			<p>使用状況:${text.use}<p>
 			<h5>上記の内容でお間違えありませんか？</h5>
 		<p><input type="submit" value="送信"><p>
-		<a href="/textbook/Text/textRegister.jsp">戻る</a>
+<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+<input type="button" name="logout" value="ログアウト"
+		    onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 		
 </form>
 
