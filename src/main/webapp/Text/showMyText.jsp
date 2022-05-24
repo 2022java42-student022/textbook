@@ -13,11 +13,11 @@
 	
 	<h3>登録済み教科書</h3>
 
-	<c:if test="${empty text}">
+	<c:if test="${empty textbooks}">
 現在、登録している教科書はありません。
 </c:if>
 
-	<c:if test="${not empty text}">
+	<c:if test="${not empty textbooks}">
 		<table border="1">
 			<tr>
 				<th>ISBN</th>
@@ -25,12 +25,12 @@
 				<th>分類</th>
 				<th>著者名</th>
 			</tr>
-			<c:forEach items="${textbooks}" var="text">
+			<c:forEach items="${textbooks}" var="textbooks">
 				<tr>
-					<td align="center">${text.ISBN}</td>
-					<td align="center">${text.title}</td>
-					<td align="center">${text.sort_id}</td>
-					<td align="center">${text.author}</td>
+					<td align="center">${textbooks.ISBN}</td>
+					<td align="center">${textbooks.title}</td>
+					<td align="center">${textbooks.sort_id}</td>
+					<td align="center">${textbooks.author}</td>
 					<td>
 						<form action="/textbook/TextServlet?action=inputChange"
 							method="post">

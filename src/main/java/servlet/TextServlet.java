@@ -58,6 +58,7 @@ public class TextServlet extends HttpServlet {
 					bean.setUse(use);
 					SortDAO sortDAO = new SortDAO();
 					bean.setDep_name(sortDAO.findDep_name(text_sort_id));
+					bean.setUser_id((int) session.getAttribute("user_id"));
 					session.setAttribute("text", bean);
 					gotoPage(request, response, "/Text/textRegisterConfirmation.jsp");
 				} catch (NumberFormatException e) {
