@@ -13,6 +13,7 @@ public class TextBean {
 	private int user_id;
 
 
+
 	public TextBean(int sort_id, String title) {
 		this.sort_id = sort_id;
 		this.title = title;
@@ -21,7 +22,6 @@ public class TextBean {
 
 	public TextBean(int text_id, String ISBN, String title, int sort_id, String author, int price, String use) {
 		this.text_id = text_id;
-
 		this.ISBN = ISBN;
 		this.title = title;
 		this.sort_id = sort_id;
@@ -31,20 +31,24 @@ public class TextBean {
 	}
 
 
+
+	public TextBean() {
+		
+	}
+	
 	public int getText_id() {
 		return text_id;
 	}
 	public void setText_id(int text_id) {
 		this.text_id = text_id;
-
-
 	}
-	
+
 
 
 	public TextBean(int user_id) {
 		this.user_id = user_id;
 	}
+
 
 	public TextBean(String iSBN, String title, int sort_id, String author, int price) {
 		// TODO 自動生成されたコンストラクター・スタブ
@@ -121,9 +125,12 @@ public class TextBean {
 		return user_id;
 	}
 
+
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 
 	}
 
 }
+
+
