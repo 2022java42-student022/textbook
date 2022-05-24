@@ -128,7 +128,7 @@ public class TextDAO {
 					String title = rs.getString("title");
 					int sort_id = rs.getInt("sort_id");
 					String author = rs.getString("author");
-					TextBean bean = new TextBean(user_id);
+					TextBean bean = new TextBean(ISBN,title,sort_id,author);
 					list.add(bean);
 				}
 				return list;
