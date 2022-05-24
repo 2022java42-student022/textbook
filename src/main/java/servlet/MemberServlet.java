@@ -25,11 +25,11 @@ public class MemberServlet extends HttpServlet {
 		String action = request.getParameter("action");
 
 		try {
-
+			MemberDAO dao = new MemberDAO();
 			if (action == null || action.length() == 0 || action.equals("search")) {
 				try {
 					int user_id = Integer.parseInt(request.getParameter("user_id"));
-					MemberDAO dao = new MemberDAO();
+					
 					MemberBean2 bean = dao.SearchMember2(user_id);
 					if (bean == null) {
 						request.setAttribute("message", "正しい会員番号を入力してください。");
@@ -54,8 +54,16 @@ public class MemberServlet extends HttpServlet {
 			} else {
 
 			}
+			// 会員情報削除
 			if (action.equals("decision")) {
+				int user_id = Integer.parseInt(request.getParameter("user_id"));
+				dao.deleteByPrimaryuser(user_id);
+				
+				HttpSession session = request.getSession(false);
+				session.setAttribute("member2", null);
 				gotoPage(request, response, "/complete.jsp");
+				return;
+				
 			}
 			if (action.equals("change2")) {
 				gotoPage(request, response, "/complete.jsp");
@@ -76,12 +84,13 @@ public class MemberServlet extends HttpServlet {
 			if (action.equals("register")) {
 				HttpSession session = request.getSession(false);
 				MemberBean2 bean2 = (MemberBean2) session.getAttribute("member");
-				MemberDAO dao = new MemberDAO();
+				
 				dao.addMember(bean2);
 				request.setAttribute("message", "会員登録が完了しました。");
 				gotoPage(request, response, "/complete.jsp");
 			}
-
+			
+			
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");
