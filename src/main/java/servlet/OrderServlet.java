@@ -30,11 +30,11 @@ public class OrderServlet extends HttpServlet {
 		}
 		
 		CartBean cart = (CartBean)session.getAttribute("cart");
-		if(cart == null) {
-			request.setAttribute("message", "正しく操作してください。");
-			gotoPage(request, response, "/error.jsp");
-			return;
-		}
+//		if(cart == null) {   //カートに情報が入ってないので現在コメントアウト中
+//			request.setAttribute("message", "正しく操作してください。");
+//			gotoPage(request, response, "/error.jsp");
+//			return;
+//		}
 		
 		try {
 			String action = request.getParameter("action");
@@ -45,8 +45,9 @@ public class OrderServlet extends HttpServlet {
 				bean.setTel(request.getParameter("tel"));
 				bean.setMail(request.getParameter("mail"));
 				bean.setPay(request.getParameter("pay")); // まとめて記載可能
-				session.setAttribute("customer", bean);
+				session.setAttribute("check", bean);
 				gotoPage(request, response, "/order/confirm.jsp");
+				return;
 			} else if (action.equals("order")) {
 				OrderCheckBean check = (OrderCheckBean) session.getAttribute("check");
 				if (check == null) {

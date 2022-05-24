@@ -24,6 +24,7 @@
 				<th>タイトル</th>
 				<th>分類</th>
 				<th>著者名</th>
+				<th>金額</th>
 			</tr>
 			<c:forEach items="${textbooks}" var="textbooks">
 				<tr>
@@ -31,6 +32,7 @@
 					<td align="center">${textbooks.title}</td>
 					<td align="center">${textbooks.sort_id}</td>
 					<td align="center">${textbooks.author}</td>
+					<td align="center">${textbooks.price}</td>
 					<td>
 						<form action="/textbook/TextServlet?action=inputChange"
 							method="post">
@@ -50,8 +52,6 @@
 
 
 		</form>
-		
-		<a href="/textbook/Login/memHome.jsp">戻る</a>
 		
 		</c:if>
 		
