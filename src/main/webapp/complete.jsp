@@ -11,18 +11,25 @@
 
 	<h1>${message}</h1>
 	<br>
-
-	<c:if test="${empty login}">
+<c:choose>
+	<c:when test="${empty login}">
 		<input type="button" name="restart" value="ログインページへ"
 			onclick="javascript:location.href='/textbook/Login/top.jsp'">
-	</c:if>
-	<c:if test="${login eq 'maneger'}">
+	</c:when>
+	<c:when test="${login eq 'maneger'}">
 		<input type="button" name="restart" value="ホームページへ"
 			onclick="javascript:location.href='/textbook/Login/mgHome.jsp'">
-	</c:if>
-	<c:if test="${login eq 'member'}">
+	</c:when>
+	<c:when test="${login eq 'member'}">
 		<input type="button" name="restart" value="ホームページへ"
 			onclick="javascript:location.href='/textbook/Login/memHome.jsp'">
-	</c:if>
+	</c:when>
+	
+	<c:otherwise>
+		<input type="button" name="restart" value="ログインページへ"
+			onclick="javascript:location.href='/textbook/Login/top.jsp'">
+	</c:otherwise >
+	
+</c:choose>
 </body>
 </html>

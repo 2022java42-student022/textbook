@@ -22,7 +22,6 @@
 	<c:if test="${not empty cart.items }">
 		<table border="1">
 			<tr>
-				<th>教科書ID</th>
 				<th>ISBN</th>
 				<th>タイトル</th>
 				<th>分類</th>
@@ -31,21 +30,23 @@
 				<th>使用状況</th>
 				<th>削除</th>
 			</tr>
+			<c:forEach items=${"cart.texts"} var="text">
+				<tr>
+					<td>${text.ISBM }</td>
+					<td>${text.title }</td>
+					<td>${text.dep_name }</td>
+					<td>${text.author }</td>
+					<td>${text.price }</td>
+					<td>${text.use }</td>
+					<td>
+						<form action="/textbook/CartServlet?action=delete" method="post">
+							<input type="hidden" name="text_id" value="${text.text_id}">
+							<input type="submit" value="削除">
+						</form>
+					</td>
+			</c:forEach>
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td>
-					<form action="/textbook/CartServlet?action=delete" method="post">
-						<input type="hidden" name="text_id" value="${text.text_id}">
-						<input type="submit" value="削除">
-					</form>
-				</td>
-			<tr>
+
 				<td align="right" colspan="8">総計：${cart.total}円</td>
 			</tr>
 		</table>

@@ -10,10 +10,10 @@
 
 <h2>教科書登録確認画面</h2>
 
-<form action="/complete.jsp" method="post">
+<form action="/textbook/TextServlet?action=register" method="post">
 			<p>ISBN:${text.ISBN}<p>
 			<p>タイトル:${text.title}<p>
-			<p>分類:${text.sort_id}<p>
+			<p>分類:${text.dep_name}<p>
 			<p>著者:${text.author}<p>
 			<p>金額:${text.price}<p>
 			<p>使用状況:${text.use}<p>

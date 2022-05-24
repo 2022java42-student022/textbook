@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.DAOException;
 import dao.LoginDAO;
+import dao.MemberDAO;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -36,8 +37,7 @@ public class LoginServlet extends HttpServlet {
 			} catch (DAOException e) {
 				e.printStackTrace();
 			}
-		}
-
+		} 
 		else if (action.equals("login") && login.equals("member")) {
 			String email = request.getParameter("user_id");
 			String pass = request.getParameter("pass");
@@ -46,6 +46,9 @@ public class LoginServlet extends HttpServlet {
 				if (dao.findMemAccount(email, pass)) {
 					HttpSession session = request.getSession();
 					session.setAttribute("login", "member");
+					MemberDAO memDao = new MemberDAO();
+					int user_id = memDao.searchByEmail(email);
+					session.setAttribute("user_id",user_id );
 					gotoPage(request, response, "Login/memHome.jsp");
 				} else {
 					request.setAttribute("message", "メールアドレスまたはパスワードが違います。");
@@ -54,6 +57,18 @@ public class LoginServlet extends HttpServlet {
 
 			} catch (DAOException e) {
 				e.printStackTrace();
+				request.setAttribute("message", "内部エラーが発生しました。");
+				gotoPage(request, response, "error.jsp");
+			}
+		}
+		
+		if (action.equals("logout")) {
+			HttpSession session = request.getSession();
+			if(session != null) {
+			session.invalidate();
+			}else {
+				request.setAttribute("message", "セッションがありません、ログインし直してください。");
+				gotoPage(request, response, "error.jsp");
 			}
 		}
 
