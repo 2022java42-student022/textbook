@@ -90,8 +90,8 @@ public class TextServlet extends HttpServlet {
 			} else if (action.equals("reference")) {
 				int user_id = (int) session.getAttribute("user_id");
 				List<TextBean> list = dao.findByUser_id(user_id);
-				request.setAttribute("text", list);
-				gotoPage(request, response, "/showMyText.jsp");
+				request.setAttribute("textbooks", list);
+				gotoPage(request, response, "Text/showMyText.jsp");
 			}
 
 		} catch (DAOException e) {

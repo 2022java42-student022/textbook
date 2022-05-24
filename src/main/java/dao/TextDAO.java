@@ -25,7 +25,7 @@ public class TextDAO {
 	}
 
 	public void RegisterAllCategory(TextBean bean) throws DAOException {
-		String sql = "INSERT INTO text(ISBN,sort_id,title,author,price,use) VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO text(ISBN,sort_id,title,author,price,use,user_id) VALUES(?,?,?,?,?,?,?)";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
