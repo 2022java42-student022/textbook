@@ -63,9 +63,11 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		if (action.equals("logout")) {
-			HttpSession session = request.getSession();
+			HttpSession session = request.getSession(false);
 			if(session != null) {
-			session.invalidate();
+				session.invalidate();
+				request.setAttribute("message", "ログアウトが完了しました。");
+				gotoPage(request, response, "complete.jsp");
 			}else {
 				request.setAttribute("message", "セッションがありません、ログインし直してください。");
 				gotoPage(request, response, "error.jsp");
