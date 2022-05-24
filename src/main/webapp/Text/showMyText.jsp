@@ -42,7 +42,12 @@
 			</c:forEach>
 		</table>
 
-		<form action="/textbook/TextServlet?action=inputChange" method="post">
+
+<input type="button" name="back" value="前ページに戻る"
+		onclick="javascript:history.back()">
+<input type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+
 
 		</form>
 		
