@@ -12,10 +12,12 @@
 	<h1>${message}</h1>
 	<br>
 <c:choose>
+	<%--
 	<c:when test="${empty login}">
 		<input type="button" name="restart" value="ログインページへ"
-			onclick="javascript:location.href='/textbook/Login/top.jsp'">
+			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 	</c:when>
+	--%>
 	<c:when test="${login eq 'maneger'}">
 		<input type="button" name="restart" value="ホームページへ"
 			onclick="javascript:location.href='/textbook/Login/mgHome.jsp'">
@@ -24,7 +26,6 @@
 		<input type="button" name="restart" value="ホームページへ"
 			onclick="javascript:location.href='/textbook/Login/memHome.jsp'">
 	</c:when>
-	
 	<c:otherwise>
 		<input type="button" name="restart" value="ログインページへ"
 			onclick="javascript:location.href='/textbook/Login/top.jsp'">
