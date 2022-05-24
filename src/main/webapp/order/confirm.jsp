@@ -39,6 +39,15 @@
 				<td align="right" colspan="7">総計：${cart.total}円</td>
 			</tr>
 		</table>
+
+		<br>
+		<input type="submit" value="この内容で注文"><br>
+	<input type="button" name="back" value="前ページに戻る"
+		onclick="javascript:history.back()">
+	<input type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+	</form>
+
 		</c:if>
 
 		<h4>お客様情報</h4>
@@ -68,6 +77,7 @@
 			<br> <input type="submit" value="この内容で注文"><br> <a
 				href="/textbook/order/memberInfo.jsp">戻る</a>
 		</form>
+
 
 </body>
 </html>
