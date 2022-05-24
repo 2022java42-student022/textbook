@@ -20,11 +20,12 @@ public class TextBean {
 	}
 
 
-	public TextBean(int text_id, String ISBN, String title, int sort_id, String author, int price, String use) {
+	public TextBean(int text_id, String ISBN, String title, int sort_id, String dep_name, String author, int price, String use) {
 		this.text_id = text_id;
 		this.ISBN = ISBN;
 		this.title = title;
 		this.sort_id = sort_id;
+		this.dep_name = dep_name;
 		this.author = author;
 		this.price = price;
 		this.use = use;
@@ -50,17 +51,13 @@ public class TextBean {
 	}
 
 
-	public TextBean(String iSBN, String title, int sort_id, String author, int price) {
+	public TextBean(String ISBN, String title, int sort_id, String author, int price) {
 		// TODO 自動生成されたコンストラクター・スタブ
 		this.ISBN = ISBN;
 		this.title = title;
 		this.sort_id = sort_id;
 		this.author = author;
 		this.price = price;
-	}
-
-	public TextBean() {
-		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
 
