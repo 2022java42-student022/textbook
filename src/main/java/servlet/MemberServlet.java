@@ -81,10 +81,6 @@ public class MemberServlet extends HttpServlet {
 				request.setAttribute("message", "会員登録が完了しました。");
 				gotoPage(request, response, "/complete.jsp");
 			}
-			if
-
-			
-			
 			
 			
 		} catch (DAOException e) {

@@ -15,18 +15,19 @@
 <table border="1">
 <tr><td>ID</td><td>名前</td><td>メール</td><td>パスワード</td></tr>
 
-<c:forEach items="${}" var="item">
-<tr><td>${.user_id}</td><td>${.name}</td><td>${.email}</td><td>${.pass}</td></tr>
-</c:forEach>
+
+<tr><td>${member2.user_id}</td><td>${member2.name}</td><td>${member2.email}</td><td>${member2.pass}</td></tr>
+
 </table>
-		
-
-<input type="submit" value="削除">
-</form>
-<form action="/textbook/MemberServlet?action=change" method="post">
+		<br>
+<table border="0">
+<tr><td><input type="submit" value="削除">
+</form></td>
+<td><form action="/textbook/MemberServlet?action=change" method="post">
 <input type="submit" value="変更">
-
-	</form>
+</form></td></tr>
+</table>
+	
 <a href="/Member/memSearch.jsp">戻る</a>
 </body>
 </html>
