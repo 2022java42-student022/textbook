@@ -58,6 +58,7 @@ public class TextServlet extends HttpServlet {
 					bean.setUse(use);
 					SortDAO sortDAO = new SortDAO();
 					bean.setDep_name(sortDAO.findDep_name(text_sort_id));
+					bean.setUser_id((int) session.getAttribute("user_id"));
 					session.setAttribute("text", bean);
 					gotoPage(request, response, "/Text/textRegisterConfirmation.jsp");
 				} catch (NumberFormatException e) {
@@ -90,8 +91,8 @@ public class TextServlet extends HttpServlet {
 			} else if (action.equals("reference")) {
 				int user_id = (int) session.getAttribute("user_id");
 				List<TextBean> list = dao.findByUser_id(user_id);
-				request.setAttribute("text", list);
-				gotoPage(request, response, "/showMyText.jsp");
+				request.setAttribute("textbooks", list);
+				gotoPage(request, response, "Text/showMyText.jsp");
 			}
 
 		} catch (DAOException e) {
