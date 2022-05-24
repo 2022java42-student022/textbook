@@ -93,7 +93,14 @@ public class TextServlet extends HttpServlet {
 				List<TextBean> list = dao.findByUser_id(user_id);
 				request.setAttribute("textbooks", list);
 				gotoPage(request, response, "Text/showMyText.jsp");
+			
+				//登録している教科書の内容変更
+			} else if (action.equals("inputChange")) {
+				
 			}
+			
+			
+			
 
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");

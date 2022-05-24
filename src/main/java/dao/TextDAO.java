@@ -116,7 +116,7 @@ public class TextDAO {
 	}
 
 	public List<TextBean> findByUser_id(int user_id) throws DAOException {
-		String sql = "SElECT ISBN,title,sort_id,author FROM text WHERE user_id = ?";
+		String sql = "SElECT ISBN,title,sort_id,author,price FROM text WHERE user_id = ?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
@@ -128,7 +128,8 @@ public class TextDAO {
 					String title = rs.getString("title");
 					int sort_id = rs.getInt("sort_id");
 					String author = rs.getString("author");
-					TextBean bean = new TextBean(ISBN,title,sort_id,author);
+					int price = rs.getInt("price");
+					TextBean bean = new TextBean(ISBN,title,sort_id,author,price);
 					list.add(bean);
 				}
 				return list;
