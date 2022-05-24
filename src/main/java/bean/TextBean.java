@@ -19,6 +19,7 @@ public class TextBean {
 		this.title = title;
 	}
 
+
 	public TextBean(int text_id, String ISBN, String title, int sort_id, String author, int price, String use) {
 		this.text_id = text_id;
 		this.ISBN = ISBN;
@@ -47,6 +48,22 @@ public class TextBean {
 	public TextBean(int user_id) {
 		this.user_id = user_id;
 	}
+
+
+	public TextBean(String iSBN, String title, int sort_id, String author, int price) {
+		// TODO 自動生成されたコンストラクター・スタブ
+		this.ISBN = ISBN;
+		this.title = title;
+		this.sort_id = sort_id;
+		this.author = author;
+		this.price = price;
+	}
+
+	public TextBean() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+
 	public String getISBN() {
 		return ISBN;
 	}
