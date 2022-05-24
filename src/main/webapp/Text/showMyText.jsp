@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,24 +10,50 @@
 </head>
 <body>
 
-<h3>登録済み教科書</h3>
+	
+	<h3>登録済み教科書</h3>
 
-<form action="/textbook/TextServlet?action=inputChange" metdod="post">
+	<c:if test="${empty textbooks}">
+現在、登録している教科書はありません。
+</c:if>
 
-<table border="1">
-	<tr><th>ISBN</th><th>タイトル</th><th>分類</th><th>著者名</th></tr>
-	<tr><td>....</td><td>....</td><td>....</td><td>....</td><td><input type="submit" value="登録内容変更"></td></tr>
-	<tr><td>12345678</td><td>文学部の本</td><td>文学部系</td><td>著者1</td><td><input type="submit" value="登録内容変更"></td></tr>
-	<tr><td>98765432</td><td>教育学部の本</td><td>教育学部系</td><td>著者2</td><td><input type="submit" value="登録内容変更"></td></tr>
-	<tr><td>....</td><td>....</td><td>....</td><td>....</td><td><input type="submit" value="登録内容変更"></td></tr>
-</table>
+	<c:if test="${not empty textbooks}">
+		<table border="1">
+			<tr>
+				<th>ISBN</th>
+				<th>タイトル</th>
+				<th>分類</th>
+				<th>著者名</th>
+			</tr>
+			<c:forEach items="${textbooks}" var="textbooks">
+				<tr>
+					<td align="center">${textbooks.ISBN}</td>
+					<td align="center">${textbooks.title}</td>
+					<td align="center">${textbooks.sort_id}</td>
+					<td align="center">${textbooks.author}</td>
+					<td>
+						<form action="/textbook/TextServlet?action=inputChange"
+							method="post">
+							<input type="hidden" name="text_user_id" value="${text.user_id}">
+							<input type="submit" value="登録内容変更">
+						</form>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
 
-</form>
 
 <input type="button" name="back" value="前ページに戻る"
 		onclick="javascript:history.back()">
 <input type="button" name="logout" value="ログアウト"
 		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 
+
+		</form>
+		
+		<a href="/textbook/Login/memHome.jsp">戻る</a>
+		
+		</c:if>
+		
 </body>
 </html>

@@ -38,7 +38,8 @@ public class TextServlet extends HttpServlet {
 			return;
 		}
 
-		// エラー処理の記述・数字を数値に変換
+
+		// 教科書の登録
 		try {
 			TextDAO dao = new TextDAO();
 			if (action == null || action.length() == 0) {
@@ -85,11 +86,16 @@ public class TextServlet extends HttpServlet {
 				List<TextBean> list = dao.findByTitle(title);
 				request.setAttribute("text", list);
 				gotoPage(request, response, "/textSerchResultMember.jsp");
+
+				// 登録している教科書を参照
+			} else if (action.equals("reference")) {
+				int user_id = (int) session.getAttribute("user_id");
+				List<TextBean> list = dao.findByUser_id(user_id);
+				request.setAttribute("textbooks", list);
+				gotoPage(request, response, "Text/showMyText.jsp");
 			}
 
-		} catch (
-
-		DAOException e) {
+		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");
 		}
