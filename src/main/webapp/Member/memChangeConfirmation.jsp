@@ -24,6 +24,9 @@
 
 
 	</form>
-	<a href="/memChange.jsp">戻る</a>
+	<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+	<input type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 </body>
 </html>

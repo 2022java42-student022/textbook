@@ -16,7 +16,7 @@
 <a href="/textbook/TextServret?action=reference">登録済み教科書参照</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="/textbook/Member/memDelete.jsp">会員の退会</a><br>
 <br>
 <input type="button" name="logout" value="ログアウト"
-			onclick="javascript:location.href='/textbook/Login/top.jsp'">
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 
 
 </body>
