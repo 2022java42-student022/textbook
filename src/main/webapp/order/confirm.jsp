@@ -79,6 +79,5 @@
 	<input type="button" name="logout" value="ログアウト"
 		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 
-
 </body>
 </html>
