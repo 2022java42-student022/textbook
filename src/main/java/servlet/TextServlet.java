@@ -26,6 +26,7 @@ public class TextServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		String sort_id = request.getParameter("sort_id");
 
+
 		String ISBN = request.getParameter("ISBN");
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
@@ -59,6 +60,7 @@ public class TextServlet extends HttpServlet {
 					bean.setUse(use);
 					SortDAO sortDAO = new SortDAO();
 					bean.setDep_name(sortDAO.findDep_name(text_sort_id));
+					bean.setUser_id((int) session.getAttribute("user_id"));
 					session.setAttribute("text", bean);
 					gotoPage(request, response, "/Text/textRegisterConfirmation.jsp");
 				} catch (NumberFormatException e) {

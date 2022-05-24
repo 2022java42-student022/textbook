@@ -25,7 +25,7 @@ public class TextDAO {
 	}
 
 	public void RegisterAllCategory(TextBean bean) throws DAOException {
-		String sql = "INSERT INTO text(ISBN,sort_id,title,author,price,use) VALUES(?,?,?,?,?,?)";
+		String sql = "INSERT INTO text(ISBN,sort_id,title,author,price,use) VALUES(?,?,?,?,?,?,?)";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
@@ -35,9 +35,8 @@ public class TextDAO {
 			st.setString(4, bean.getAuthor());
 			st.setInt(5, bean.getPrice());
 			st.setString(6, bean.getUse());
-
+			st.setInt(7, bean.getUser_id());
 			st.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
