@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	
+
 	<h3>登録済み教科書</h3>
 
 	<c:if test="${empty textbooks}">
@@ -30,13 +30,13 @@
 				<tr>
 					<td align="center">${textbooks.ISBN}</td>
 					<td align="center">${textbooks.title}</td>
-					<td align="center">${textbooks.sort_id}</td>
+					<td align="center">${textbooks.dep_name}</td>
 					<td align="center">${textbooks.author}</td>
 					<td align="center">${textbooks.price}</td>
 					<td>
 						<form action="/textbook/TextServlet?action=inputChange"
 							method="post">
-							<input type="hidden" name="text_user_id" value="${text.user_id}">
+							<input type="hidden" name="text_id" value="${textbooks.text_id}">
 							<input type="submit" value="登録内容変更">
 						</form>
 					</td>
@@ -45,15 +45,12 @@
 		</table>
 
 
-<input type="button" name="back" value="前ページに戻る"
-		onclick="javascript:history.back()">
-<input type="button" name="logout" value="ログアウト"
-		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+		<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+		<input type="button" name="logout" value="ログアウト"
+			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 
+	</c:if>
 
-		</form>
-		
-		</c:if>
-		
 </body>
 </html>
