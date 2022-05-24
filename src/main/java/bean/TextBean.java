@@ -9,6 +9,7 @@ public class TextBean {
 	private int price;
 	private String use;
 	private String dep_name;
+	private int user_id;
 
 	public TextBean(int sort_id, String title) {
 		this.sort_id = sort_id;
@@ -73,6 +74,14 @@ public class TextBean {
 
 	public void setDep_name(String dep_name) {
 		this.dep_name = dep_name;
+	}
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
 }
