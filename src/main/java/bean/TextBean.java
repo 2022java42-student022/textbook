@@ -52,6 +52,11 @@ public class TextBean {
 
 
 	public TextBean(String ISBN, String title, int sort_id, String author, int price) {
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 4340dd4f17bd66bd3d661364b90d694564e1f5cf
 		// TODO 自動生成されたコンストラクター・スタブ
 		this.ISBN = ISBN;
 		this.title = title;
@@ -60,6 +65,11 @@ public class TextBean {
 		this.price = price;
 	}
 
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> 4340dd4f17bd66bd3d661364b90d694564e1f5cf
 
 	public String getISBN() {
 		return ISBN;
