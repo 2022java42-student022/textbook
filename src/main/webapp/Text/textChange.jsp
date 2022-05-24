@@ -31,7 +31,11 @@
 
 	<input type="submit" value="変更">
 	&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="button_test" value="戻る" onclick="javascript:history.back()">
+
+<input type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">
+<input type="button" name="logout" value="ログアウト"
+		    onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 </form>	
 
 
