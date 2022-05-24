@@ -1,22 +1,40 @@
 package bean;
 
 public class TextBean {
-	
+	private int text_id;
 	private String ISBN;
 	private String title;
 	private int sort_id;
 	private String author;
 	private int price;
 	private String use;
-	private int total;
+	private int quantity;
+//	private int total;
 	
 	
 	public TextBean(int sort_id, String title) {
 		this.sort_id = sort_id;
 		this.title = title;
 	}
+	public TextBean(int text_id, String ISBN, String title, int sort_id, String author, int price, String use, int quantity) {
+		this.text_id = text_id;
+		this.ISBN = ISBN;
+		this.title = title;
+		this.sort_id = sort_id;
+		this.author = author;
+		this.price = price;
+		this.use = use;
+		this.quantity = quantity;
+	}
 	public TextBean() {
-		// TODO 自動生成されたコンストラクター・スタブ
+		
+	}
+	
+	public int getText_id() {
+		return text_id;
+	}
+	public void setText_id(int text_id) {
+		this.text_id = text_id;
 	}
 	public String getISBN() {
 		return ISBN;
@@ -54,10 +72,10 @@ public class TextBean {
 	public void setUse(String use) {
 		this.use = use;
 	}
-	public int getTotal() {
-		return total;
+	public int getQuantity() {
+		return quantity;
 	}
-	public void setTotal(int total) {
-		this.total = total;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 }

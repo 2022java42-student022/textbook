@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.CartBean;
-import bean.MemberBean;
+import bean.MemberBean2;
+import bean.OrderCheckBean;
 import dao.DAOException;
 import dao.OrderDAO;
 
@@ -27,34 +28,53 @@ public class OrderServlet extends HttpServlet {
 			gotoPage(request, response, "/error.jsp");
 			return;
 		}
-		//CartBeanはあとでかきます
+		
+		CartBean cart = (CartBean)session.getAttribute("cart");
+		if(cart == null) {
+			request.setAttribute("message", "正しく操作してください。");
+			gotoPage(request, response, "/error.jsp");
+			return;
+		}
 		
 		try {
 			String action = request.getParameter("action");
-			if (action == null || action.length() == 0 || action.equals("inputMember")) {
-			gotoPage(request, response, "/memberInfo.jsp");
-			} else if (action.equals("confirm")) {
-				MemberBean bean = new MemberBean();
+			if (action == null || action.length() == 0 || action.equals("confirm")) {
+				OrderCheckBean bean = new OrderCheckBean();
 				bean.setName(request.getParameter("name"));
-				bean.setEmail(request.getParameter("email"));
-				bean.setPass(request.getParameter("pass"));
 				bean.setAddress(request.getParameter("address"));
 				bean.setTel(request.getParameter("tel"));
-				bean.setPay(request.getParameter("pay")); //まとめて記載可能
+				bean.setMail(request.getParameter("mail"));
+				bean.setPay(request.getParameter("pay")); // まとめて記載可能
 				session.setAttribute("customer", bean);
-				gotoPage(request,response,"/confirm.jsp");
+				gotoPage(request, response, "/order/confirm.jsp");
 			} else if (action.equals("order")) {
-				MemberBean member = (MemberBean)session.getAttribute("customer");
-				if (member == null) {
+				OrderCheckBean check = (OrderCheckBean) session.getAttribute("check");
+				if (check == null) {
 					request.setAttribute("message", "正しく操作してください。");
 					gotoPage(request, response, "/error.jsp");
 					return;
+					
 				}
-				
-				
+					
+					OrderDAO order = new OrderDAO();
+					MemberBean2 member2 = (MemberBean2)session.getAttribute("member2"); //sessionの中にあるものから型名と属性名を指定して探して取得
+					int user_id = member2.getUser_id();
+					int orderID = order.orderMem(check, cart, user_id);
+					session.removeAttribute("cart");
+					session.removeAttribute("check");
+					request.setAttribute("orderID", Integer.valueOf(orderID));
+					gotoPage(request, response, "/order.jsp");
+				} else {
+					request.setAttribute("message", "正しく操作してください。");
+					gotoPage(request, response, "/error.jsp");
+
+				}
+
+			} catch (DAOException e) {
+				e.printStackTrace();
+				request.setAttribute("message", "内部エラーが発生しました。");
+				gotoPage(request, response, "/error.jsp");
 			}
-		}
-		
 
 	}
 
