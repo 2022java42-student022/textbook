@@ -123,9 +123,13 @@ public class TextServlet extends HttpServlet {
 				// 選択した教科書を変更画面に移動
 
 				// 登録している教科書の内容変更
->>>>>>> 8ca50f306276c4edac0048865d03cfb7130ea916
+
 			} else if (action.equals("inputChange")) {
+
+
+
 			}
+
 				int text_id = (int) session.getAttribute("text_id");
 				List<TextBean> list = new ArrayList<TextBean>();
 				request.setAttribute("textbooks", list);
@@ -138,7 +142,9 @@ public class TextServlet extends HttpServlet {
 				request.setAttribute("textbooks", list);
 			
 			}
+
 			
+
 
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");
