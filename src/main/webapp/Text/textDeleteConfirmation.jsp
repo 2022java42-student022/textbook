@@ -12,11 +12,13 @@
 
 <form action="/textbook/TextServlet?action=delete" method="post">
 
-			<p>ISBN:iga666<p>
-			<p>タイトル:伊賀、Javaやめるってよ<p>
+			<table border ="1">
+			<tr><td>ISBN</td><td>タイトル</td></tr>
 			
-			<h5>上記の内容でお間違えありませんか？</h5>
-		<p><input type="submit" value="決定"></p> 
+			<c:forEach items="${text_id}" var="text">
+			<tr><td>${text.ISBN}</td><td>${text.title}</td></tr>
+			</c:forEach>
+			</table>
 		
 	</form>
 <input type="button" name="back" value="前ページに戻る"

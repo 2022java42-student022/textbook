@@ -186,7 +186,8 @@ public class TextServlet extends HttpServlet {
 			}else if (action.equals("delete")) {
 				int text_id = Integer.parseInt(request.getParameter("text_id"));
 				dao.deleteByText_id(text_id);
-				session.setAttribute("text_id", text_id);
+				List<TextBean> list = dao.findAll();
+				session.setAttribute("text_id", list);
 				gotoPage(request, response, "Text/textDeleteConfirmation.jsp");
 			}
 		

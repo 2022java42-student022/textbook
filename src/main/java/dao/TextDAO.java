@@ -223,14 +223,15 @@ public class TextDAO {
 		}
 	}
 	
-	public  void deleteByText_id(int text_id) throws DAOException {
+	public List<TextBean> deleteByText_id(int text_id) throws DAOException {
 		String sql = "DELETE FROM text WHERE text_id = ?";
 		
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
+			List<TextBean> list = new ArrayList<TextBean>();
 			st.setInt(1, text_id);
 			st.executeUpdate();
-			
+			return list;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
