@@ -12,8 +12,7 @@
 
 
 	<form action="/textbook/TextServlet?action=search_title_mg" method="post">
-		タイトル <input type="text" name="title"> <input type="submit"
-			value="タイトルで検索">
+		タイトル <input type="text" name="title"> <input type="submit" value="タイトルで検索">
 	</form>
 	<form action="/textbook/TextServlet?action=search_sort_id_mg" method="post">
 		分類 <select size="1" name="sort_id">

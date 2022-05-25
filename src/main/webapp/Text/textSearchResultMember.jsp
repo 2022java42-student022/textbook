@@ -20,7 +20,7 @@
 			<th>著者</th>
 			<th>金額</th>
 			<th>使用状況</th>
-			<th>カートに追加</th>
+			<th>カート</th>
 		</tr>
 		<c:forEach items="${texts}" var="text">
 			<tr>
@@ -33,7 +33,7 @@
 				<td>
 					<form action="/textbook/CartServlet?action=add" method="post">
 						<input type="hidden" name="text_id" value="${text.text_id}">
-						<input type="submit" value="カートに追加">
+						<input type="submit" value="追加">
 					</form>
 				</td>
 			</tr>
