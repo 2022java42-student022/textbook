@@ -28,11 +28,13 @@ public class MemberServlet extends HttpServlet {
 			MemberDAO dao = new MemberDAO();
 			if (action == null || action.length() == 0 || action.equals("search")) {
 				try {
-					String email = request.getParameter("email");
+
+					String email = request.getParameter("user_id");
+
 
 					MemberBean2 bean = dao.SearchMember2(email);
 					if (bean == null) {
-						request.setAttribute("message", "正しいメールアドレスを入力してください。");
+						request.setAttribute("message", "正しい会員番号を入力してください。");
 						gotoPage(request, response, "/error.jsp");
 					}
 					// リクエストスコープに入れてJSPへフォーワードする
@@ -41,7 +43,7 @@ public class MemberServlet extends HttpServlet {
 					gotoPage(request, response, "/Member/memSearchResult.jsp");
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
-					request.setAttribute("message", "メールアドレスを入力してください。");
+					request.setAttribute("message", "数字を入力してください。");
 					gotoPage(request, response, "/error.jsp");
 				}
 			}
@@ -65,23 +67,19 @@ public class MemberServlet extends HttpServlet {
 				return;
 
 			}
-			// 会員情報変更→確認画面
-			if (action.equals("preChange")) {
-				String name = request.getParameter("name");
-				String email = request.getParameter("email");
-				String pass = request.getParameter("pass");
-				MemberBean2 bean2 = new MemberBean2();
-				bean2.setName(name);
-				bean2.setEmail(email);
-				bean2.setPass(pass);
-				HttpSession session = request.getSession(true);
-				session.setAttribute("member2", bean2);
-				gotoPage(request, response, "/Member/memChangeConfirmation.jsp");
+			if (action.equals("change2")) {
+
+				gotoPage(request, response, "/memChangeConfirmation.jsp");
+
 				return;
-
 			}
-
-			if (action.equals("preRegister")) {
+			if (action.equals("preRegister") && request.getParameter("name").equals("") 
+					|| action.equals("preRegister") && request.getParameter("email").equals("")
+					|| action.equals("preRegister") && request.getParameter("pass").equals("")) {
+					request.setAttribute("message", "未入力項目があります。");
+					gotoPage(request, response, "/error.jsp");
+					
+			}else if (action.equals("preRegister")) {
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
 				String pass = request.getParameter("pass");
@@ -94,8 +92,7 @@ public class MemberServlet extends HttpServlet {
 				session.setAttribute("member", bean2);
 				gotoPage(request, response, "/Member/memRegisterConfirmation.jsp");
 			}
-
-			// 登録確認→完了
+			
 			if (action.equals("register")) {
 				HttpSession session = request.getSession(false);
 				MemberBean2 bean2 = (MemberBean2) session.getAttribute("member");
@@ -105,23 +102,23 @@ public class MemberServlet extends HttpServlet {
 				gotoPage(request, response, "/complete.jsp");
 			}
 
-			// 会員情報変更確認→完了
-			if (action.equals("change2")) {
+			//会員情報変更確認→完了
+			if (action.equals("update")) {
 				String name = request.getParameter("name");
-				String email = request.getParameter("email");
-				String pass = request.getParameter("pass");
-				int user_id = Integer.parseInt(request.getParameter("user_id"));
-				dao.changeByPrimaryuser(name, email, pass, user_id);
+				String email =request.getParameter("email");
+				String pass =request.getParameter("pass");
+				int user_id =Integer.parseInt("user_id");
+				dao.changeByPrimaryuser(name, email,pass,user_id);
 				gotoPage(request, response, "/complete.jsp");
-			}
+				}
 
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");
 		}
-
 	}
-
+		
+		
 	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)
 			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher(page);
