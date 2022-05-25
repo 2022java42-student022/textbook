@@ -82,48 +82,55 @@ public class TextServlet extends HttpServlet {
 				request.setAttribute("texts", list);
 				gotoPage(request,response,"/Text/textSearchResultMember.jsp");
 				
+				
 				// 全ての教科書表示(管理者)
 			} else if (action.equals("searchAll_mg")) {
 				List<TextBean> list = dao.findAll();
 				request.setAttribute("texts", list);
 				gotoPage(request, response, "/Text/textSearchResultMg.jsp");
 				
+				
 				// 分類名で検索(会員)
 			} else if (action.equals("search_sort_id_member")) {
-				int text_sort_id = Integer.parseInt(request.getParameter(sort_id));
+				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
 				List<TextBean> list = dao.findBySort_id(text_sort_id);
 				request.setAttribute("texts", list);
 				gotoPage(request,response,"/Text/textSearchResultMember.jsp");
 				
+				
 				// 分類名で検索(管理者)
 			} else if (action.equals("search_sort_id_mg")) {
-				int text_sort_id = Integer.parseInt(request.getParameter(sort_id));
+				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
 				List<TextBean> list = dao.findBySort_id(text_sort_id);
 				request.setAttribute("texts", list);
 				gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+				
 				
 				// タイトルで検索(会員)
 			} else if (action.equals("search_title_member")) {
 				List<TextBean> list = dao.findByTitle(title);
 				request.setAttribute("texts", list);
 				gotoPage(request, response, "/Text/textSearchResultMember.jsp");
+				
 			
 				// タイトルで検索(管理者)
 			} else if (action.equals("search_title_mg")) {
 				List<TextBean> list = dao.findByTitle(title);
 				request.setAttribute("texts", list);	
 				gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+				
 			
 				//タイトルと分類の両方で検索(会員)
 			} else if (action.equals("search_title_sort_member")) {
-				int text_sort_id = Integer.parseInt(request.getParameter(sort_id));
+				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
 				List<TextBean> list = dao.findByTitleSort(title,text_sort_id);
 				request.setAttribute("texts", list);
 				gotoPage(request, response, "/Text/textSearchResultMember.jsp");
 				
+				
 				//タイトルと分類の両方で検索(管理者)
 			} else if (action.equals("search_title_sort_mg")) {
-				int text_sort_id = Integer.parseInt(request.getParameter(sort_id));
+				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
 				List<TextBean> list = dao.findByTitleSort(title,text_sort_id);
 				request.setAttribute("texts", list);
 				gotoPage(request, response, "/Text/textSearchResultMg.jsp");
