@@ -10,10 +10,6 @@
 
 	<h2>教科書検索画面</h2>
 
-<<<<<<< HEAD
-	<a href="TextServlet">全商品表示</a>
-	<br>
-	<br>
 
 	<form action="/TextServlet?action=search_title" method="post">
 		タイトル <input type="text" name="title"> <input type="submit"
@@ -36,17 +32,30 @@
 	</form>
 	<br>
 	<br>
-	<input type="button" name="button_test" value="戻る"
-		onclick="javascript:history.back()">
-
-=======
+	
+	
+	<form action="/TextServlet?action=search_title_sort" method="post">
 	<input type="submit" value="検索">
+	</form>
+	<br>
+
+  	<form action="/TextServlet?action=searchAll" method="post">
+	<input type="submit" value="全商品表示">
+	</form>
+	<br>
+	<br>
+	
+	
+	<%-- 必要か分からないのでコメントアウト
+	<input type="button" name="button_test" value="戻る"
+		onclick="javascript:history.back()"> --%>
+
+	
 	&nbsp;&nbsp;&nbsp;&nbsp; <!-- JavaScript -->
 	<input type="button" name="back" value="前ページに戻る"
 			onclick="javascript:history.back()">
 <input type="button" name="logout" value="ログアウト"
 		    onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
->>>>>>> 4340dd4f17bd66bd3d661364b90d694564e1f5cf
 
 </body>
 </html>
