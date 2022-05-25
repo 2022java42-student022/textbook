@@ -42,7 +42,7 @@
 	<form action="/textbook/OrderServlet?action=confirm" method="post">
 		名前：<input type="text" name="name"><br> 住所：<input
 			type="text" name="address"><br> 電話番号：<input type="text"
-			name="tel"><br> メールアドレス：<input type="text" name="mail"><br>
+			name="tel"><br> メールアドレス：<input type="email" name="mail"><br>
 
 		<h4>お支払方法を選択してください。</h4>
 		<input type="radio" name="pay" value="card">クレジットカード<br>
