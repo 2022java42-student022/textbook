@@ -75,12 +75,17 @@ public class MemberDAO {
 					name = rs.getString("name");
 					email = rs.getString("email");
 					pass = rs.getString("pass");
-					userid = rs.getInt("userid");
+					userid = rs.getInt("user_id");
 					bean = new MemberBean2(name, email, pass, userid);
 				}
 				// 会員情報の有無を返す
 				return bean;
-			} catch (SQLException e) {
+			}
+
+			
+			
+			
+			catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("レコードの取得に失敗しました。");
 			}
@@ -128,6 +133,26 @@ public class MemberDAO {
 			}
 
 			// いっちせんとあかん
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
+
+	}
+	//削除メソッド
+	public int deleteByPrimaryuser(int user_id) throws DAOException {
+		//SQL文の作成
+		String sql = "DELETE FROM member WHERE user_id = ?";
+		
+		try(// データベースへの接続)
+				Connection con = DriverManager.getConnection(url,user,passwd);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// 主キーの指定
+			st.setInt(1, user_id);
+			// SQLの実行
+			int rows = st.executeUpdate();
+			return rows;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");

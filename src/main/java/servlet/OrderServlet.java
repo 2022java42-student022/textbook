@@ -38,7 +38,9 @@ public class OrderServlet extends HttpServlet {
 		
 		try {
 			String action = request.getParameter("action");
-			if (action == null || action.length() == 0 || action.equals("confirm")) {
+			if (action == null || action.length() == 0 || action.equals("input_member")) {
+				gotoPage(request, response, "/order/memberInfo.jsp");
+			} else if (action.equals("confirm")) {
 				OrderCheckBean bean = new OrderCheckBean();
 				bean.setName(request.getParameter("name"));
 				bean.setAddress(request.getParameter("address"));
