@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.MemberBean2;
 import dao.DAOException;
+import dao.LoginDAO;
 import dao.MemberDAO;
 
 @WebServlet("/MemberServlet")
@@ -29,7 +30,7 @@ public class MemberServlet extends HttpServlet {
 			if (action == null || action.length() == 0 || action.equals("search")) {
 				try {
 					int user_id = Integer.parseInt(request.getParameter("user_id"));
-					
+
 					MemberBean2 bean = dao.SearchMember2(user_id);
 					if (bean == null) {
 						request.setAttribute("message", "正しい会員番号を入力してください。");
@@ -58,16 +59,17 @@ public class MemberServlet extends HttpServlet {
 			if (action.equals("decision")) {
 				int user_id = Integer.parseInt(request.getParameter("user_id"));
 				dao.deleteByPrimaryuser(user_id);
-				
+
 				HttpSession session = request.getSession(false);
 				session.setAttribute("member2", null);
 				gotoPage(request, response, "/complete.jsp");
 				return;
-				
+
 			}
 			if (action.equals("change2")) {
 				gotoPage(request, response, "/complete.jsp");
 			}
+
 			if (action.equals("preRegister")) {
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
@@ -84,16 +86,36 @@ public class MemberServlet extends HttpServlet {
 			if (action.equals("register")) {
 				HttpSession session = request.getSession(false);
 				MemberBean2 bean2 = (MemberBean2) session.getAttribute("member");
-				
+
 				dao.addMember(bean2);
 				request.setAttribute("message", "会員登録が完了しました。");
 				gotoPage(request, response, "/complete.jsp");
 			}
-			
-			
+
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");
+		}
+		
+		
+		if (action.equals("preRegister") && regis.equals("member")) {
+			String email = request.getParameter("user_id");
+			try {
+				LoginDAO dao = new LoginDAO();
+				if (dao.Account(email)) {
+					HttpSession session = request.getSession();
+					session.setAttribute("login", "member");
+					MemberDAO memDao = new MemberDAO();
+					int user_id = memDao.searchByEmail(email);
+					session.setAttribute("user_id", user_id);
+					gotoPage(request, response, "Login/memHome.jsp");
+				}
+
+			} catch (DAOException e) {
+				e.printStackTrace();
+				request.setAttribute("message", "内部エラーが発生しました。");
+				gotoPage(request, response, "error.jsp");
+			}
 		}
 
 	}
