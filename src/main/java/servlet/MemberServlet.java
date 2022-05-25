@@ -28,7 +28,9 @@ public class MemberServlet extends HttpServlet {
 			MemberDAO dao = new MemberDAO();
 			if (action == null || action.length() == 0 || action.equals("search")) {
 				try {
+
 					String email = request.getParameter("user_id");
+
 
 					MemberBean2 bean = dao.SearchMember2(email);
 					if (bean == null) {
@@ -66,7 +68,10 @@ public class MemberServlet extends HttpServlet {
 
 			}
 			if (action.equals("change2")) {
-				gotoPage(request, response, "/complete.jsp");
+
+				gotoPage(request, response, "/memChangeConfirmation.jsp");
+
+				return;
 			}
 			if (action.equals("preRegister") && request.getParameter("name").equals("") 
 					|| action.equals("preRegister") && request.getParameter("email").equals("")
@@ -96,6 +101,16 @@ public class MemberServlet extends HttpServlet {
 				request.setAttribute("message", "会員登録が完了しました。");
 				gotoPage(request, response, "/complete.jsp");
 			}
+
+			//会員情報変更確認→完了
+			if (action.equals("update")) {
+				String name = request.getParameter("name");
+				String email =request.getParameter("email");
+				String pass =request.getParameter("pass");
+				int user_id =Integer.parseInt("user_id");
+				dao.changeByPrimaryuser(name, email,pass,user_id);
+				gotoPage(request, response, "/complete.jsp");
+				}
 
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");
