@@ -223,6 +223,8 @@ public class TextDAO {
 		}
 	}
 	
+	public List<TextBean> predeleteByText_id(int text_id)  throws DAOException {
+	
 	public List<TextBean> deleteByText_id(int text_id) throws DAOException {
 		String sql = "DELETE FROM text WHERE text_id = ?";
 		

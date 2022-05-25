@@ -183,12 +183,19 @@ public class TextServlet extends HttpServlet {
 				gotoPage(request, response, "/complete.jsp");
 
 				//教科書の削除確認画面へ
+			}else if (action.equals("predelete")) {
+				int text_id = Integer.parseInt(request.getParameter("text_id"));
+				dao.predeleteByText_id(text_id);
+				List<TextBean> list = dao.findAll();
+				session.setAttribute("delete_textbooks", list);
+				gotoPage(request, response, "Text/textDeleteConfirmation.jsp");
+			
+				//選択している教科書を削除
 			}else if (action.equals("delete")) {
 				int text_id = Integer.parseInt(request.getParameter("text_id"));
 				dao.deleteByText_id(text_id);
-				List<TextBean> list = dao.findAll();
-				session.setAttribute("text_id", list);
-				gotoPage(request, response, "Text/textDeleteConfirmation.jsp");
+				session.setAttribute("message", "削除が完了しました。");
+				gotoPage(request, response, "/complete.jsp");
 			}
 		
 
