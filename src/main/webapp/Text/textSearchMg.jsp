@@ -1,37 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Search</title>
+<title>Text Sertch</title>
 </head>
 <body>
 
-<h2>教科書検索</h2>
+	<h2>管理者用教科書検索画面</h2>
 
-<form action="/TextServlet" method="post">
-		<p>ISBN<input type="text" name="ISBN" size="40"> <p>
-		<p>タイトル<input type="text" name="title" size="40"> <p>
-		   <p>分類 <select size="1" name="sort">
-		<option value="0">文学部系</option>
-		<option value="1">教育学部系</option>
-		<option value="2">法学部系</option>
-		<option value="3">社会学部系</option>
-		<option value="4">経済学部系</option>
-		<option value="5">理学部系</option>
-		<option value="6">医学部系</option>
-		<option value="7">歯学部系</option>
-		<option value="8">薬学部系</option>
-		<option value="9">工学部系</option>
-		<option value="10">農学部系</option>
-		</select>
-		<p>著者<input type="text" name="author" size="40"> <p>
-	<p><input type="submit" value="検索"></p>
-	<input type ="hidden" name="action" value="search">
-</form>
 
-<input type="button" name="back" value="前ページに戻る"
+	<form action="/TextServlet?action=search_title" method="post">
+		タイトル <input type="text" name="title"> <input type="submit"
+			value="タイトルで検索">
+	</form>
+	<form action="/TextServlet?action=search_sort_id" method="post">
+		分類 <select size="1" name="sort_id">
+			<option value="1">文学部系</option>
+			<option value="2">教育学部系</option>
+			<option value="3">法学部系</option>
+			<option value="4">社会学部系</option>
+			<option value="5">経済学部系</option>
+			<option value="6">理学部系</option>
+			<option value="7">医学部系</option>
+			<option value="8">歯学部系</option>
+			<option value="9">薬学部系</option>
+			<option value="10">工学部系</option>
+			<option value="11">農学部系</option>
+		</select> <input type="submit" value="学部で検索">
+	</form>
+	<br>
+	<br>
+	
+	
+	<form action="/TextServlet?action=search_title_sort" method="post">
+	<input type="submit" value="検索">
+	</form>
+	<br>
+
+  	<form action="/TextServlet?action=searchAll" method="post">
+	<input type="submit" value="全商品表示">
+	</form>
+	<br>
+	<br>
+
+	
+	&nbsp;&nbsp;&nbsp;&nbsp; <!-- JavaScript -->
+	<input type="button" name="back" value="前ページに戻る"
 			onclick="javascript:history.back()">
 <input type="button" name="logout" value="ログアウト"
 		    onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
