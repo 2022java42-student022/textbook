@@ -38,29 +38,30 @@ public class OrderServlet extends HttpServlet {
 
 		try {
 			String action = request.getParameter("action");
-//			String name = request.getParameter("name");
-//			String address = request.getParameter("address");
-//			String tel = request.getParameter("tel");
-//			String mail = request.getParameter("mail");
-//			String pay = request.getParameter("pay");
+			String name = request.getParameter("name");
+			String address = request.getParameter("address");
+			String tel = request.getParameter("tel");
+			String mail = request.getParameter("mail");
+			String pay = request.getParameter("pay");
 			if (action == null || action.length() == 0 || action.equals("input_member")) {
 				gotoPage(request, response, "/order/memberInfo.jsp");
 			}
 			if (action.equals("confirm")) {
-				OrderCheckBean bean = new OrderCheckBean();
-				bean.setName(request.getParameter("name"));
-				bean.setAddress(request.getParameter("address"));
-				bean.setTel(request.getParameter("tel"));
-				bean.setMail(request.getParameter("mail"));
-				bean.setPay(request.getParameter("pay")); // まとめて記載可能
-				session.setAttribute("check", bean);
-				gotoPage(request, response, "/order/confirm.jsp");
+				if (name.length() == 0 || address.length() == 0 || tel.length() == 0 || mail.length() == 0
+						|| pay.length() == 0) {
+					request.setAttribute("message", "項目を入力してください。");
+					gotoPage(request, response, "/error.jsp");
+				} else {
+					OrderCheckBean bean = new OrderCheckBean();
+					bean.setName(request.getParameter("name"));
+					bean.setAddress(request.getParameter("address"));
+					bean.setTel(request.getParameter("tel"));
+					bean.setMail(request.getParameter("mail"));
+					bean.setPay(request.getParameter("pay")); // まとめて記載可能
+					session.setAttribute("check", bean);
+					gotoPage(request, response, "/order/confirm.jsp");
+				}
 			}
-//			if (action.equals("confirm") || name.length() == 0 || address.length() == 0 || tel.length() == 0
-//					|| mail.length() == 0 || pay.length() == 0) {
-//				request.setAttribute("message", "入力してください。");
-//				gotoPage(request, response, "/error.jsp");
-//			}
 			if (action.equals("order")) {
 				OrderCheckBean check = (OrderCheckBean) session.getAttribute("check");
 				if (check == null) {
