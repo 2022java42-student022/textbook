@@ -11,11 +11,10 @@
 	<h2>管理者用教科書検索画面</h2>
 
 
-	<form action="/TextServlet?action=search_title" method="post">
-		タイトル <input type="text" name="title"> <input type="submit"
-			value="タイトルで検索">
+	<form action="/textbook/TextServlet?action=search_title_mg" method="post">
+		タイトル <input type="text" name="title"> <input type="submit" value="タイトルで検索">
 	</form>
-	<form action="/TextServlet?action=search_sort_id" method="post">
+	<form action="/textbook/TextServlet?action=search_sort_id_mg" method="post">
 		分類 <select size="1" name="sort_id">
 			<option value="1">文学部系</option>
 			<option value="2">教育学部系</option>
@@ -34,12 +33,12 @@
 	<br>
 	
 	
-	<form action="/TextServlet?action=search_title_sort" method="post">
+	<form action="/textbook/TextServlet?action=search_title_sort_mg" method="post">
 	<input type="submit" value="検索">
 	</form>
 	<br>
 
-  	<form action="/TextServlet?action=searchAll" method="post">
+  	<form action="/textbook/TextServlet?action=searchAll_mg" method="post">
 	<input type="submit" value="全商品表示">
 	</form>
 	<br>

@@ -4,21 +4,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SearchConfirmation</title>
+<title>ChangeConfirmation</title>
 </head>
 <body>
 
 	<h3>変更内容確認</h3>
 
 	<form action="/textbook/MemberServlet?action=change2" method="post">
-		<p>名前:いがいがいがいが
-		<p>
-		<p>メール:iga
-		<p>
-		<p>パスワード:iga
-		<p>
-		<p>ユーザーID:igaiga555
+		<table border="1">
+			<tr>
+				<td>ID</td>
+				<td>名前</td>
+				<td>メール</td>
+				<td>パスワード</td>
+			</tr>
+
+
+
+			<tr>
+				<td>${member2.user_id}</td>
+				<td>${member2.name}</td>
+				<td>${member2.email}</td>
+				<td>${member2.pass}</td>
+			</tr>
+
+		</table>
 		<h5>上記の内容でお間違えありませんか？</h5>
+
 
 <input type="submit" value="変更">
 
