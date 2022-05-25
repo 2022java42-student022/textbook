@@ -41,8 +41,8 @@
 	<h4>お客様情報を入力してください。</h4>
 	<form action="/textbook/OrderServlet?action=confirm" method="post">
 		名前：<input type="text" name="name"><br> 住所：<input
-			type="text" name="name"><br> 電話番号：<input type="text"
-			name="name"><br> メールアドレス：<input type="text" name="name"><br>
+			type="text" name="address"><br> 電話番号：<input type="text"
+			name="tel"><br> メールアドレス：<input type="text" name="mail"><br>
 
 		<h4>お支払方法を選択してください。</h4>
 		<input type="radio" name="pay" value="card">クレジットカード<br>

@@ -77,7 +77,7 @@ public class OrderDAO {
 		try (
 			Connection con = DriverManager.getConnection(url, user, pass);
 			PreparedStatement st = con.prepareStatement(sql);) {
-			List<TextBean> texts = cart.getItems();
+			List<TextBean> texts = cart.getTexts();
 			for (TextBean text : texts) {
 				st.setInt(1, text.getText_id());
 				st.setInt(2, orderID);
