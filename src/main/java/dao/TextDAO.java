@@ -136,8 +136,42 @@ public class TextDAO {
 		}
 	}
 
+	public List<TextBean> findByTitleSort(String text_title, int text_sort_id) throws DAOException {
+		String sql = "SELECT * FROM text WHERE sort_id = ? AND title = ?";
+
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setInt(1, text_sort_id);
+			st.setString(2, text_title);
+			try (ResultSet rs = st.executeQuery();) {
+				List<TextBean> list = new ArrayList<TextBean>();
+				while (rs.next()) {
+					int text_id = rs.getInt("text_id");
+					String ISBN = rs.getString("ISBN");
+					String title = rs.getString("title");
+					int sort_id = rs.getInt("sort_id");
+					SortDAO sortDAO = new SortDAO();
+					String dep_name = sortDAO.findDep_name(sort_id);
+					String author = rs.getString("author");
+					int price = rs.getInt("price");
+					String use = rs.getString("use");
+					TextBean bean = new TextBean(text_id, ISBN, title, sort_id, dep_name, author, price, use);
+					list.add(bean);
+				}
+				return list;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
+	}
+
 	public List<TextBean> findByUser_id(int user_id) throws DAOException {
-		String sql = "SElECT ISBN,title,sort_id,author,price FROM text WHERE user_id = ?";
+		String sql = "SElECT * FROM text WHERE user_id = ?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
@@ -169,37 +203,40 @@ public class TextDAO {
 		}
 	}
 
-	public List<TextBean> changeText(String ISBN,String title,int sort_id,String author,int price,int text_id) throws DAOException {
+	public void changeText(TextBean text_bean, int text_id) throws DAOException {
 		String sql = "UPDATE text SET ISBN = ?,title = ?,sort_id = ?,author = ?,price = ? WHERE text_id = ?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, ISBN);
-			st.setString(2, title);
-			st.setInt(3, sort_id);
-			st.setString(4, author);
-			st.setInt(5, price);
+			st.setString(1, text_bean.getISBN());
+			st.setString(2, text_bean.getTitle());
+			st.setInt(3, text_bean.getSort_id());
+			st.setString(4, text_bean.getAuthor());
+			st.setInt(5, text_bean.getPrice());
 			st.setInt(6, text_id);
-			try (ResultSet rs = st.executeUpdate();) {
-				List<TextBean> list = new ArrayList<TextBean>();
-				while (rs.next()) {
-					ISBN = rs.getString("ISBN");
-					title = rs.getString("title");
-					sort_id = rs.getInt("sort_id");
-					author = rs.getString("author");
-					price = rs.getInt("price");
-					TextBean bean = new TextBean(ISBN, title, sort_id, author, price);
-					list.add(bean);
-				}
-				return list;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw new DAOException("レコードの取得に失敗しました。");
-			}
+			st.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
 
 		}
+	}
+	
+	public  void deleteByText_id(int text_id) throws DAOException {
+		String sql = "DELETE FROM text WHERE text_id = ?";
+		
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setInt(1, text_id);
+			
+			int rows = st.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+
+		}
+	
 	}
 }

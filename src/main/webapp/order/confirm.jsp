@@ -21,18 +21,16 @@
 				<td>著者</td>
 				<td>金額</td>
 				<td>使用状況</td>
-				<td>小計</td>
 			</tr>
 
 			<c:forEach items="${cart.texts}" var="text">
 				<tr>
 					<td align="center">${text.ISBN}</td>
 					<td align="center">${text.title}</td>
-					<td align="center">${text.sort_id}</td>
+					<td align="center">${text.dep_name}</td>
 					<td align="center">${text.author}</td>
 					<td align="center">${text.price}</td>
 					<td align="center">${text.use}</td>
-					<td align="center">${text.price * text.quantity}</td>
 				</tr>
 			</c:forEach>
 			<tr>
@@ -50,23 +48,23 @@
 		<table border="1">
 			<tr>
 				<td>名前</td>
-				<td>${customer.name}</td>
+				<td>${check.name}</td>
 			</tr>
 			<tr>
 				<td>住所</td>
-				<td>${customer.address}</td>
+				<td>${check.address}</td>
 			</tr>
 			<tr>
 				<td>電話番号</td>
-				<td>${customer.tel}</td>
+				<td>${check.tel}</td>
 			</tr>
 			<tr>
 				<td>メールアドレス</td>
-				<td>${customer.mail}</td>
+				<td>${check.mail}</td>
 			</tr>
 			<tr>
 				<td>お支払方法</td>
-				<td>${customer.pay}</td>
+				<td>${check.pay}</td>
 			</tr>
 		</table>
 		<br> <input type="submit" value="この内容で注文"><br> <a

@@ -14,7 +14,7 @@ public class CartBean implements Serializable {
 
 	}
 
-	public List<TextBean> getItems() {
+	public List<TextBean> getTexts() { //getItems→getTextsに変更
 		return texts;
 	}
 
