@@ -65,14 +65,22 @@ public class MemberServlet extends HttpServlet {
 				return;
 
 			}
-			// 会員情報変更
-			if (action.equals("change2")) {
-				
-				gotoPage(request, response, "/memChangeConfirmation.jsp");
-
+			// 会員情報変更→確認画面
+			if (action.equals("preChange")) {
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String pass = request.getParameter("pass");
+				MemberBean2 bean2 = new MemberBean2();
+				bean2.setName(name);
+				bean2.setEmail(email);
+				bean2.setPass(pass);
+				HttpSession session = request.getSession(true);
+				session.setAttribute("member2", bean2);
+				gotoPage(request, response, "/Member/memChangeConfirmation.jsp");
 				return;
 
 			}
+
 			if (action.equals("preRegister")) {
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
@@ -86,6 +94,8 @@ public class MemberServlet extends HttpServlet {
 				session.setAttribute("member", bean2);
 				gotoPage(request, response, "/Member/memRegisterConfirmation.jsp");
 			}
+
+			// 登録確認→完了
 			if (action.equals("register")) {
 				HttpSession session = request.getSession(false);
 				MemberBean2 bean2 = (MemberBean2) session.getAttribute("member");
@@ -94,20 +104,17 @@ public class MemberServlet extends HttpServlet {
 				request.setAttribute("message", "会員登録が完了しました。");
 				gotoPage(request, response, "/complete.jsp");
 			}
-			
-			
-			
-			//会員情報変更確認→完了
-			if (action.equals("update")) {
+
+			// 会員情報変更確認→完了
+			if (action.equals("change2")) {
 				String name = request.getParameter("name");
-				String email =request.getParameter("email");
-				String pass =request.getParameter("pass");
-				int user_id =Integer.parseInt("user_id");
-				dao.changeByPrimaryuser(name, email,pass,user_id);
+				String email = request.getParameter("email");
+				String pass = request.getParameter("pass");
+				int user_id = Integer.parseInt(request.getParameter("user_id"));
+				dao.changeByPrimaryuser(name, email, pass, user_id);
 				gotoPage(request, response, "/complete.jsp");
-				}
-			
-			
+			}
+
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");
