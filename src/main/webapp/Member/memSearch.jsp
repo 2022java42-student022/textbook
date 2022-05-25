@@ -11,7 +11,7 @@
 <h3>会員検索</h3>
 
 <form action="/textbook/MemberServlet?action=search" method="post">
-			<p>ユーザーID<input type="text" name="user_id" size="40"> <p>
+			<p>メールアドレス<input type="text" name="email" size="40"> <p>
 			
 		<p><input type="submit" value="検索"></p>
 		
