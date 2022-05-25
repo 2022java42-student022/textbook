@@ -203,16 +203,16 @@ public class TextDAO {
 		}
 	}
 
-	public void changeText(TextBean text_bean, int text_id) throws DAOException {
+	public void changeText(TextBean bean, int text_id) throws DAOException {
 		String sql = "UPDATE text SET ISBN = ?,title = ?,sort_id = ?,author = ?,price = ? WHERE text_id = ?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, text_bean.getISBN());
-			st.setString(2, text_bean.getTitle());
-			st.setInt(3, text_bean.getSort_id());
-			st.setString(4, text_bean.getAuthor());
-			st.setInt(5, text_bean.getPrice());
+			st.setString(1, bean.getISBN());
+			st.setString(2, bean.getTitle());
+			st.setInt(3, bean.getSort_id());
+			st.setString(4, bean.getAuthor());
+			st.setInt(5, bean.getPrice());
 			st.setInt(6, text_id);
 			st.executeUpdate();
 
@@ -229,8 +229,7 @@ public class TextDAO {
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setInt(1, text_id);
-			
-			int rows = st.executeUpdate();
+			st.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
