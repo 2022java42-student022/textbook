@@ -16,13 +16,13 @@
 		<tr>
 			<th>ISBN</th>
 			<th>タイトル</th>
-			<th>分類</th>
+			<th>分類名</th>
 			<th>著者</th>
 			<th>金額</th>
 			<th>使用状況</th>
 			<th>カートに追加</th>
 		</tr>
-		<c:forEach items="${texts}}" var="text">
+		<c:forEach items="${texts}" var="text">
 			<tr>
 				<td>${text.ISBN}</td>
 				<td>${text.title}</td>
