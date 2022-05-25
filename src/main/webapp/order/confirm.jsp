@@ -21,18 +21,16 @@
 				<td>著者</td>
 				<td>金額</td>
 				<td>使用状況</td>
-				<td>小計</td>
 			</tr>
 
 			<c:forEach items="${cart.texts}" var="text">
 				<tr>
 					<td align="center">${text.ISBN}</td>
 					<td align="center">${text.title}</td>
-					<td align="center">${text.sort_id}</td>
+					<td align="center">${text.dep_name}</td>
 					<td align="center">${text.author}</td>
 					<td align="center">${text.price}</td>
 					<td align="center">${text.use}</td>
-					<td align="center">${text.price * text.quantity}</td>
 				</tr>
 			</c:forEach>
 			<tr>
