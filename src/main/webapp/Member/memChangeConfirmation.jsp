@@ -31,8 +31,7 @@
 		</table>
 		<h5>上記の内容でお間違えありませんか？</h5>
 
-<table border="0">
-			<input type="hidden" name="user_id" value="${member2.user_id}">
+
 <input type="submit" value="変更">
 
 
