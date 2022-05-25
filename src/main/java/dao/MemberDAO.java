@@ -154,22 +154,31 @@ public class MemberDAO {
 	}
 
 	// 変更メソッド
-	public int changeByPrimaryuser(int email) throws DAOException {
+	public int changeByPrimaryuser( String name, String email, String pass,int user_id) throws DAOException {
 		// SQL文の作成
-		String sql = "UPDATE emp SET member WHERE user_id = ?";
+		String sql = "UPDATE mamber SET name = ?,email = ?,pass = ? WHERE user_id = ?";
 
 		try (// データベースへの接続)
 				Connection con = DriverManager.getConnection(url, user, passwd);
 				// PreparedStatementオブジェクトの取得
 				PreparedStatement st = con.prepareStatement(sql);) {
-			// 主キーの指定
-			st.setInt(1, email);
 			// SQLの実行
-			int rows = st.executeUpdate();
+			// 主キーの指定
+			st.setString(1, name);
+			st.setString(2, email);
+			st.setString(3, pass);
+			st.setInt(4, user_id);
+			// SQLの実行
+			int rows = st.executeUpdate(); {
+				// 結果の取得
+				
+			}
+			
 			return rows;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました。");
 		}
 	}
+	
 }
