@@ -21,7 +21,7 @@
 			<th>金額</th>
 			<th>使用状況</th>
 		</tr>
-		<c:forEach items="${texts}}" var="text">
+		<c:forEach items="${texts}" var="text">
 			<tr>
 				<td>${text.ISBN}</td>
 				<td>${text.title}</td>
