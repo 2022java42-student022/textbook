@@ -23,14 +23,14 @@ public class MemberDAO {
 		}
 	}
 
-	public MemberBean2 SearchMember(int user_id) throws DAOException {
+	public MemberBean2 SearchMember(String email) throws DAOException {
 
 		String name = null;
-		String email = null;
 		String pass = null;
+		int user_id = 0;
 
 		// SQL文の作成
-		String sql = "SELECT * FROM member WHERE user_id =?";
+		String sql = "SELECT * FROM member WHERE email =?";
 
 		try (// データベースへの接続
 				Connection con = DriverManager.getConnection(url, user, passwd);
@@ -43,6 +43,7 @@ public class MemberDAO {
 				name = rs.getString("name");
 				email = rs.getString("email");
 				pass = rs.getString("pass");
+				user_id = rs.getInt("user_id");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,39 +53,31 @@ public class MemberDAO {
 		return bean;
 	}
 
-	public MemberBean2 SearchMember2(int user_id) throws DAOException {
-
-		String name = null;
-		String email = null;
-		String pass = null;
-		int userid = 0;
+	public MemberBean2 SearchMember2(String mail) throws DAOException {
 		// SQL文の作成
-		String sql = "SELECT * FROM member WHERE user_id =?";
+		String sql = "SELECT * FROM member WHERE email =?";
 
 		try (// データベースへの接続
 				Connection con = DriverManager.getConnection(url, user, passwd);
 				// PreparidStatementオブジェクトの取得
 				PreparedStatement st = con.prepareStatement(sql);) {
 
-			st.setInt(1, user_id);
+			st.setString(1, mail);
 			try (// SQLの実行)
 					ResultSet rs = st.executeQuery();) {
 				// 結果の取得
 				MemberBean2 bean = null;
 				while (rs.next()) {
-					name = rs.getString("name");
-					email = rs.getString("email");
-					pass = rs.getString("pass");
-					userid = rs.getInt("user_id");
+					String name = rs.getString("name");
+					String email = rs.getString("email");
+					String pass = rs.getString("pass");
+					int userid = rs.getInt("user_id");
 					bean = new MemberBean2(name, email, pass, userid);
 				}
 				// 会員情報の有無を返す
 				return bean;
 			}
 
-			
-			
-			
 			catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("レコードの取得に失敗しました。");
@@ -116,17 +109,17 @@ public class MemberDAO {
 
 	}
 
-	public int searchByEmail(String email) throws DAOException {
-		int user_id = 0;
-		String sql = "SELECT * FROM member WHERE email = ?;";
+	public String searchByEmail(String mail) throws DAOException {
+		String email = null;
+		String sql = "SELECT * FROM member WHERE email=?";
 		try (Connection con = DriverManager.getConnection(url, user, passwd);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, email);
 			try (ResultSet rs = st.executeQuery();) {
 				while (rs.next()) {
-					user_id = rs.getInt(1);
+					email = rs.getString(email);
 				}
-				return user_id;
+				return email;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("レコードの取得に失敗しました。");
@@ -139,17 +132,38 @@ public class MemberDAO {
 		}
 
 	}
-	//削除メソッド
-	public int deleteByPrimaryuser(int user_id) throws DAOException {
-		//SQL文の作成
+
+	// 削除メソッド
+	public int deleteByPrimaryuser(int email) throws DAOException {
+		// SQL文の作成
 		String sql = "DELETE FROM member WHERE user_id = ?";
-		
-		try(// データベースへの接続)
-				Connection con = DriverManager.getConnection(url,user,passwd);
+
+		try (// データベースへの接続)
+				Connection con = DriverManager.getConnection(url, user, passwd);
 				// PreparedStatementオブジェクトの取得
 				PreparedStatement st = con.prepareStatement(sql);) {
 			// 主キーの指定
-			st.setInt(1, user_id);
+			st.setInt(1, email);
+			// SQLの実行
+			int rows = st.executeUpdate();
+			return rows;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
+	}
+
+	// 変更メソッド
+	public int changeByPrimaryuser(int email) throws DAOException {
+		// SQL文の作成
+		String sql = "UPDATE emp SET member WHERE user_id = ?";
+
+		try (// データベースへの接続)
+				Connection con = DriverManager.getConnection(url, user, passwd);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// 主キーの指定
+			st.setInt(1, email);
 			// SQLの実行
 			int rows = st.executeUpdate();
 			return rows;

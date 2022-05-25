@@ -28,11 +28,11 @@ public class MemberServlet extends HttpServlet {
 			MemberDAO dao = new MemberDAO();
 			if (action == null || action.length() == 0 || action.equals("search")) {
 				try {
-					int user_id = Integer.parseInt(request.getParameter("user_id"));
+					String email = request.getParameter("email");
 					
-					MemberBean2 bean = dao.SearchMember2(user_id);
+					MemberBean2 bean = dao.SearchMember2(email);
 					if (bean == null) {
-						request.setAttribute("message", "正しい会員番号を入力してください。");
+						request.setAttribute("message", "正しいメールアドレスを入力してください。");
 						gotoPage(request, response, "/error.jsp");
 					}
 					// リクエストスコープに入れてJSPへフォーワードする
@@ -41,7 +41,7 @@ public class MemberServlet extends HttpServlet {
 					gotoPage(request, response, "/Member/memSearchResult.jsp");
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
-					request.setAttribute("message", "数字を入力してください。");
+					request.setAttribute("message", "メールアドレスを入力してください。");
 					gotoPage(request, response, "/error.jsp");
 				}
 			}
@@ -65,8 +65,17 @@ public class MemberServlet extends HttpServlet {
 				return;
 				
 			}
+			// 会員情報変更
 			if (action.equals("change2")) {
-				gotoPage(request, response, "/complete.jsp");
+				int email =Integer.parseInt(request.getParameter("email"));
+				dao.changeByPrimaryuser(email);
+				
+				HttpSession session = request.getSession(false);
+				session.setAttribute("member2", null);
+				gotoPage(request, response, "/memChangeConfirmation.jsp");
+				
+				
+				
 			}
 			if (action.equals("preRegister")) {
 				String name = request.getParameter("name");
@@ -89,6 +98,7 @@ public class MemberServlet extends HttpServlet {
 				request.setAttribute("message", "会員登録が完了しました。");
 				gotoPage(request, response, "/complete.jsp");
 			}
+			
 			
 			
 		} catch (DAOException e) {
