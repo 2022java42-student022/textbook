@@ -10,8 +10,6 @@
 
 <h3>検索結果</h3>
 
-<form action="/textbook/MemberServlet?action=delete" method="post">
-
 <table border="1">
 <tr><td>ID</td><td>名前</td><td>メール</td><td>パスワード</td></tr>
 
@@ -20,7 +18,9 @@
 </table>
 		<br>
 <table border="0">
-<tr><td><input type="submit" value="削除">
+<tr><td>
+<form action="/textbook/MemberServlet?action=delete" method="post">
+<input type="submit" value="削除">
 </form></td>
 <td><form action="/textbook/MemberServlet?action=change" method="post">
 <input type="submit" value="変更">
