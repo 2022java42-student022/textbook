@@ -10,7 +10,7 @@
 
 	<h3>変更内容確認</h3>
 
-	<form action="/textbook/MemberServlet?action=change2" method="post">
+	<form action="/textbook/MemberServlet?action=comfirm" method="post">
 		<table border="1">
 			<tr>
 				<td>ID</td>
