@@ -71,47 +71,73 @@ public class TextServlet extends HttpServlet {
 				dao.RegisterAllCategory(bean);
 				request.setAttribute("message", "教科書の登録が完了しました！");
 				gotoPage(request, response, "/complete.jsp");
-				// 全ての教科書表示
-			} else if (action.equals("searchAll")) {
+				
+				
+				
+				//----------------------------------------ここから各項目別での検索(会員と管理人別)----------------------------------------
+				
+				// 全ての教科書表示(会員)
+			} else if (action.equals("searchAll_member")) {
 				List<TextBean> list = dao.findAll();
 				request.setAttribute("texts", list);
-				String login = (String) session.getAttribute("login");
-				if (login.equals("member")) {
-					gotoPage(request, response, "/Text/textSerchResultMember.jsp");
-				} else if (login.equals("manager")) {
-					gotoPage(request, response, "/Text/textSerchResultMg.jsp");
-				} else {
-					request.setAttribute("message", "セッションが途切れています。もう一度ログインしなおしてください。");
-					gotoPage(request, response, "error.jsp");
-				}
-				// 分類名で検索
-			} else if (action.equals("search_sort_id")) {
-				int text_sort_id = Integer.parseInt(request.getParameter(sort_id));
+				gotoPage(request,response,"/Text/textSearchResultMember.jsp");
+				
+				
+				// 全ての教科書表示(管理者)
+			} else if (action.equals("searchAll_mg")) {
+				List<TextBean> list = dao.findAll();
+				request.setAttribute("texts", list);
+				gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+				
+				
+				// 分類名で検索(会員)
+			} else if (action.equals("search_sort_id_member")) {
+				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
 				List<TextBean> list = dao.findBySort_id(text_sort_id);
 				request.setAttribute("texts", list);
-				String login = (String) session.getAttribute("login");
-				if (login.equals("member")) {
-					gotoPage(request, response, "/Text/textSerchResultMember.jsp");
-				} else if (login.equals("manager")) {
-					gotoPage(request, response, "/Text/textSerchResultMg.jsp");
-				} else {
-					request.setAttribute("message", "セッションが途切れています。もう一度ログインしなおしてください。");
-					gotoPage(request, response, "error.jsp");
-				}
-				// タイトルで検索
-			} else if (action.equals("search_title")) {
+				gotoPage(request,response,"/Text/textSearchResultMember.jsp");
+				
+				
+				// 分類名で検索(管理者)
+			} else if (action.equals("search_sort_id_mg")) {
+				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
+				List<TextBean> list = dao.findBySort_id(text_sort_id);
+				request.setAttribute("texts", list);
+				gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+				
+				
+				// タイトルで検索(会員)
+			} else if (action.equals("search_title_member")) {
 				List<TextBean> list = dao.findByTitle(title);
 				request.setAttribute("texts", list);
-				String login = (String) session.getAttribute("login");
-				if (login.equals("member")) {
-					gotoPage(request, response, "/Text/textSerchResultMember.jsp");
-				} else if (login.equals("manager")) {
-					gotoPage(request, response, "/Text/textSerchResultMg.jsp");
-				} else {
-					request.setAttribute("message", "セッションが途切れています。もう一度ログインしなおしてください。");
-					gotoPage(request, response, "error.jsp");
-				}
+				gotoPage(request, response, "/Text/textSearchResultMember.jsp");
+				
+			
+				// タイトルで検索(管理者)
+			} else if (action.equals("search_title_mg")) {
+				List<TextBean> list = dao.findByTitle(title);
+				request.setAttribute("texts", list);	
+				gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+				
+			
+				//タイトルと分類の両方で検索(会員)
+			} else if (action.equals("search_title_sort_member")) {
+				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
+				List<TextBean> list = dao.findByTitleSort(title,text_sort_id);
+				request.setAttribute("texts", list);
+				gotoPage(request, response, "/Text/textSearchResultMember.jsp");
+				
+				
+				//タイトルと分類の両方で検索(管理者)
+			} else if (action.equals("search_title_sort_mg")) {
+				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
+				List<TextBean> list = dao.findByTitleSort(title,text_sort_id);
+				request.setAttribute("texts", list);
+				gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+				
+				//----------------------------------------ここまで各項目別での検索(会員と管理人別)----------------------------------------
 
+				
 				// 登録している教科書を参照
 			} else if (action.equals("reference")) {
 				int user_id = (int) session.getAttribute("user_id");
@@ -119,12 +145,17 @@ public class TextServlet extends HttpServlet {
 				session.setAttribute("textbooks", list);
 				gotoPage(request, response, "Text/showMyText.jsp");
 
-				// 選択した教科書を変更画面に移動
+				// 登録している教科書を選択して変更画面に移動
 			} else if (action.equals("inputChange")) {
 				int text_id = Integer.parseInt(request.getParameter("text_id"));
-				session.setAttribute("text_id", text_id);
+				TextBean bean = new TextBean();
+				bean = dao.preChange(bean, text_id);
+				session.setAttribute("change_text_id", text_id);
+				session.setAttribute("text_prechange", bean);
 				gotoPage(request, response, "Text/textChange.jsp");
-				// 教科書の内容変更
+				
+				
+				// 選択した教科書の内容変更
 			} else if (action.equals("preChange")) {
 				try {
 					int text_price = Integer.parseInt(price);
@@ -136,33 +167,48 @@ public class TextServlet extends HttpServlet {
 					bean.setISBN(ISBN);
 					bean.setTitle(title);
 					bean.setAuthor(author);
-					bean.setUse(use);
 					SortDAO sortDAO = new SortDAO();
 					bean.setDep_name(sortDAO.findDep_name(text_sort_id));
-					bean.setUser_id((int) session.getAttribute("user_id"));
-					session.setAttribute("text", bean);
+					bean.setText_id((int) session.getAttribute("change_text_id"));
+					session.setAttribute("changetext", bean);
 					gotoPage(request, response, "/Text/textChangeConfirmation.jsp");
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
-					request.setAttribute("message", "値段に数値を入力してください");
+					request.setAttribute("message", "正しい操作を行って下さい。");
 					gotoPage(request, response, "/error.jsp");
 				}
+				
 
+				//教科書の内容変更完了画面へ
 			} else if (action.equals("change")) {
-				TextBean bean = (TextBean) session.getAttribute("text");
-				int text_id = (int) session.getAttribute("text_id");
-				dao.changeText(bean, text_id);
+				TextBean bean = (TextBean) session.getAttribute("changetext");
+				dao.changeText(bean);
 				request.setAttribute("message", "変更が完了しました。");
 				gotoPage(request, response, "/complete.jsp");
 
+				//教科書の削除確認画面へ
+			}else if (action.equals("predelete")) {
+				int text_id = Integer.parseInt(request.getParameter("text_id"));
+				TextBean bean= dao.preDeleteByText_id(text_id);
+				session.setAttribute("delete_textbooks", bean);
+				gotoPage(request, response, "Text/textDeleteConfirmation.jsp");
+			
+				//選択している教科書を削除
+			}else if (action.equals("delete")) {
+				TextBean bean = (TextBean)session.getAttribute("delete_textbooks");
+				dao.deleteByText_id(bean.getText_id());
+				session.setAttribute("message", "削除が完了しました。");
+				gotoPage(request, response, "/complete.jsp");
 			}
+		
 
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");
 		}
-
 	}
+
+	
 
 	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)
 			throws ServletException, IOException {

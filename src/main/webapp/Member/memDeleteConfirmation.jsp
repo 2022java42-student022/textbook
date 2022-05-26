@@ -11,23 +11,32 @@
 	<h3>退会確認画面</h3>
 
 	<form action="/textbook/MemberServlet?action=decision" method="post">
-		<p>名前:いがいがいがいが
-		<p>
-		<p>メール:iga
-		<p>
-		<p>パスワード:iga
-		<p>
-		<p>ユーザーID:igaiga555
-		<h5>上記の内容でお間違えありませんか？</h5>
-		<p>
-			<input type="submit" value="決定">
-		</p>
+		<table border="1">
+			<tr>
+				<td>ID</td>
+				<td>名前</td>
+				<td>メール</td>
+				<td>パスワード</td>
+			</tr>
 
 
-	</form>
-		<input type="button" name="back" value="前ページに戻る"
-			onclick="javascript:history.back()">
-	<input type="button" name="logout" value="ログアウト"
-		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+
+			<tr>
+				<td>${member_search.user_id}</td>
+				<td>${member_search.name}</td>
+				<td>${member_search.email}</td>
+				<td>${member_search.pass}</td>
+			</tr>
+
+		</table>
+		<br>
+		<table border="0">
+			<input type="hidden" name="user_id" value="${member2.user_id}">
+			<tr>
+				<td><input type="submit" value="削除">
+					</form> <input type="button" name="back" value="前ページに戻る"
+					onclick="javascript:history.back()"> <input type="button"
+					name="logout" value="ログアウト"
+					onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 </body>
 </html>

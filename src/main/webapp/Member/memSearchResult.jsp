@@ -10,19 +10,19 @@
 
 <h3>検索結果</h3>
 
-<form action="/textbook/MemberServlet?action=delete" method="post">
-		<p>名前:
-		<p>
-		<p>メール:
-		<p>
-		<p>パスワード:
-		<p>
-		<p>ユーザーID:
-		<h5>上記の内容でお間違えありませんか？</h5>
+<table border="1">
+<tr><td>ID</td><td>名前</td><td>メール</td><td>パスワード</td></tr>
 
+<tr><td>${member_search.user_id}</td><td>${member_search.name}</td><td>${member_search.email}</td><td>${member_search.pass}</td></tr>
+
+</table>
+		<br>
+<table border="0">
+<tr><td>
+<form action="/textbook/MemberServlet?action=delete" method="post">
 <input type="submit" value="削除">
-</form>
-<form action="/textbook/MemberServlet?action=change" method="post">
+</form></td>
+<td><form action="/textbook/MemberServlet?action=change" method="post">
 <input type="submit" value="変更">
 
 	</form>

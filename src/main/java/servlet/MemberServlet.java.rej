@@ -1,0 +1,9 @@
+diff a/src/main/java/servlet/MemberServlet.java b/src/main/java/servlet/MemberServlet.java	(rejected hunks)
+@@ -67,7 +67,6 @@
+ 				return;
+ 
+ 			}
+-			if (action.equals("preChange")) {
+ 			if (action.equals("change2")) {
+ 
+ 				gotoPage(request, response, "/memChangeConfirmation.jsp");

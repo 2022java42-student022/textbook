@@ -10,24 +10,24 @@
 
 	<h2>教科書変更画面</h2>
 
-	<form action="textbook/TextServlet?action=preChange" method="post">
-		ISBN <input type="text" name="ISBN"><br> 
-		タイトル <input type="text" name="title"><br>
-		分類 <select size="1" name="sort">
-			<option value="0">文学部系</option>
-			<option value="1">教育学部系</option>
-			<option value="2">法学部系</option>
-			<option value="3">社会学部系</option>
-			<option value="4">経済学部系</option>
-			<option value="5">理学部系</option>
-			<option value="6">医学部系</option>
-			<option value="7">歯学部系</option>
-			<option value="8">薬学部系</option>
-			<option value="9">工学部系</option>
-			<option value="10">農学部系</option>
+	<form action="/textbook/TextServlet?action=preChange" method="post">
+		ISBN<input type="text" name="ISBN" value="${text_prechange.ISBN}"><br> 
+		タイトル <input type="text" name="title" value="${text_prechange.title}"><br>
+		分類 <select size="1" name="sort_id">
+			<option value="1">文学部系</option>
+			<option value="2">教育学部系</option>
+			<option value="3">法学部系</option>
+			<option value="4">社会学部系</option>
+			<option value="5">経済学部系</option>
+			<option value="6">理学部系</option>
+			<option value="7">医学部系</option>
+			<option value="8">歯学部系</option>
+			<option value="9">薬学部系</option>
+			<option value="10">工学部系</option>
+			<option value="11">農学部系</option>
 		</select> <br>
-		 著者 <input type="text" name="author"><br> 
-		 金額 <input type="number" name="price"><br>
+		 著者 <input type="text" name="author"value="${text_prechange.author}"><br> 
+		 金額 <input type="number" name="price"value="${text_prechange.price}"><br>
 		<br> <input type="submit" value="変更">
 		&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" name="back"
 			value="前ページに戻る" onclick="javascript:history.back()"> <input

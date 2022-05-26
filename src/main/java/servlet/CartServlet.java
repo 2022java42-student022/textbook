@@ -33,7 +33,7 @@ public class CartServlet extends HttpServlet {
 					session.setAttribute("cart", cart);
 				}
 				TextDAO dao = new TextDAO();
-				TextBean bean = dao.findByPrimaryKey(text_id);
+				TextBean bean = dao.findByTextID(text_id);//text_idで教科書1冊を検索してレコードをTextBeanに入れる→findByTextIDメソッド
 				cart.addCart(bean);
 				gotoPage(request, response, "/cart.jsp");
 			} else if (action.equals("delete")) {
