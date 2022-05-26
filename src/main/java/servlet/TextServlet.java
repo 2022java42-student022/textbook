@@ -148,7 +148,10 @@ public class TextServlet extends HttpServlet {
 				// 登録している教科書を選択して変更画面に移動
 			} else if (action.equals("inputChange")) {
 				int text_id = Integer.parseInt(request.getParameter("text_id"));
-				session.setAttribute("text_id", text_id);
+				TextBean bean = new TextBean();
+				bean = dao.preChange(bean, text_id);
+				session.setAttribute("change_text_id", text_id);
+				session.setAttribute("text_prechange", bean);
 				gotoPage(request, response, "Text/textChange.jsp");
 				
 				
@@ -157,21 +160,29 @@ public class TextServlet extends HttpServlet {
 				try {
 					int text_price = Integer.parseInt(price);
 					int text_sort_id = Integer.parseInt(sort_id);
-					int text_id = (int) session.getAttribute("text_id");
-					dao.preChange(text_id);
-					List<TextBean> list = dao.findAll();
-					request.setAttribute("changetext", list);
+
+					TextBean bean = new TextBean();
+					bean.setPrice(text_price);
+					bean.setSort_id(text_sort_id);
+					bean.setISBN(ISBN);
+					bean.setTitle(title);
+					bean.setAuthor(author);
+					SortDAO sortDAO = new SortDAO();
+					bean.setDep_name(sortDAO.findDep_name(text_sort_id));
+					bean.setText_id((int) session.getAttribute("change_text_id"));
+					session.setAttribute("changetext", bean);
 					gotoPage(request, response, "/Text/textChangeConfirmation.jsp");
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 					request.setAttribute("message", "正しい操作を行って下さい。");
 					gotoPage(request, response, "/error.jsp");
 				}
+				
 
 				//教科書の内容変更完了画面へ
 			} else if (action.equals("change")) {
-				TextBean bean = (TextBean) session.getAttribute("text_id");
-				dao.changeText(bean,bean.getText_id());
+				TextBean bean = (TextBean) session.getAttribute("changetext");
+				dao.changeText(bean);
 				request.setAttribute("message", "変更が完了しました。");
 				gotoPage(request, response, "/complete.jsp");
 
