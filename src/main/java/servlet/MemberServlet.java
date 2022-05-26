@@ -20,7 +20,7 @@ public class MemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
+
 		// パラメータの解析
 		String action = request.getParameter("action");
 
@@ -30,7 +30,6 @@ public class MemberServlet extends HttpServlet {
 				try {
 
 					String email = request.getParameter("email");
-
 
 					MemberBean2 bean = dao.SearchMember2(email);
 					if (bean == null) {
@@ -67,17 +66,46 @@ public class MemberServlet extends HttpServlet {
 				return;
 
 			}
-			
+
 			// 正しい登録情報
-			if (action.equals("preRegister") && request.getParameter("name").equals("") 
+			if (action.equals("preRegister") && request.getParameter("name").equals("")
 					|| action.equals("preRegister") && request.getParameter("email").equals("")
 					|| action.equals("preRegister") && request.getParameter("pass").equals("")) {
-					request.setAttribute("message", "未入力項目があります。");
-					gotoPage(request, response, "/error.jsp");
-					
+				request.setAttribute("message", "未入力項目があります。");
+				gotoPage(request, response, "/error.jsp");
 			}
-			// 三戸部 会員登録
+			// メールアドレスが重複しないようにするやつ
 			else if (action.equals("preRegister")) {
+				String email = request.getParameter("email");
+				if (dao.lockEmail(email)) {
+					request.setAttribute("message", "すでに登録されているメールアドレスを使用しています。");
+					gotoPage(request, response, "/error.jsp");
+				} else {
+					// 三戸部 会員登録
+					String name = request.getParameter("name");
+					String email2 = request.getParameter("email");
+					String pass = request.getParameter("pass");
+					MemberBean2 bean2 = new MemberBean2();
+					bean2.setName(name);
+					bean2.setEmail(email2);
+					bean2.setPass(pass);
+					HttpSession session = request.getSession(true);
+					session.setAttribute("member", bean2);
+					gotoPage(request, response, "/Member/memRegisterConfirmation.jsp");
+				}
+			}
+
+			// 会員登録完了
+			if (action.equals("register")) {
+				HttpSession session = request.getSession(false);
+				MemberBean2 bean2 = (MemberBean2) session.getAttribute("member");
+				// データーベースに入るよ
+				dao.addMember(bean2);
+				request.setAttribute("message", "会員登録が完了しました。");
+				gotoPage(request, response, "/complete.jsp");
+			}
+			// 会員情報変更→会員情報変更確認
+			if (action.equals("preChange")) {
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
 				String pass = request.getParameter("pass");
@@ -86,69 +114,44 @@ public class MemberServlet extends HttpServlet {
 				bean2.setEmail(email);
 				bean2.setPass(pass);
 				HttpSession session = request.getSession(true);
-				session.setAttribute("member", bean2);
-				gotoPage(request, response, "/Member/memRegisterConfirmation.jsp");
-			}
-			// 会員登録完了
-			if (action.equals("register")) {
-				HttpSession session = request.getSession(false);
-				MemberBean2 bean2 = (MemberBean2) session.getAttribute("member");
+				session.setAttribute("member2", bean2);
+				gotoPage(request, response, "/Member/memChangeConfirmation.jsp");
+				return;
 
-				dao.addMember(bean2);
-				request.setAttribute("message", "会員登録が完了しました。");
-				gotoPage(request, response, "/complete.jsp");
 			}
-			// 会員情報変更→会員情報変更確認
-						if (action.equals("preChange")) {
-							String name = request.getParameter("name");
-							String email =request.getParameter("email");
-							String pass =request.getParameter("pass");
-							MemberBean2 bean2 = new MemberBean2();
-							bean2.setName(name);
-							bean2.setEmail(email);
-							bean2.setPass(pass);
-							HttpSession session = request.getSession(true);
-							session.setAttribute("member2", bean2);
-							gotoPage(request, response, "/Member/memChangeConfirmation.jsp");
-							return;
-							
-						}
-						// 会員情報変更の情報取得 セッション
-						if (action.equals("confirm")) {
-							HttpSession session = request.getSession(false);
-							// confirm は確認処理を行う
-							MemberBean2 bean = new MemberBean2();
-							bean.setName(request.getParameter("name"));
-							bean.setEmail(request.getParameter("email"));
-							bean.setPass(request.getParameter("pass"));
-							
-							session.setAttribute("member", bean);
-							gotoPage(request, response, "/memChangeConfirmation.jsp");
-						}
-						if (action.equals("order")) {
-							HttpSession session = request.getSession(false);
-							MemberBean2 member =
-									(MemberBean2)session.getAttribute("membar");
-							if (member == null) { 
-								request.setAttribute("message", "正しく操作をしてください");
-								gotoPage(request, response, "/error.jsp");
-							}
-								
-						}
-						
-						
-			//会員情報変更確認→完了
+			// 会員情報変更の情報取得 セッション
+			if (action.equals("confirm")) {
+				HttpSession session = request.getSession(false);
+				// confirm は確認処理を行う
+				MemberBean2 bean = new MemberBean2();
+				bean.setName(request.getParameter("name"));
+				bean.setEmail(request.getParameter("email"));
+				bean.setPass(request.getParameter("pass"));
+
+				session.setAttribute("member", bean);
+				gotoPage(request, response, "/memChangeConfirmation.jsp");
+			}
+			if (action.equals("order")) {
+				HttpSession session = request.getSession(false);
+				MemberBean2 member = (MemberBean2) session.getAttribute("membar");
+				if (member == null) {
+					request.setAttribute("message", "正しく操作をしてください");
+					gotoPage(request, response, "/error.jsp");
+				}
+
+			}
+
+			// 会員情報変更確認→完了
 			if (action.equals("change2")) {
 				String name = request.getParameter("name");
-				String email =request.getParameter("email");
-				String pass =request.getParameter("pass");
-				int user_id =Integer.parseInt(request.getParameter("user_id"));
-				System.out.println(name+email+pass);
-				dao.changeByPrimaryuser(name, email,pass, user_id);
+				String email = request.getParameter("email");
+				String pass = request.getParameter("pass");
+				int user_id = Integer.parseInt(request.getParameter("user_id"));
+				System.out.println(name + email + pass);
+				dao.changeByPrimaryuser(name, email, pass, user_id);
 				System.out.println("伊賀越え");
 				gotoPage(request, response, "/complete.jsp");
-				}
-			
+			}
 
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");

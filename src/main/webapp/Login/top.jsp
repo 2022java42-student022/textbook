@@ -29,6 +29,6 @@
 		<%--ログインページに戻った時にセッションを削除する機能追加 --%>
 	</form>
 
-	<a href="/textbook/Member/memRegister.jsp">初めての方はこちら</a>
+	<a href="/textbook/LoginServlet?action=register">初めての方はこちら</a>
 </body>
 </html>
