@@ -14,8 +14,8 @@
 	<h3>登録済み教科書</h3>
 
 	<c:if test="${empty textbooks}">
-現在、登録している教科書はありません。
-</c:if>
+	現在、登録している教科書はありません。
+	</c:if>
 
 	<c:if test="${not empty textbooks}">
 		<table border="1">
@@ -44,13 +44,11 @@
 			</c:forEach>
 		</table>
 
-
-		<input type="button" name="back" value="前ページに戻る"
-			onclick="javascript:history.back()">
-		<input type="button" name="logout" value="ログアウト"
-			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
-
 	</c:if>
+	<input type="button" name="back" value="前ページに戻る"
+		onclick="javascript:history.back()">
+	<input type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 
 </body>
 </html>
