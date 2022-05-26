@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.MemberBean2;
 import dao.DAOException;
 import dao.LoginDAO;
 import dao.MemberDAO;
@@ -43,6 +44,7 @@ public class LoginServlet extends HttpServlet {
 			String pass = request.getParameter("pass");
 			try {
 				LoginDAO dao = new LoginDAO();
+				MemberDAO memberdao = new MemberDAO();
 				if (dao.findMemAccount(email, pass)) {
 					HttpSession session = request.getSession();
 					session.setAttribute("login", "member");
@@ -51,6 +53,8 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("user_id",user_id );
 					session.setAttribute("email",email);
 					session.setAttribute("pass",pass);
+					MemberBean2 bean = memberdao.SearchMember2(email);
+					session.setAttribute("memberchange", bean);
 					gotoPage(request, response, "Login/memHome.jsp");
 				} else {
 					request.setAttribute("message", "メールアドレスまたはパスワードが違います。");
