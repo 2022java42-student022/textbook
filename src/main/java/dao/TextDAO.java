@@ -248,7 +248,6 @@ public class TextDAO {
 			st.setInt(5, bean.getPrice());
 			st.setInt(6, bean.getText_id());
 			int rows =st.executeUpdate();
-			System.out.println(bean.getText_id());
 			return rows;
 
 		} catch (SQLException e) {

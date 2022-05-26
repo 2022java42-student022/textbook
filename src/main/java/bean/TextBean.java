@@ -2,15 +2,15 @@ package bean;
 
 public class TextBean {
 
-	private int text_id;
-	private String ISBN;
-	private String title;
-	private int sort_id;
-	private String author;
-	private int price;
-	private String use;
-	private String dep_name;
-	private int user_id;
+	private int text_id = 0;
+	private String ISBN = null;
+	private String title = null;
+	private int sort_id = 0;
+	private String author = null;
+	private int price = 0;
+	private String use = null;
+	private String dep_name = null;
+	private int user_id = 0;
 
 	public TextBean(int sort_id, String title) {
 		this.sort_id = sort_id;
