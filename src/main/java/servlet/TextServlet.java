@@ -145,55 +145,47 @@ public class TextServlet extends HttpServlet {
 				session.setAttribute("textbooks", list);
 				gotoPage(request, response, "Text/showMyText.jsp");
 
-				// 選択した教科書を変更画面に移動
+				// 登録している教科書を選択して変更画面に移動
 			} else if (action.equals("inputChange")) {
 				int text_id = Integer.parseInt(request.getParameter("text_id"));
 				session.setAttribute("text_id", text_id);
 				gotoPage(request, response, "Text/textChange.jsp");
 				
-				// 教科書の内容変更
+				
+				// 選択した教科書の内容変更
 			} else if (action.equals("preChange")) {
 				try {
 					int text_price = Integer.parseInt(price);
 					int text_sort_id = Integer.parseInt(sort_id);
-					int text_id;
-					TextBean bean = new TextBean();
-					bean.setPrice(text_price);
-					bean.setSort_id(text_sort_id);
-					bean.setISBN(ISBN);
-					bean.setTitle(title);
-					bean.setAuthor(author);
-					request.setAttribute("texts", bean);
-					SortDAO sortDAO = new SortDAO();
-					bean.setDep_name(sortDAO.findDep_name(text_sort_id));
-					bean.setUser_id((int) session.getAttribute("user_id"));
-					session.setAttribute("text", bean);
+					int text_id = (int) session.getAttribute("text_id");
+					dao.preChange(text_id);
+					List<TextBean> list = dao.findAll();
+					request.setAttribute("changetext", list);
 					gotoPage(request, response, "/Text/textChangeConfirmation.jsp");
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
-					request.setAttribute("message", "値段に数値を入力してください");
+					request.setAttribute("message", "正しい操作を行って下さい。");
 					gotoPage(request, response, "/error.jsp");
 				}
 
 				//教科書の内容変更完了画面へ
 			} else if (action.equals("change")) {
-				TextBean bean = (TextBean) session.getAttribute("text");
-				int text_id = (int) session.getAttribute("text_id");
+				TextBean bean = (TextBean) session.getAttribute("text_id");
+				dao.changeText(bean,bean.getText_id());
 				request.setAttribute("message", "変更が完了しました。");
 				gotoPage(request, response, "/complete.jsp");
 
 				//教科書の削除確認画面へ
 			}else if (action.equals("predelete")) {
 				int text_id = Integer.parseInt(request.getParameter("text_id"));
-				dao.predeleteByText_id(text_id);
-				List<TextBean> list = dao.findAll();
-				session.setAttribute("delete_textbooks", list);
+				TextBean bean= dao.preDeleteByText_id(text_id);
+				session.setAttribute("delete_textbooks", bean);
 				gotoPage(request, response, "Text/textDeleteConfirmation.jsp");
 			
 				//選択している教科書を削除
 			}else if (action.equals("delete")) {
-				int text_id = Integer.parseInt(request.getParameter("text_id"));
-				dao.deleteByText_id(text_id);
+				TextBean bean = (TextBean)session.getAttribute("delete_textbooks");
+				dao.deleteByText_id(bean.getText_id());
 				session.setAttribute("message", "削除が完了しました。");
 				gotoPage(request, response, "/complete.jsp");
 			}
