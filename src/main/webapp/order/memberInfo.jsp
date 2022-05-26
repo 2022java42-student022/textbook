@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>お客様情報確認</title>
+<link rel = "stylesheet" type = "text/css" href = "/textbook/CSS/memberInfo.css">
 </head>
 <body>
 
@@ -39,18 +40,20 @@
 	</c:if>
 
 	<h4>お客様情報を入力してください。</h4>
+	
 	<form action="/textbook/OrderServlet?action=confirm" method="post">
 		名前：<input type="text" name="name"><br> 住所：<input
 			type="text" name="address"><br> 電話番号：<input type="text"
-			name="tel"><br> メールアドレス：<input type="email" name="mail"><br>
+			name="tel"><br> メールアドレス：<input type="email" name="email"><br>
+	
 
 		<h4>お支払方法を選択してください。</h4>
-		<input type="radio" name="pay" value="card">クレジットカード<br>
-		<input type="radio" name="pay" value="bank">銀行振込<br> <input
-			type="radio" name="pay" value="cash">代引き<br>
-		<br> <input type="submit" value="確認画面へ"><br> <input
+		<input type="radio" name="pay" value="クレジットカード">クレジットカード<br>
+		<input type="radio" name="pay" value="銀行振込">銀行振込<br> <input
+			type="radio" name="pay" value="代引き">代引き<br>
+		<br> <button type="submit" value="確認画面へ">確認画面へ</button><br><br> <button
 			type="button" name="back" value="前ページに戻る"
-			onclick="javascript:history.back()"> <input type="button"
+			onclick="javascript:history.back()">前ページに戻る</button> <input type="button"
 			name="logout" value="ログアウト"
 			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 	</form>

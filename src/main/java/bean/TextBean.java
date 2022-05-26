@@ -2,15 +2,15 @@ package bean;
 
 public class TextBean {
 
-	private int text_id;
-	private String ISBN;
-	private String title;
-	private int sort_id;
-	private String author;
-	private int price;
-	private String use;
-	private String dep_name;
-	private int user_id;
+	private int text_id = 0;
+	private String ISBN = null;
+	private String title = null;
+	private int sort_id = 0;
+	private String author = null;
+	private int price = 0;
+	private String use = null;
+	private String dep_name = null;
+	private int user_id = 0;
 
 	public TextBean(int sort_id, String title) {
 		this.sort_id = sort_id;
@@ -28,6 +28,20 @@ public class TextBean {
 		this.price = price;
 		this.use = use;
 	}
+	
+	public TextBean(int text_id, int user_id, String ISBN, String title, int sort_id, String dep_name, String author, int price,
+			String use) {
+		this.text_id = text_id;
+		this.user_id = user_id;
+		this.ISBN = ISBN;
+		this.title = title;
+		this.sort_id = sort_id;
+		this.dep_name = dep_name;
+		this.author = author;
+		this.price = price;
+		this.use = use;
+	}
+	
 
 
 	public TextBean(int text_id, String ISBN, String title, int sort_id, String dep_name, String author, int price) {

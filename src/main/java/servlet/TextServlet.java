@@ -37,6 +37,10 @@ public class TextServlet extends HttpServlet {
 			gotoPage(request, response, "/error.jsp");
 			return;
 		}
+		if (sort_id.length() == 0 || ISBN.length() == 0 || title.length() == 0 || author.length() == 0 || use.length() == 0) {
+			request.setAttribute("message", "値を入力してください");
+			gotoPage(request, response, "/error.jsp");
+		}
 
 		// 教科書の登録
 		try {
@@ -65,6 +69,7 @@ public class TextServlet extends HttpServlet {
 					request.setAttribute("message", "値段に数値を入力してください");
 					gotoPage(request, response, "/error.jsp");
 				}
+				
 				// 教科書登録
 			} else if (action.equals("register")) {
 				TextBean bean = (TextBean) session.getAttribute("text");
