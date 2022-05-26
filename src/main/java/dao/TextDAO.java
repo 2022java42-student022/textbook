@@ -205,13 +205,12 @@ public class TextDAO {
 		}
 	}
 	
-	public TextBean preChange(int text_id) throws DAOException {
+	public TextBean preChange(TextBean bean, int text_id) throws DAOException {
 		String sql = "SElECT * FROM text WHERE text_id = ?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setInt(1, text_id);
-			List<TextBean> list = new ArrayList<TextBean>();
 			try (ResultSet rs = st.executeQuery();) {
 				while (rs.next()) {
 					String ISBN = rs.getString("ISBN");
@@ -222,10 +221,9 @@ public class TextDAO {
 					String author = rs.getString("author");
 					int price = rs.getInt("price");
 					String use = rs.getString("use");
-					TextBean bean = new TextBean(text_id, ISBN, title, sort_id, dep_name, author, price, use);
-					list.add(bean);
+					bean = new TextBean(text_id, ISBN, title, sort_id, dep_name, author, price, use);
 				}
-				return (TextBean) list;
+				return bean;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("レコードの取得に失敗しました。");
@@ -238,7 +236,7 @@ public class TextDAO {
 	}
 
 
-	public void changeText(TextBean bean, int text_id) throws DAOException {
+	public int changeText(TextBean bean) throws DAOException {
 		String sql = "UPDATE text SET ISBN = ?,title = ?,sort_id = ?,author = ?,price = ? WHERE text_id = ?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
@@ -248,8 +246,10 @@ public class TextDAO {
 			st.setInt(3, bean.getSort_id());
 			st.setString(4, bean.getAuthor());
 			st.setInt(5, bean.getPrice());
-			st.setInt(6, text_id);
-			st.executeUpdate();
+			st.setInt(6, bean.getText_id());
+			int rows =st.executeUpdate();
+			System.out.println(bean.getText_id());
+			return rows;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
