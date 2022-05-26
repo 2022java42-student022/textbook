@@ -26,6 +26,12 @@
 		<input type="button" name="restart" value="ホームページへ"
 			onclick="javascript:location.href='/textbook/Login/memHome.jsp'">
 	</c:when>
+	<c:when test="${login eq 'register'}">
+			<input type="button" name="restart" value="ログインページへ"
+				onclick="javascript:location.href='/textbook/LoginServlet?action=registered'">
+			<input type="button" name="back" value="前ページに戻る"
+				onclick="javascript:history.back()">
+		</c:when>
 	<c:otherwise>
 		<input type="button" name="restart" value="ログインページへ"
 			onclick="javascript:location.href='/textbook/Login/top.jsp'">

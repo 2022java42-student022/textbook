@@ -49,6 +49,8 @@ public class LoginServlet extends HttpServlet {
 					MemberDAO memDao = new MemberDAO();
 					int user_id = memDao.searchByEmail(email);
 					session.setAttribute("user_id",user_id );
+					session.setAttribute("email",email);
+					session.setAttribute("pass",pass);
 					gotoPage(request, response, "Login/memHome.jsp");
 				} else {
 					request.setAttribute("message", "メールアドレスまたはパスワードが違います。");
@@ -73,6 +75,37 @@ public class LoginServlet extends HttpServlet {
 				gotoPage(request, response, "error.jsp");
 			}
 		}
+		
+		
+		if (action.equals("register")) {
+			HttpSession session = request.getSession();
+			session.setAttribute("login", "register");
+			gotoPage(request, response, "Member/memRegister.jsp");
+			
+			
+		}
+		if (action.equals("registered")) {
+			HttpSession session = request.getSession(false);
+			if(session != null) {
+				session.invalidate();
+				request.setAttribute("message", "登録が完了しました。");
+				gotoPage(request, response, "complete.jsp");
+			}else {
+				request.setAttribute("message", "セッションがありません、ログインし直してください。");
+				gotoPage(request, response, "error.jsp");
+			}
+		}
+		if (action.equals("noregister")) {
+			HttpSession session = request.getSession(false);
+			if(session != null) {
+				session.invalidate();
+				gotoPage(request, response, "Login/top.jsp");
+			}else {
+				request.setAttribute("message", "セッションがありません、ログインし直してください。");
+				gotoPage(request, response, "error.jsp");
+			}
+		}
+		
 
 	}
 

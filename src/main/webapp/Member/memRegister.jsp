@@ -14,7 +14,7 @@
 			<p>名前<input type="text" name="name" > <p>
 			<p>メール<input type="email"name="email" size="40" ><p>
 			<p>パスワード<input type="password" name="pass" ><p>
-		<p><input type="submit" value="送信"></p>
+		<p><input type="submit" value="送信" ></p>
 		
 	</form>
 	<input type="button" name="back" value="前ページに戻る"

@@ -10,20 +10,21 @@
 
 	<h3>会員退会</h3>
 
-	<form action="/textbook/MemberServlet?action=preDelete" method="post">
+	<form action="/textbook/MemberDeleteServlet" method="post">
 
-		<p>
-			メール<input type="email" name="email" size="40">
-		<p>
-		<p>
-			パスワード<input type="password" name="pass">
-		<p>
-		<input type="submit" value="検索">
+		<p>メールアドレス、パスワードをご入力してください。</p>
+
+
+		<input type="text" name="email" placeholder="メールアドレスを入力してください"><br>
+		<input type="password" name="pass" placeholder="パスワードを入力してください"><br>
+		
+
+
+		<input type="submit" value="退会"> <input type="button"
+			name="back" value="前ページに戻る" onclick="javascript:history.back()">
+
+		<input type="button" name="logout" value="ログアウト"
+			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 	</form>
-	
-		<input type="button" name="back" value="前ページに戻る"
-			onclick="javascript:history.back()">
-	<input type="button" name="logout" value="ログアウト"
-		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 </body>
 </html>

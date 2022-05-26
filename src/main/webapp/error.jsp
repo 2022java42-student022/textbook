@@ -30,6 +30,12 @@
 			<input type="button" name="back" value="前ページに戻る"
 				onclick="javascript:history.back()">
 		</c:when>
+		<c:when test="${login eq 'register'}">
+			<input type="button" name="restart" value="ログインページへ"
+				onclick="javascript:location.href='/textbook/LoginServlet?action=noregister'">
+			<input type="button" name="back" value="前ページに戻る"
+				onclick="javascript:history.back()">
+		</c:when>
 		<c:otherwise>
 			<input type="button" name="restart" value="ログインページへ"
 				onclick="javascript:location.href='/textbook/Login/top.jsp'">

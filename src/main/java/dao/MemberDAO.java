@@ -154,9 +154,9 @@ public class MemberDAO {
 	}
 
 	// 会員情報変更メソッド
-	public int changeByPrimaryuser(String name, String email, String pass, int user_id) throws DAOException {
+	public void changeByPrimaryuser(MemberBean2 bean) throws DAOException {
 		// SQL文の作成
-		String sql = "UPDATE member SET name = ?,email = ?,pass = ? WHERE user_id = ?";
+		String sql = "UPDATE member SET name = ?,email = ?,pass = ? WHERE user_id = ?;";
 
 		try (// データベースへの接続)
 				Connection con = DriverManager.getConnection(url, user, passwd);
@@ -164,16 +164,12 @@ public class MemberDAO {
 				PreparedStatement st = con.prepareStatement(sql);) {
 			// SQLの実行
 			// 主キーの指定
-			st.setString(1, name);
-			st.setString(2, email);
-			st.setString(3, pass);
-			st.setInt(4, user_id);
+			st.setString(1, bean.getName());
+			st.setString(2, bean.getEmail());
+			st.setString(3, bean.getPass());
+			st.setInt(4, bean.getUser_id());
 			// SQLの実行
-			int rows = st.executeUpdate();
-			{
-				// 結果の取得
-				return rows;
-			}
+			st.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

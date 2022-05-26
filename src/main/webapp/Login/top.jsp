@@ -15,13 +15,11 @@
 	<form action="/textbook/LoginServlet?action=login" method="post">
 
 
-		<input type="text" name="user_id" placeholder="IDを入力してください"><br>
+		<input type="text" name="user_id" placeholder="メールアドレスを入力してください"><br>
 		<input type="password" name="pass" placeholder="パスワードを入力してください">
 
-		<input type="submit" value="ログイン"> 
-		<input type="hidden" name="action" value="login"> 
-		
-		<select name="login">
+		<input type="submit" value="ログイン"> <input type="hidden"
+			name="action" value="login"> <select name="login">
 			<option value="member">会員</option>
 			<option value="manager">管理者</option>
 		</select> <br> <br>
