@@ -34,7 +34,7 @@
 						<input type="hidden" name="text_id" value="${text.text_id}">
 						<input type="submit" value="登録内容変更">
 					</form>
-					<form action="/textbook/TextServlet?action=delete" method="post">
+					<form action="/textbook/TextServlet?action=predelete" method="post">
 						<input type="hidden" name="text_id" value="${text.text_id}">
 						<input type="submit" value="登録削除">
 					</form>
