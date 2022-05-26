@@ -30,7 +30,7 @@
 				<td>${text.price}</td>
 				<td>${text.use}</td>
 				<td>
-					<form action="/textbook/TextServlet?action=preChange" method="post">
+					<form action="/textbook/TextServlet?action=inputChange" method="post">
 						<input type="hidden" name="text_id" value="${text.text_id}">
 						<input type="submit" value="登録内容変更">
 					</form>
