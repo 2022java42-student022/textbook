@@ -23,7 +23,7 @@ public class CartServlet extends HttpServlet {
 		try {
 			String action = request.getParameter("action");
 			if (action == null || action.length() == 0 || action.equals("show")) {
-				gotoPage(request, response, "/cart.jsp");
+				gotoPage(request, response, "/cart/cart.jsp");
 			} else if (action.equals("add")) {
 				int text_id = Integer.parseInt(request.getParameter("text_id"));
 				HttpSession session = request.getSession(true);
@@ -35,7 +35,7 @@ public class CartServlet extends HttpServlet {
 				TextDAO dao = new TextDAO();
 				TextBean bean = dao.findByTextID(text_id);//text_idで教科書1冊を検索してレコードをTextBeanに入れる→findByTextIDメソッド
 				cart.addCart(bean);
-				gotoPage(request, response, "/cart.jsp");
+				gotoPage(request, response, "/cart/cart.jsp");
 			} else if (action.equals("delete")) {
 				HttpSession session = request.getSession(false);
 				if (session == null) {
@@ -51,7 +51,7 @@ public class CartServlet extends HttpServlet {
 				}
 				int text_id = Integer.parseInt(request.getParameter("text_id"));
 				cart.deleteCart(text_id);
-				gotoPage(request, response, "/cart.jsp");
+				gotoPage(request, response, "/cart/cart.jsp");
 			} else {
 				request.setAttribute("message", "正しく操作してください。");
 				gotoPage(request, response, "/error.jsp");

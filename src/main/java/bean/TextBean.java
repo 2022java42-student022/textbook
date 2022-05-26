@@ -28,6 +28,20 @@ public class TextBean {
 		this.price = price;
 		this.use = use;
 	}
+	
+	public TextBean(int text_id, int user_id, String ISBN, String title, int sort_id, String dep_name, String author, int price,
+			String use) {
+		this.text_id = text_id;
+		this.user_id = user_id;
+		this.ISBN = ISBN;
+		this.title = title;
+		this.sort_id = sort_id;
+		this.dep_name = dep_name;
+		this.author = author;
+		this.price = price;
+		this.use = use;
+	}
+	
 
 	public TextBean() {
 
