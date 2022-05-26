@@ -13,7 +13,7 @@
 <table border="1">
 <tr><td>ID</td><td>名前</td><td>メール</td><td>パスワード</td></tr>
 
-<tr><td>${member2.user_id}</td><td>${member2.name}</td><td>${member2.email}</td><td>${member2.pass}</td></tr>
+<tr><td>${member_search.user_id}</td><td>${member_search.name}</td><td>${member_search.email}</td><td>${member_search.pass}</td></tr>
 
 </table>
 		<br>
