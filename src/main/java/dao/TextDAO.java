@@ -248,7 +248,6 @@ public class TextDAO {
 			st.setInt(5, bean.getPrice());
 			st.setInt(6, bean.getText_id());
 			int rows =st.executeUpdate();
-			System.out.println(bean.getText_id());
 			return rows;
 
 		} catch (SQLException e) {
@@ -318,14 +317,16 @@ public class TextDAO {
 				ResultSet rs = st.executeQuery();) {
 				if (rs.next()) {
 					int text_id = rs.getInt("text_id");
+					int user_id = rs.getInt("user_id");
+					int sort_id = rs.getInt("sort_id");
+					SortDAO sortDAO = new SortDAO();
+					String dep_name = sortDAO.findDep_name(sort_id);
 					String ISBN = rs.getString("ISBN");
 					String title = rs.getString("title");
-					int sort_id = rs.getInt("sort_id");
-					String dep_name = rs.getString("dep_name");
 					String author = rs.getString("author");
 					int price = rs.getInt("price");
 					String use = rs.getString("use");
-					TextBean bean = new TextBean(text_id, ISBN, title, sort_id, dep_name, author, price, use);
+					TextBean bean = new TextBean(text_id, user_id, ISBN, title, sort_id, dep_name, author, price, use);
 					return bean;
 					
 				} else {
