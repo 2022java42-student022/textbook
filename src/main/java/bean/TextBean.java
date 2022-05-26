@@ -29,6 +29,16 @@ public class TextBean {
 		this.use = use;
 	}
 
+
+	public TextBean(int text_id, String ISBN, String title, int sort_id, String dep_name, String author, int price) {
+		this.text_id = text_id;
+		this.ISBN = ISBN;
+		this.title = title;
+		this.sort_id = sort_id;
+		this.dep_name = dep_name;
+		this.author = author;
+		this.price = price;
+	}
 	public TextBean() {
 
 	}
@@ -54,6 +64,7 @@ public class TextBean {
 		this.price = price;
 	}
 
+	
 	public String getISBN() {
 		return ISBN;
 	}
@@ -117,6 +128,11 @@ public class TextBean {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 
+	}
+
+	public String setDep_name2(String findDep_name) {
+		// TODO 自動生成されたメソッド・スタブ
+		return dep_name;
 	}
 
 }
