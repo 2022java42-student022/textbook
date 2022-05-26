@@ -83,16 +83,22 @@ public class MemberServlet extends HttpServlet {
 			}
 			// 三戸部 会員登録
 			else if (action.equals("preRegister")) {
-				String name = request.getParameter("name");
-				String email = request.getParameter("email");
-				String pass = request.getParameter("pass");
-				MemberBean2 bean2 = new MemberBean2();
-				bean2.setName(name);
-				bean2.setEmail(email);
-				bean2.setPass(pass);
-				HttpSession session = request.getSession(true);
-				session.setAttribute("member", bean2);
-				gotoPage(request, response, "/Member/memRegisterConfirmation.jsp");
+                String email = request.getParameter("email");
+				if (dao.lockEmail(email)) {
+					request.setAttribute("message", "すでに登録されているメールアドレスを使用しています。");
+					gotoPage(request, response, "/error.jsp");
+				} else {
+					String name = request.getParameter("name");
+					String email2 = request.getParameter("email");
+					String pass = request.getParameter("pass");
+					MemberBean2 bean2 = new MemberBean2();
+					bean2.setName(name);
+					bean2.setEmail(email2);
+					bean2.setPass(pass);
+					HttpSession session = request.getSession(true);
+					session.setAttribute("member", bean2);
+					gotoPage(request, response, "/Member/memRegisterConfirmation.jsp");
+				}
 			}
 			// 会員登録完了
 			if (action.equals("register")) {

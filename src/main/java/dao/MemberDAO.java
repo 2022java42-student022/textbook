@@ -177,4 +177,23 @@ public class MemberDAO {
 		}
 	}
 
+	// メールアドレスが重複しないようにするやつ
+	public boolean lockEmail(String email) throws DAOException {
+		String sql = "SELECT * FROM member WHERE email = ?";
+		try (Connection con = DriverManager.getConnection(url, user, passwd);
+
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setString(1, email);
+
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+		return false;
+	}
 }
