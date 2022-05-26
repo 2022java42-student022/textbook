@@ -60,7 +60,7 @@
 			</tr>
 			<tr>
 				<td>メールアドレス</td>
-				<td>${check.mail}</td>
+				<td>${check.email}</td>
 			</tr>
 			<tr>
 				<td>お支払方法</td>

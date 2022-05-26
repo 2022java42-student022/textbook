@@ -28,15 +28,16 @@ public class OrderDAO {
 	}
 
 	public int orderMem(OrderCheckBean check, CartBean cart,int user_id) throws DAOException {
-		String sql = "UPDATE member SET address = ?, mail = ?, tel = ?, pay = ? WHERE name = ?";
+		String sql = "UPDATE member SET name = ?, address = ?, email = ?, tel_no = ?, pay = ? WHERE user_id = ?";
 		try(
 			Connection con = DriverManager.getConnection(url, user, pass);
 			PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, check.getAddress());
-			st.setString(2, check.getMail());
-			st.setString(3, check.getTel());
-			st.setString(4, check.getPay());
-			st.setString(5, check.getName());
+			st.setString(1, check.getName());
+			st.setString(2, check.getAddress());
+			st.setString(3, check.getEmail());
+			st.setString(4, check.getTel());
+			st.setString(5, check.getPay());
+			st.setInt(6, check.getUser_id());			
 			st.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
