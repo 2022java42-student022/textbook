@@ -49,6 +49,8 @@ public class LoginServlet extends HttpServlet {
 					MemberDAO memDao = new MemberDAO();
 					int user_id = memDao.searchByEmail(email);
 					session.setAttribute("user_id",user_id );
+					session.setAttribute("email",email);
+					session.setAttribute("pass",pass);
 					gotoPage(request, response, "Login/memHome.jsp");
 				} else {
 					request.setAttribute("message", "メールアドレスまたはパスワードが違います。");
