@@ -15,11 +15,11 @@
 	<hr>
 	<h3>現在のカートの中身</h3>
 
-	<c:if test="${empty cart.items }">
+	<c:if test="${empty cart.texts }">
 	現在、カートは空です。
 	</c:if>
 
-	<c:if test="${not empty cart.items }">
+	<c:if test="${not empty cart.texts }">
 		<table border="1">
 			<tr>
 				<th>ISBN</th>
@@ -30,9 +30,9 @@
 				<th>使用状況</th>
 				<th>削除</th>
 			</tr>
-			<c:forEach items=${"cart.texts"} var="text">
+			<c:forEach items="${cart.texts}" var="text">
 				<tr>
-					<td>${text.ISBM }</td>
+					<td>${text.ISBN }</td>
 					<td>${text.title }</td>
 					<td>${text.dep_name }</td>
 					<td>${text.author }</td>
@@ -52,12 +52,11 @@
 		</table>
 	</c:if>
 
+	<c:if test="${not empty cart.texts }">
 	<form action="/textbook/OrderServlet?action=input_member" method="post">
 		<input type="submit" value="注文する">
 	</form>
-	<br>
-	<br>
-	<input type="button" name="back" value="戻る"
-		onclick="javascript:history.back()">
+	</c:if>
+	
 </body>
 </html>
