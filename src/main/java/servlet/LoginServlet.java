@@ -88,8 +88,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession(false);
 			if(session != null) {
 				session.invalidate();
-				request.setAttribute("message", "登録が完了しました。");
-				gotoPage(request, response, "complete.jsp");
+				gotoPage(request, response, "/Login/top.jsp");
 			}else {
 				request.setAttribute("message", "セッションがありません、ログインし直してください。");
 				gotoPage(request, response, "error.jsp");
