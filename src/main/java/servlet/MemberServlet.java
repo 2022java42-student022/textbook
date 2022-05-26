@@ -20,7 +20,7 @@ public class MemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
+
 		// パラメータの解析
 		String action = request.getParameter("action");
 
@@ -31,7 +31,6 @@ public class MemberServlet extends HttpServlet {
 
 					String email = request.getParameter("email");
 
-
 					MemberBean2 bean = dao.SearchMember2(email);
 					if (bean == null) {
 						request.setAttribute("message", "正しいメールアドレスを入力してください。");
@@ -39,7 +38,7 @@ public class MemberServlet extends HttpServlet {
 					}
 					// リクエストスコープに入れてJSPへフォーワードする
 					HttpSession session = request.getSession();
-					session.setAttribute("member2", bean);
+					session.setAttribute("member_search", bean);
 					gotoPage(request, response, "/Member/memSearchResult.jsp");
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
@@ -53,28 +52,37 @@ public class MemberServlet extends HttpServlet {
 				// パラメータの解析
 			} else if (action.equals("delete")) {
 				gotoPage(request, response, "/Member/memDeleteConfirmation.jsp");
-			} else {
-
+			} 
+			// 会員の退会
+			if (action.equals("preDelete")) {
+				
 			}
+			
+			
+			
+			
 			// 会員情報削除
 			if (action.equals("decision")) {
-				int user_id = Integer.parseInt(request.getParameter("user_id"));
-				dao.deleteByPrimaryuser(user_id);
-
 				HttpSession session = request.getSession(false);
-				session.setAttribute("member2", null);
+				MemberBean2 bean = (MemberBean2) session.getAttribute("member_search");
+				int user_id = bean.getUser_id();
+				//Integer.parseInt(request.getParameter("user_id"));
+				dao.deleteByPrimaryuser(user_id);
+				
+				request.setAttribute("message", "削除されました。");
+				
 				gotoPage(request, response, "/complete.jsp");
 				return;
 
 			}
-			
+
 			// 正しい登録情報
-			if (action.equals("preRegister") && request.getParameter("name").equals("") 
+			if (action.equals("preRegister") && request.getParameter("name").equals("")
 					|| action.equals("preRegister") && request.getParameter("email").equals("")
 					|| action.equals("preRegister") && request.getParameter("pass").equals("")) {
-					request.setAttribute("message", "未入力項目があります。");
-					gotoPage(request, response, "/error.jsp");
-					
+				request.setAttribute("message", "未入力項目があります。");
+				gotoPage(request, response, "/error.jsp");
+
 			}
 			// 三戸部 会員登録
 			else if (action.equals("preRegister")) {
@@ -99,61 +107,52 @@ public class MemberServlet extends HttpServlet {
 				gotoPage(request, response, "/complete.jsp");
 			}
 			// 会員情報変更→会員情報変更確認
-						if (action.equals("preChange")) {
-							String name = request.getParameter("name");
-							String email =request.getParameter("email");
-							String pass =request.getParameter("pass");
-							MemberBean2 bean2 = new MemberBean2();
-							bean2.setName(name);
-							bean2.setEmail(email);
-							bean2.setPass(pass);
-							HttpSession session = request.getSession(true);
-							session.setAttribute("member2", bean2);
-							gotoPage(request, response, "/Member/memChangeConfirmation.jsp");
-							return;
-							
-						}
-						// 会員情報変更の情報取得 セッション
-						if (action.equals("confirm")) {
-							HttpSession session = request.getSession(false);
-							// confirm は確認処理を行う
-							MemberBean2 bean = new MemberBean2();
-							bean.setName(request.getParameter("name"));
-							bean.setEmail(request.getParameter("email"));
-							bean.setPass(request.getParameter("pass"));
-							
-							session.setAttribute("member", bean);
-							gotoPage(request, response, "/memChangeConfirmation.jsp");
-						}
-						if (action.equals("order")) {
-							HttpSession session = request.getSession(false);
-							MemberBean2 member =
-									(MemberBean2)session.getAttribute("membar");
-							if (member == null) { 
-								request.setAttribute("message", "正しく操作をしてください");
-								gotoPage(request, response, "/error.jsp");
-							}
-								
-						}
-						
-						
-			//会員情報変更確認→完了
-			if (action.equals("change2")) {
+			if (action.equals("preChange")) {
 				String name = request.getParameter("name");
-				String email =request.getParameter("email");
-				String pass =request.getParameter("pass");
-				int user_id =Integer.parseInt(request.getParameter("user_id"));
-				System.out.println(name+email+pass);
-				dao.changeByPrimaryuser(name, email,pass, user_id);
-				System.out.println("伊賀越え");
-				gotoPage(request, response, "/complete.jsp");
+				String email = request.getParameter("email");
+				String pass = request.getParameter("pass");
+				MemberBean2 bean2 = new MemberBean2();
+				HttpSession session = request.getSession(false);
+				MemberBean2 bean = (MemberBean2) session.getAttribute("member_search");
+				bean2.setName(name);
+				bean2.setEmail(email);
+				bean2.setPass(pass);
+				bean2.setUser_id(bean.getUser_id());
+				session.setAttribute("member2", bean2);
+				gotoPage(request, response, "/Member/memChangeConfirmation.jsp");
+				return;
+
+			}
+
+			// 会員情報変更の情報取得 セッション
+			if (action.equals("comfirm")) {
+				HttpSession session = request.getSession(false);
+				if (session == null) { // セッションオブジェクトをなし
+					request.setAttribute("message", "セッションが切れています。もう一度トップページより操作してください。");
+					gotoPage(request, response, "/error.jsp");
+					return;
 				}
-			
+				MemberBean2 member2 = (MemberBean2) session.getAttribute("member2");
+				if (member2 == null) {
+					request.setAttribute("message", "操作してください。");
+					gotoPage(request, response, "/error.jsp");
+					return;
+				}
+
+				// 変更確認画面→完了画面
+				if (member2 != null) {
+					dao.changeByPrimaryuser(member2);
+					request.setAttribute("message", "変更が完了しました。");
+					gotoPage(request, response, "/complete.jsp");
+				}
+
+			}
 
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");
 		}
+
 	}
 
 	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)
