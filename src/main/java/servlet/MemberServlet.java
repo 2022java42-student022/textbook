@@ -50,14 +50,7 @@ public class MemberServlet extends HttpServlet {
 			if (action.equals("change")) {
 				gotoPage(request, response, "/Member/memChange.jsp");
 				// パラメータの解析
-			} else if (action.equals("delete")) {
-				gotoPage(request, response, "/Member/memDeleteConfirmation.jsp");
 			}
-			// 会員の退会
-			if (action.equals("preDelete")) {
-
-			}
-
 			// 会員情報削除
 			if (action.equals("decision")) {
 				HttpSession session = request.getSession(false);
@@ -148,8 +141,11 @@ public class MemberServlet extends HttpServlet {
 					request.setAttribute("message", "変更が完了しました。");
 					gotoPage(request, response, "/complete.jsp");
 				}
-
-			}
+				 // 会員側  topから変更画面移動
+				if (action.equals("inputChange")) {
+					gotoPage(request, response, "/Member/memChange.jsp");
+				}
+			}	
 
 		} catch (DAOException e) {
 			request.setAttribute("message", "内部エラーが発生しました。");
