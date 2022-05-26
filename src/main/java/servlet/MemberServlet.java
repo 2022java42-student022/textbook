@@ -52,25 +52,22 @@ public class MemberServlet extends HttpServlet {
 				// パラメータの解析
 			} else if (action.equals("delete")) {
 				gotoPage(request, response, "/Member/memDeleteConfirmation.jsp");
-			} 
+			}
 			// 会員の退会
 			if (action.equals("preDelete")) {
-				
+
 			}
-			
-			
-			
-			
+
 			// 会員情報削除
 			if (action.equals("decision")) {
 				HttpSession session = request.getSession(false);
 				MemberBean2 bean = (MemberBean2) session.getAttribute("member_search");
 				int user_id = bean.getUser_id();
-				//Integer.parseInt(request.getParameter("user_id"));
+				// Integer.parseInt(request.getParameter("user_id"));
 				dao.deleteByPrimaryuser(user_id);
-				
+
 				request.setAttribute("message", "削除されました。");
-				
+
 				gotoPage(request, response, "/complete.jsp");
 				return;
 
