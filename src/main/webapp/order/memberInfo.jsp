@@ -53,7 +53,7 @@
 			type="radio" name="pay" value="代引き">代引き<br>
 		<br> <button type="submit" value="確認画面へ">確認画面へ</button><br><br> <button
 			type="button" name="back" value="前ページに戻る"
-			onclick="javascript:history.back()">前ページに戻る</button> <input type="button"
+			onclick="javascript:location.href='/textbook/cart/cart.jsp'">前ページに戻る</button> <input type="button"
 			name="logout" value="ログアウト"
 			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 	</form>
