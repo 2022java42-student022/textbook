@@ -84,7 +84,7 @@ public class TextServlet extends HttpServlet {
 				// 全ての教科書表示(会員)
 			} else if (action.equals("searchAll_member")) {
 				List<TextBean> list = dao.findAll();
-				if (list != null) {
+				if (list.size() != 0) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMember.jsp");
 				} else {
@@ -95,7 +95,7 @@ public class TextServlet extends HttpServlet {
 				// 全ての教科書表示(管理者)
 			} else if (action.equals("searchAll_mg")) {
 				List<TextBean> list = dao.findAll();
-				if (list != null) {
+				if (list.size() != 0) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMg.jsp");
 				} else {
@@ -107,7 +107,7 @@ public class TextServlet extends HttpServlet {
 			} else if (action.equals("search_sort_id_member")) {
 				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
 				List<TextBean> list = dao.findBySort_id(text_sort_id);
-				if (list != null) {
+				if (list.size() != 0) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMember.jsp");
 				} else {
@@ -119,7 +119,7 @@ public class TextServlet extends HttpServlet {
 			} else if (action.equals("search_sort_id_mg")) {
 				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
 				List<TextBean> list = dao.findBySort_id(text_sort_id);
-				if (list != null) {
+				if (list.size() != 0) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMg.jsp");
 				} else {
@@ -134,7 +134,7 @@ public class TextServlet extends HttpServlet {
 					gotoPage(request, response, "/error.jsp");
 				} else {
 					List<TextBean> list = dao.findByTitle(title);
-					if (list != null) {
+					if (list.size() != 0) {
 						request.setAttribute("texts", list);
 						gotoPage(request, response, "/Text/textSearchResultMember.jsp");
 					} else {
@@ -149,7 +149,7 @@ public class TextServlet extends HttpServlet {
 					gotoPage(request, response, "/error.jsp");
 				} else {
 					List<TextBean> list = dao.findByTitle(title);
-					if (list != null) {
+					if (list.size() != 0) {
 						request.setAttribute("texts", list);
 						gotoPage(request, response, "/Text/textSearchResultMg.jsp");
 					} else {
