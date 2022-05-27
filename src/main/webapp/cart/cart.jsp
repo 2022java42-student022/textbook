@@ -9,8 +9,7 @@
 <title>Cart</title>
 </head>
 <body>
-	<a href="/textbook/Text/textSearchMember.jsp">教科書検索</a>|
-	<a href="/textbook/CartServlet?action=show">カートの確認</a>
+	<a href="/textbook/Text/textSearchMember.jsp">教科書検索画面に戻る</a>|
 
 	<hr>
 	<h3>現在のカートの中身</h3>
