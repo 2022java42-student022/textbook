@@ -28,6 +28,7 @@
 		</select> <br>
 		 著者 <input type="text" name="author"value="${text_prechange.author}"><br> 
 		 金額 <input type="number" name="price"value="${text_prechange.price}"><br>
+		 使用状況<input type="text" name="use"value="${text_prechange.use}"><br> 
 		<br> <input type="submit" value="変更">
 		&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" name="back"
 			value="前ページに戻る" onclick="javascript:history.back()"> <input
