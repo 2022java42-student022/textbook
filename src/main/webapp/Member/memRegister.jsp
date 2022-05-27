@@ -26,6 +26,7 @@
 				name="back" value="前ページに戻る" onclick="javascript:history.back()">
 			<input type="button" name="logout" value="ログアウト"
 				onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+
 	</form>
 
 
