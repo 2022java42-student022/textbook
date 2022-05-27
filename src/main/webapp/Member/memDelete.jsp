@@ -15,15 +15,13 @@
 		<p>メールアドレス、パスワードをご入力してください。</p>
 
 
-		<input type="text" name="email" size="40" placeholder="メールアドレスを入力してください" required><br>
-		<input type="password" name="pass" size="25" placeholder="パスワードを入力してください" required><br>
-		
-
-
-		<input type="submit" value="退会"> <input type="button"
-			name="back" value="前ページに戻る" onclick="javascript:history.back()">
-
-		<input type="button" name="logout" value="ログアウト"
+		<input type="text" name="email" size="40"
+			placeholder="メールアドレスを入力してください" required><br> <input
+			type="password" name="pass" size="25" placeholder="パスワードを入力してください"
+			required><br> <input type="submit" value="退会"> <input
+			type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()"> <input type="button"
+			name="logout" value="ログアウト"
 			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 	</form>
 </body>
