@@ -11,9 +11,9 @@
 	<h3>会員変更</h3>
 
 	<form action="/textbook/MemberServlet?action=preChangemem" method="post">
-			<p>名前<input type="text" name="name" value="${memberchange.name}"> <p>
-			<p>メール<input type="email"name="email" value="${memberchange.email}" size="40"><p>
-			<p>パスワード<input type="pass" name="pass" value="${memberchange.pass}"><p>
+			<p>名前<input type="text" name="name" value="${memberchange.name}" placeholder="名前を入力してください" required> <p>
+			<p>メール<input type="email"name="email" value="${memberchange.email}" size="40" placeholder="メールアドレスを入力してください" required><p>
+			<p>パスワード<input type="pass" name="pass" value="${memberchange.pass}" size="25" placeholder="パスワードを入力してください" required><p>
 		<p><input type="submit" value="送信"></p>
 		
 		
