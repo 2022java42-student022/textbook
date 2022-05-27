@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.CartBean;
 import bean.OrderCheckBean;
+import bean.TextBean;
 import dao.DAOException;
 import dao.OrderDAO;
 
@@ -47,7 +50,7 @@ public class OrderServlet extends HttpServlet {
 			}
 			if (action.equals("confirm")) {
 				if (name.length() == 0 || address.length() == 0 || tel.length() == 0 || email.length() == 0
-						|| pay.length() == 0) {
+						|| pay == null) {
 					request.setAttribute("message", "項目を入力してください。");
 					gotoPage(request, response, "/error.jsp");
 				} else {
@@ -71,14 +74,31 @@ public class OrderServlet extends HttpServlet {
 				}
 
 				OrderDAO order = new OrderDAO();
-				System.out.println("A");
-				int user_id = (Integer)session.getAttribute("user_id"); // sessionの中にあるものから型名と属性名を指定して探して取得
-				System.out.println("B");
-				int orderID = order.orderMem(check, cart, user_id);
-				session.removeAttribute("cart");
-				session.removeAttribute("check");
-				request.setAttribute("orderID", Integer.valueOf(orderID));
-				gotoPage(request, response, "/order/order.jsp");
+				//購入済みか否か判定する
+				ArrayList<String> soldcheck = new ArrayList<String>();
+				List<TextBean> texts = cart.getTexts();
+				for (TextBean text : texts) {
+					int soldout = order.checkSoldOut(text_id);
+					if (soldout != 1) {
+						soldcheck.add(text.getTitle());
+					}
+				}
+				if (soldcheck.size() != 0) {
+					String msg = String.join(",", soldcheck) + "は売り切れています。";
+					request.setAttribute("message", msg);
+					gotoPage(request, response, "/error.jsp");
+					return;
+				}
+				
+				 
+					int user_id = (Integer)session.getAttribute("user_id"); 
+					int orderID = order.orderMem(check, cart, user_id);
+					
+					session.removeAttribute("cart");
+					session.removeAttribute("check");
+					request.setAttribute("orderID", Integer.valueOf(orderID));
+					gotoPage(request, response, "/order/order.jsp");
+				
 			} else {
 				request.setAttribute("message", "正しく操作してください。");
 				gotoPage(request, response, "/error.jsp");

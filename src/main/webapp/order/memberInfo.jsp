@@ -14,14 +14,14 @@
 	<h4>ご注文商品</h4>
 
 	<c:if test="${not empty cart.texts}">
-		<table border="1">
+		<table border = "1">
 			<tr>
-				<td>ISBN</td>
-				<td>タイトル</td>
-				<td>分類</td>
-				<td>著者</td>
-				<td>金額</td>
-				<td>使用状況</td>
+				<th>ISBN</th>
+				<th>タイトル</th>
+				<th>分類</th>
+				<th>著者</th>
+				<th>金額</th>
+				<th>使用状況</th>
 			</tr>
 			<c:forEach items="${cart.texts}" var="text">
 				<tr>
@@ -51,9 +51,9 @@
 		<input type="radio" name="pay" value="クレジットカード">クレジットカード<br>
 		<input type="radio" name="pay" value="銀行振込">銀行振込<br> <input
 			type="radio" name="pay" value="代引き">代引き<br>
-		<br> <button type="submit" value="確認画面へ">確認画面へ</button><br><br> <button
+		<br> <button class = "button1" type="submit" value="確認画面へ">確認画面へ</button><br> <button class = "button2"
 			type="button" name="back" value="前ページに戻る"
-			onclick="javascript:history.back()">前ページに戻る</button> <input type="button"
+			onclick="javascript:location.href='/textbook/cart/cart.jsp'">前ページに戻る</button> <input type="button"
 			name="logout" value="ログアウト"
 			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 	</form>

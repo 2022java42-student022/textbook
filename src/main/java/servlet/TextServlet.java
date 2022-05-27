@@ -25,7 +25,18 @@ public class TextServlet extends HttpServlet {
 
 		String action = request.getParameter("action");
 		String sort_id = request.getParameter("sort_id");
-		String ISBN = request.getParameter("ISBN");
+		String ISBN;
+		
+		//ISBNを13桁に指定
+		//桁数が未満の数値は0を自動的に追加
+		if (request.getParameter("ISBN") == null) {
+			ISBN = "";
+		} else if (request.getParameter("ISBN").length() != 0) {
+			ISBN = String.format("%013d", Integer.parseInt(request.getParameter("ISBN")));
+		} else {
+			ISBN = request.getParameter("ISBN");
+		}
+		
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String price = request.getParameter("price");
@@ -84,7 +95,7 @@ public class TextServlet extends HttpServlet {
 				// 全ての教科書表示(会員)
 			} else if (action.equals("searchAll_member")) {
 				List<TextBean> list = dao.findAll();
-				if (list.size() != 0) {
+				if (list != null) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMember.jsp");
 				} else {
@@ -95,7 +106,7 @@ public class TextServlet extends HttpServlet {
 				// 全ての教科書表示(管理者)
 			} else if (action.equals("searchAll_mg")) {
 				List<TextBean> list = dao.findAll();
-				if (list.size() != 0) {
+				if (list != null) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMg.jsp");
 				} else {
@@ -107,7 +118,7 @@ public class TextServlet extends HttpServlet {
 			} else if (action.equals("search_sort_id_member")) {
 				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
 				List<TextBean> list = dao.findBySort_id(text_sort_id);
-				if (list.size() != 0) {
+				if (list != null) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMember.jsp");
 				} else {
@@ -119,7 +130,7 @@ public class TextServlet extends HttpServlet {
 			} else if (action.equals("search_sort_id_mg")) {
 				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
 				List<TextBean> list = dao.findBySort_id(text_sort_id);
-				if (list.size() != 0) {
+				if (list != null) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMg.jsp");
 				} else {
@@ -134,7 +145,7 @@ public class TextServlet extends HttpServlet {
 					gotoPage(request, response, "/error.jsp");
 				} else {
 					List<TextBean> list = dao.findByTitle(title);
-					if (list.size() != 0) {
+					if (list != null) {
 						request.setAttribute("texts", list);
 						gotoPage(request, response, "/Text/textSearchResultMember.jsp");
 					} else {
@@ -149,7 +160,7 @@ public class TextServlet extends HttpServlet {
 					gotoPage(request, response, "/error.jsp");
 				} else {
 					List<TextBean> list = dao.findByTitle(title);
-					if (list.size() != 0) {
+					if (list != null) {
 						request.setAttribute("texts", list);
 						gotoPage(request, response, "/Text/textSearchResultMg.jsp");
 					} else {
@@ -192,6 +203,7 @@ public class TextServlet extends HttpServlet {
 						bean.setISBN(ISBN);
 						bean.setTitle(title);
 						bean.setAuthor(author);
+						bean.setUse(use);
 						SortDAO sortDAO = new SortDAO();
 						bean.setDep_name(sortDAO.findDep_name(text_sort_id));
 						bean.setText_id((int) session.getAttribute("change_text_id"));

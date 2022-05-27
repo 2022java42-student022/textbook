@@ -67,13 +67,10 @@
 				<td>${check.pay}</td>
 			</tr>
 		</table>
-		<br> <input type="submit" value="この内容で注文"><br> <a
-			href="/textbook/order/memberInfo.jsp">戻る</a>
+		<br> <input type="submit" value="この内容で注文"><br> 
 	</form>
-	<input type="submit" value="この内容で注文">
-	<br>
 	<input type="button" name="back" value="前ページに戻る"
-		onclick="javascript:history.back()">
+		onclick="javascript:location.href='/textbook/order/memberInfo.jsp'">
 	<input type="button" name="logout" value="ログアウト"
 		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 
