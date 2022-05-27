@@ -11,9 +11,9 @@
 <h3>会員登録</h3>
 
 <form action="/textbook/MemberServlet?action=preRegister" method="post">
-			<p>名前<input type="text" name="name" placeholder="名前を入力してください" required> <p>
-			<p>メール<input type="email"name="email" size="40" placeholder="メールアドレスを入力してください" required><p>
-			<p>パスワード<input type="password" name="pass" size="25" placeholder="パスワードを入力してください" required><p>
+			<p>名前<input type="text" name="name" placeholder="名前を入力してください" > <p>
+			<p>メール<input type="email"name="email" size="40" placeholder="メールアドレスを入力してください"><p>
+			<p>パスワード<input type="password" name="pass" size="25" placeholder="パスワードを入力してください" ><p>
 		<p><input type="submit" value="送信" ></p>
 		
 	</form>
