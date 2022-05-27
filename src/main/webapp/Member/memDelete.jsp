@@ -15,8 +15,8 @@
 		<p>メールアドレス、パスワードをご入力してください。</p>
 
 
-		<input type="text" name="email" placeholder="メールアドレスを入力してください"><br>
-		<input type="password" name="pass" placeholder="パスワードを入力してください"><br>
+		<input type="text" name="email" size="40" placeholder="メールアドレスを入力してください" required><br>
+		<input type="password" name="pass" size="25" placeholder="パスワードを入力してください" required><br>
 		
 
 
