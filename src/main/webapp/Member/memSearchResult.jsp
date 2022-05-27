@@ -20,7 +20,7 @@
 <table border="0">
 <tr><td>
 <form action="/textbook/MemberServlet?action=delete" method="post">
-<input type="submit" value="削除">
+<input type="button" value="削除"onclick="javascript:location.href='/textbook/Member/memDeleteConfirmation.jsp'">
 </form></td>
 <td><form action="/textbook/MemberServlet?action=change" method="post">
 <input type="submit" value="変更">
