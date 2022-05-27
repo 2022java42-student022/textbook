@@ -47,7 +47,7 @@ public class OrderServlet extends HttpServlet {
 			}
 			if (action.equals("confirm")) {
 				if (name.length() == 0 || address.length() == 0 || tel.length() == 0 || email.length() == 0
-						|| pay.length() == 0) {
+						|| pay == null) {
 					request.setAttribute("message", "項目を入力してください。");
 					gotoPage(request, response, "/error.jsp");
 				} else {

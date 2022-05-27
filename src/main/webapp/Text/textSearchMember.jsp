@@ -33,10 +33,7 @@
 	<br>
 	
 	
-	<form action="/textbook/TextServlet?action=search_title_sort_member" method="post">
-	<input type="submit" value="検索" >
-	</form>
-	<br>
+
 
   	<form action="/textbook/TextServlet?action=searchAll_member" method="post">
 	<input type="submit" value="全商品表示">
