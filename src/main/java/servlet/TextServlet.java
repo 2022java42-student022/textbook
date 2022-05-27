@@ -25,7 +25,18 @@ public class TextServlet extends HttpServlet {
 
 		String action = request.getParameter("action");
 		String sort_id = request.getParameter("sort_id");
-		String ISBN = request.getParameter("ISBN");
+		String ISBN;
+		
+		//ISBNを13桁に指定
+		//桁数が未満の数値は0を自動的に追加
+		if (request.getParameter("ISBN") == null) {
+			ISBN = "";
+		} else if (request.getParameter("ISBN").length() != 0) {
+			ISBN = String.format("%013d", Integer.parseInt(request.getParameter("ISBN")));
+		} else {
+			ISBN = request.getParameter("ISBN");
+		}
+		
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String price = request.getParameter("price");
