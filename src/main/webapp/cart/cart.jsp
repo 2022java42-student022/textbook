@@ -9,9 +9,7 @@
 <title>Cart</title>
 </head>
 <body>
-	<a href="/textbook/Text/textSearchMember.jsp">教科書検索画面に戻る</a>|
-
-	<hr>
+	
 	<h3>現在のカートの中身</h3>
 
 	<c:if test="${empty cart.texts }">
@@ -52,10 +50,19 @@
 	</c:if>
 
 	<c:if test="${not empty cart.texts }">
-	<form action="/textbook/OrderServlet?action=input_member" method="post">
-		<input type="submit" value="注文する">
-	</form>
+		<form action="/textbook/OrderServlet?action=input_member"
+			method="post">
+			<input type="submit" value="注文する">
+		</form>
 	</c:if>
-	
+	<br>
+	<input type="button" name="restart" value="教科書再検索"
+				onclick="javascript:location.href='/textbook/Text/textSearchMember.jsp'">
+	<br>
+	<input type="button" name="back" value="前ページに戻る"
+		onclick="javascript:history.back()">
+	<input type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+
 </body>
 </html>
