@@ -8,9 +8,7 @@
 <title>Test Serch Result Member</title>
 </head>
 <body>
-	<a href="/textbook/CartServlet?action=show">カートの確認</a>
 
-	<hr>
 	<h2>教科書検索結果画面</h2>
 
 
@@ -44,7 +42,9 @@
 
 	<br>
 	<br>
-
+	<input type="button" name="logout" value="カートの確認"
+		onclick="javascript:location.href='/textbook/CartServlet?action=show'">
+	<br>
 	<input type="button" name="back" value="前ページに戻る"
 		onclick="javascript:history.back()">
 	<input type="button" name="logout" value="ログアウト"

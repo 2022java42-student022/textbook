@@ -192,6 +192,7 @@ public class TextServlet extends HttpServlet {
 						bean.setISBN(ISBN);
 						bean.setTitle(title);
 						bean.setAuthor(author);
+						bean.setUse(use);
 						SortDAO sortDAO = new SortDAO();
 						bean.setDep_name(sortDAO.findDep_name(text_sort_id));
 						bean.setText_id((int) session.getAttribute("change_text_id"));
