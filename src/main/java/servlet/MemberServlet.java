@@ -50,14 +50,7 @@ public class MemberServlet extends HttpServlet {
 			if (action.equals("change")) {
 				gotoPage(request, response, "/Member/memChange.jsp");
 				// パラメータの解析
-			} else if (action.equals("delete")) {
-				gotoPage(request, response, "/Member/memDeleteConfirmation.jsp");
 			}
-			// 会員の退会
-			if (action.equals("preDelete")) {
-
-			}
-
 			// 会員情報削除
 			if (action.equals("decision")) {
 				HttpSession session = request.getSession(false);
@@ -83,7 +76,7 @@ public class MemberServlet extends HttpServlet {
 			}
 			// 三戸部 会員登録
 			else if (action.equals("preRegister")) {
-                String email = request.getParameter("email");
+				String email = request.getParameter("email");
 				if (dao.lockEmail(email)) {
 					request.setAttribute("message", "すでに登録されているメールアドレスを使用しています。");
 					gotoPage(request, response, "/error.jsp");
@@ -126,6 +119,23 @@ public class MemberServlet extends HttpServlet {
 				return;
 
 			}
+			// 会員側の会員情報変更→会員情報変更確認
+			if (action.equals("preChangemem")) {
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String pass = request.getParameter("pass");
+				MemberBean2 bean2 = new MemberBean2();
+				HttpSession session = request.getSession(false);
+				MemberBean2 bean = (MemberBean2) session.getAttribute("memberchange");
+				bean2.setName(name);
+				bean2.setEmail(email);
+				bean2.setPass(pass);
+				bean2.setUser_id(bean.getUser_id());
+				session.setAttribute("member2", bean2);
+				gotoPage(request, response, "/Member/memChangeConfirmation.jsp");
+				return;
+
+			}
 
 			// 会員情報変更の情報取得 セッション
 			if (action.equals("comfirm")) {
@@ -148,7 +158,10 @@ public class MemberServlet extends HttpServlet {
 					request.setAttribute("message", "変更が完了しました。");
 					gotoPage(request, response, "/complete.jsp");
 				}
-
+				// 会員側 topから変更画面移動
+				if (action.equals("inputChange")) {
+					gotoPage(request, response, "/Member/memChange.jsp");
+				}
 			}
 
 		} catch (DAOException e) {
