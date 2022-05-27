@@ -178,7 +178,7 @@ public class TextServlet extends HttpServlet {
 
 				// 選択した教科書の内容変更
 			} else if (action.equals("preChange")) {
-				if (ISBN.length() == 0 || title.length() == 0 || author.length() == 0 || use.length() == 0) {
+				if (ISBN.length() == 0 || title.length() == 0 || author.length() == 0 ) {
 					request.setAttribute("message", "値を入力してください");
 					gotoPage(request, response, "/error.jsp");
 				} else {
