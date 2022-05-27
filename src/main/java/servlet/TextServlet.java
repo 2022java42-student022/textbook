@@ -84,28 +84,48 @@ public class TextServlet extends HttpServlet {
 				// 全ての教科書表示(会員)
 			} else if (action.equals("searchAll_member")) {
 				List<TextBean> list = dao.findAll();
-				request.setAttribute("texts", list);
-				gotoPage(request, response, "/Text/textSearchResultMember.jsp");
+				if (list != null) {
+					request.setAttribute("texts", list);
+					gotoPage(request, response, "/Text/textSearchResultMember.jsp");
+				} else {
+					request.setAttribute("message", "検索結果がありません");
+					gotoPage(request, response, "/error.jsp");
+				}
 
 				// 全ての教科書表示(管理者)
 			} else if (action.equals("searchAll_mg")) {
 				List<TextBean> list = dao.findAll();
-				request.setAttribute("texts", list);
-				gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+				if (list != null) {
+					request.setAttribute("texts", list);
+					gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+				} else {
+					request.setAttribute("message", "検索結果がありません");
+					gotoPage(request, response, "/error.jsp");
+				}
 
 				// 分類名で検索(会員)
 			} else if (action.equals("search_sort_id_member")) {
 				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
 				List<TextBean> list = dao.findBySort_id(text_sort_id);
-				request.setAttribute("texts", list);
-				gotoPage(request, response, "/Text/textSearchResultMember.jsp");
+				if (list != null) {
+					request.setAttribute("texts", list);
+					gotoPage(request, response, "/Text/textSearchResultMember.jsp");
+				} else {
+					request.setAttribute("message", "検索結果がありません");
+					gotoPage(request, response, "/error.jsp");
+				}
 
 				// 分類名で検索(管理者)
 			} else if (action.equals("search_sort_id_mg")) {
 				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
 				List<TextBean> list = dao.findBySort_id(text_sort_id);
-				request.setAttribute("texts", list);
-				gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+				if (list != null) {
+					request.setAttribute("texts", list);
+					gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+				} else {
+					request.setAttribute("message", "検索結果がありません");
+					gotoPage(request, response, "/error.jsp");
+				}
 
 				// タイトルで検索(会員)
 			} else if (action.equals("search_title_member")) {
@@ -114,8 +134,13 @@ public class TextServlet extends HttpServlet {
 					gotoPage(request, response, "/error.jsp");
 				} else {
 					List<TextBean> list = dao.findByTitle(title);
-					request.setAttribute("texts", list);
-					gotoPage(request, response, "/Text/textSearchResultMember.jsp");
+					if (list != null) {
+						request.setAttribute("texts", list);
+						gotoPage(request, response, "/Text/textSearchResultMember.jsp");
+					} else {
+						request.setAttribute("message", "検索結果がありません");
+						gotoPage(request, response, "/error.jsp");
+					}
 				}
 				// タイトルで検索(管理者)
 			} else if (action.equals("search_title_mg")) {
@@ -124,8 +149,13 @@ public class TextServlet extends HttpServlet {
 					gotoPage(request, response, "/error.jsp");
 				} else {
 					List<TextBean> list = dao.findByTitle(title);
-					request.setAttribute("texts", list);
-					gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+					if (list != null) {
+						request.setAttribute("texts", list);
+						gotoPage(request, response, "/Text/textSearchResultMg.jsp");
+					} else {
+						request.setAttribute("message", "検索結果がありません");
+						gotoPage(request, response, "/error.jsp");
+					}
 				}
 
 				// ----------------------------------------ここまで各項目別での検索(会員と管理人別)----------------------------------------
