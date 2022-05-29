@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.AppCartBean;
+import bean.CartBean;
 import bean.MemberBean2;
+import bean.TextBean;
 import dao.DAOException;
 import dao.LoginDAO;
 import dao.MemberDAO;
@@ -38,8 +41,7 @@ public class LoginServlet extends HttpServlet {
 			} catch (DAOException e) {
 				e.printStackTrace();
 			}
-		} 
-		else if (action.equals("login") && login.equals("member")) {
+		} else if (action.equals("login") && login.equals("member")) {
 			String email = request.getParameter("user_id");
 			String pass = request.getParameter("pass");
 			try {
@@ -50,9 +52,9 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("login", "member");
 					MemberDAO memDao = new MemberDAO();
 					int user_id = memDao.searchByEmail(email);
-					session.setAttribute("user_id",user_id );
-					session.setAttribute("email",email);
-					session.setAttribute("pass",pass);
+					session.setAttribute("user_id", user_id);
+					session.setAttribute("email", email);
+					session.setAttribute("pass", pass);
 					MemberBean2 bean = memberdao.SearchMember2(email);
 					session.setAttribute("memberchange", bean);
 					gotoPage(request, response, "Login/memHome.jsp");
@@ -67,48 +69,50 @@ public class LoginServlet extends HttpServlet {
 				gotoPage(request, response, "error.jsp");
 			}
 		}
-		
+
 		if (action.equals("logout")) {
 			HttpSession session = request.getSession(false);
-			if(session != null) {
+			if (session != null) {
+				CartBean cart = (CartBean) session.getAttribute("cart");
+				AppCartBean app_cart = (AppCartBean) getServletContext().getAttribute("app_cart");
+				for (TextBean text : cart.getTexts()) {
+					app_cart.removeApp_cart(Integer.valueOf(text.getText_id()));
+				}
 				session.invalidate();
 				request.setAttribute("message", "ログアウトが完了しました。");
 				gotoPage(request, response, "complete.jsp");
-			}else {
+			} else {
 				request.setAttribute("message", "セッションがありません、ログインし直してください。");
 				gotoPage(request, response, "error.jsp");
 			}
 		}
-		
-		
+
 		if (action.equals("register")) {
 			HttpSession session = request.getSession();
 			session.setAttribute("login", "register");
 			gotoPage(request, response, "Member/memRegister.jsp");
-			
-			
+
 		}
 		if (action.equals("registered")) {
 			HttpSession session = request.getSession(false);
-			if(session != null) {
+			if (session != null) {
 				session.invalidate();
 				gotoPage(request, response, "/Login/top.jsp");
-			}else {
+			} else {
 				request.setAttribute("message", "セッションがありません、ログインし直してください。");
 				gotoPage(request, response, "error.jsp");
 			}
 		}
 		if (action.equals("noregister")) {
 			HttpSession session = request.getSession(false);
-			if(session != null) {
+			if (session != null) {
 				session.invalidate();
 				gotoPage(request, response, "Login/top.jsp");
-			}else {
+			} else {
 				request.setAttribute("message", "セッションがありません、ログインし直してください。");
 				gotoPage(request, response, "error.jsp");
 			}
 		}
-		
 
 	}
 
