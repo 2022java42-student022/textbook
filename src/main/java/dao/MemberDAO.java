@@ -23,6 +23,54 @@ public class MemberDAO {
 		}
 	}
 
+	public int searchByUser_id(int user_id) throws DAOException {
+		String sql = "SELECT * FROM member WHERE user_id=?";
+		int pass = 0;
+		try (Connection con = DriverManager.getConnection(url, user, passwd);
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setInt(1, user_id);
+			try (ResultSet rs = st.executeQuery();) {
+				while (rs.next()) {
+					pass = rs.getInt(1);
+				}
+				return pass;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+
+			// いっちせんとあかん
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
+
+	}
+
+	public int searchByEmail(String email) throws DAOException {
+		int user_id = 0;
+		String sql = "SELECT * FROM member WHERE email=?";
+		try (Connection con = DriverManager.getConnection(url, user, passwd);
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setString(1, email);
+			try (ResultSet rs = st.executeQuery();) {
+				while (rs.next()) {
+					user_id = rs.getInt(1);
+				}
+				return user_id;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+
+			// いっちせんとあかん
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
+
+	}
+
 	public MemberBean2 SearchMember(String email) throws DAOException {
 
 		String name = null;
@@ -105,30 +153,6 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 
-		}
-
-	}
-
-	public int searchByEmail(String email) throws DAOException {
-		int user_id = 0;
-		String sql = "SELECT * FROM member WHERE email=?";
-		try (Connection con = DriverManager.getConnection(url, user, passwd);
-				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, email);
-			try (ResultSet rs = st.executeQuery();) {
-				while (rs.next()) {
-					user_id = rs.getInt(1);
-				}
-				return user_id;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw new DAOException("レコードの取得に失敗しました。");
-			}
-
-			// いっちせんとあかん
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DAOException("レコードの取得に失敗しました。");
 		}
 
 	}

@@ -50,11 +50,6 @@ public class LoginServlet extends HttpServlet {
 				if (dao.findMemAccount(email, pass)) {
 					HttpSession session = request.getSession();
 					session.setAttribute("login", "member");
-					MemberDAO memDao = new MemberDAO();
-					int user_id = memDao.searchByEmail(email);
-					session.setAttribute("user_id", user_id);
-					session.setAttribute("email", email);
-					session.setAttribute("pass", pass);
 					MemberBean2 bean = memberdao.SearchMember2(email);
 					session.setAttribute("memberchange", bean);
 					gotoPage(request, response, "Login/memHome.jsp");

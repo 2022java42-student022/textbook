@@ -10,28 +10,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.MemberBean2;
 import dao.DAOException;
 import dao.MemberDAO;
 
 @WebServlet("/MemberDeleteServlet")
 public class MemberDeleteServlet extends HttpServlet {
 
+	@SuppressWarnings("unlikely-arg-type")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		try {
 			MemberDAO dao = new MemberDAO();
-
-			String email = request.getParameter("email");
+			MemberBean2 bean = new MemberBean2();
 			String pass = request.getParameter("pass");
 
 			HttpSession session = request.getSession(false);
-			String str = (String) session.getAttribute("email");
-			String userpass = (String) session.getAttribute("pass");
-			int userid = (int) session.getAttribute("user_id");
+			bean = (MemberBean2) session.getAttribute("memberchange");
 
-			if (email.equals(str) && pass.equals(userpass)) {
-				dao.deleteByPrimaryuser(userid);
+			if (pass.equals(dao.searchByUser_id(bean.getUser_id()))) {
+				dao.deleteByPrimaryuser(bean.getUser_id());
 				session.invalidate();
 				request.setAttribute("message", "削除されました。");
 
