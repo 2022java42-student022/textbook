@@ -1,0 +1,233 @@
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+  }
+  
+  .login_form_top{
+    text-align: center; 
+  }
+ /* 
+  body {
+    color: #333;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  }
+  */
+  .contact {
+    width: 960px; 
+    margin: 0 auto; /*中央寄せ */
+    padding: 60px 0;
+  }
+  /*
+  .order-table {
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  .order-th,
+  .order-body,
+  .order-total {
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .order-th {
+    text-align: center;
+    width: 30%;
+    background-color: #eee;
+  }
+  
+  .order-body {
+    text-align: center;
+  }
+  
+  .order-total {
+    text-align: right;
+  }
+  
+  .customer-item,
+  .customer-body {
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .customer-item {
+    text-align: left;
+    width: 30%;
+    background-color:#eee;
+  }
+  */
+  .customer-body {
+    width: 60%;
+  }
+  
+  .form-text {
+  	width: 650px;
+  }
+  /*
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  */
+  .customer {
+    width: 25%;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    margin: 0 auto;
+  }
+  
+  .form-text {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    max-width: 400px;
+  }
+  /*
+  .column,
+  .body {
+      padding: 20px;
+      border: 1px solid #ccc;
+  }
+  
+  .column {
+      text-align: left;
+      width: 30%;
+      background-color: #eee;
+  }
+  
+  .body {
+      width: 70%;
+  }
+  */
+  .buttons { /*横並び*/
+    display: flex;
+    /* justify-content: center; */
+  }
+  
+  button{
+      display: flex;
+      appearance: none;
+      margin: 0 auto;
+      padding: 0;
+      background: none;
+      border: none;
+      border-radius: 0;
+      outline: none;
+      
+  }
+  button {
+    position: relative;
+    display: block;
+    /* padding: 1em 2em 1em 1em; */
+    width: 200px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    line-height: 1;
+    background: #5bbee5;
+    background: linear-gradient(to right, #5bbee5, #52ddae);
+    text-indent: 0.1em;
+    letter-spacing: 0.1em;
+    border-radius: 1.5em;
+  }
+  
+  .button1 {
+    padding: 1em 2em 1em 1em; /*上右下左*/
+    text-align: center;
+  }
+  
+  /*.button2 {
+    padding: 1em 1em 1em 2em;
+  }
+  */
+  /*.button1:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 1.5em;
+    margin: auto;
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    border-right: 1px solid #fff;
+    border-top: 1px solid #fff;
+    transform: rotate(45deg);
+    transition: right 0.5s;
+  }
+  */
+  /*.button2:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1.5em;
+    margin: auto;
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    border-right: 1px solid #fff;
+    border-top: 1px solid #fff;
+    transform: rotate(225deg);
+    transition: left 0.5s;
+  }
+  
+  .button1:hover:after{
+    right: 1em;
+  }
+  
+  .button2:hover:after{
+    left: 1em;
+  }
+  
+  .goodbye {
+    display: block;
+    margin: 0 auto;
+  }
+  */
+div.center {
+	text-align: center;
+}
+.select {
+  background: #cfcedb;
+  height: 40px;
+  width: 130px;
+  margin-left:200px;
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
+ 
+}
+.select::after {
+  position: absolute;
+  content: '';
+  width: 8px;
+  height: 8px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  z-index: -1;
+}
+
+select {
+  /* 初期化 */
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  
+}
