@@ -12,39 +12,38 @@
 
 	<h4>下記の内容で注文を行いますか？</h4>
 	<h4>ご注文商品</h4>
-	<c:if test="${not empty cart.texts}">
-		<table border="1">
-			<tr>
-				<td>ISBN</td>
-				<td>タイトル</td>
-				<td>分類</td>
-				<td>著者</td>
-				<td>金額</td>
-				<td>使用状況</td>
-			</tr>
-
-			<c:forEach items="${cart.texts}" var="text">
-				<tr>
-					<td align="center">${text.ISBN}</td>
-					<td align="center">${text.title}</td>
-					<td align="center">${text.dep_name}</td>
-					<td align="center">${text.author}</td>
-					<td align="center">${text.price}</td>
-					<td align="center">${text.use}</td>
-				</tr>
-			</c:forEach>
-			<tr>
-				<td align="right" colspan="7">総計：${cart.total}円</td>
-			</tr>
-		</table>
-
-		<br>
-
-
-	</c:if>
-
-	<h4>お客様情報</h4>
 	<form action="/textbook/OrderServlet?action=order" method="post">
+		<c:if test="${not empty cart.texts}">
+			<table border="1">
+				<tr>
+					<td>ISBN</td>
+					<td>タイトル</td>
+					<td>分類</td>
+					<td>著者</td>
+					<td>金額</td>
+					<td>使用状況</td>
+				</tr>
+
+				<c:forEach items="${cart.texts}" var="text">
+					<tr>
+						<td align="center">${text.ISBN}</td>
+						<td align="center">${text.title}</td>
+						<td align="center">${text.dep_name}</td>
+						<td align="center">${text.author}</td>
+						<td align="center">${text.price}</td>
+						<td align="center">${text.use}</td>
+					</tr>
+					<tr>
+						<td align="right" colspan="7">総計：${cart.total}円</td>
+					</tr>
+			</table>
+			</c:forEach>
+
+			<br>
+
+
+
+		<h4>お客様情報</h4>
 		<table border="1">
 			<tr>
 				<td>名前</td>
@@ -66,8 +65,9 @@
 				<td>お支払方法</td>
 				<td>${check.pay}</td>
 			</tr>
-		</table>
-		<br> <input type="submit" value="この内容で注文"><br> 
+			<input type="submit" value="この内容で注文">
+		</c:if>
+	</table>
 	</form>
 	<input type="button" name="back" value="前ページに戻る"
 		onclick="javascript:location.href='/textbook/order/memberInfo.jsp'">
