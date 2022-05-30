@@ -99,7 +99,7 @@ public class TextServlet extends HttpServlet {
 
 				// 全ての教科書表示(会員)
 			} else if (action.equals("searchAll_member")) {
-				List<TextBean> list = dao.findAll();
+				List<TextBean> list = dao.findAllMember();
 				if (list != null) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMember.jsp");
@@ -110,7 +110,7 @@ public class TextServlet extends HttpServlet {
 
 				// 全ての教科書表示(管理者)
 			} else if (action.equals("searchAll_mg")) {
-				List<TextBean> list = dao.findAll();
+				List<TextBean> list = dao.findAllMg();
 				if (list != null) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMg.jsp");
@@ -122,7 +122,7 @@ public class TextServlet extends HttpServlet {
 				// 分類名で検索(会員)
 			} else if (action.equals("search_sort_id_member")) {
 				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
-				List<TextBean> list = dao.findBySort_id(text_sort_id);
+				List<TextBean> list = dao.findBySort_idMember(text_sort_id);
 				if (list != null) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMember.jsp");
@@ -134,7 +134,7 @@ public class TextServlet extends HttpServlet {
 				// 分類名で検索(管理者)
 			} else if (action.equals("search_sort_id_mg")) {
 				int text_sort_id = Integer.parseInt(request.getParameter("sort_id"));
-				List<TextBean> list = dao.findBySort_id(text_sort_id);
+				List<TextBean> list = dao.findBySort_idMg(text_sort_id);
 				if (list != null) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMg.jsp");
@@ -149,7 +149,7 @@ public class TextServlet extends HttpServlet {
 					request.setAttribute("message", "値を入力してください");
 					gotoPage(request, response, "/error.jsp");
 				} else {
-					List<TextBean> list = dao.findByTitle(title);
+					List<TextBean> list = dao.findByTitleMember(title);
 					if (list != null) {
 						request.setAttribute("texts", list);
 						gotoPage(request, response, "/Text/textSearchResultMember.jsp");
@@ -164,7 +164,7 @@ public class TextServlet extends HttpServlet {
 					request.setAttribute("message", "値を入力してください");
 					gotoPage(request, response, "/error.jsp");
 				} else {
-					List<TextBean> list = dao.findByTitle(title);
+					List<TextBean> list = dao.findByTitleMg(title);
 					if (list != null) {
 						request.setAttribute("texts", list);
 						gotoPage(request, response, "/Text/textSearchResultMg.jsp");
