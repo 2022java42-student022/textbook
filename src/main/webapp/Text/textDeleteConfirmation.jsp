@@ -15,7 +15,7 @@
 <form action="/textbook/TextServlet?action=delete" method="post">
 
 		
-			<p>ISBN:<fmt:formatNumber value="${text.ISBN}" pattern="0000000000000" /><p>
+			<p>ISBN:<fmt:formatNumber value="${delete_textbooks.ISBN}" pattern="0000000000000" /><p>
 			<p>タイトル:${delete_textbooks.title}<p>
 			<p>分類:${delete_textbooks.dep_name}<p>
 			<p>著者:${delete_textbooks.author}<p>
