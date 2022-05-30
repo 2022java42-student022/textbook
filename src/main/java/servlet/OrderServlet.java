@@ -83,7 +83,7 @@ public class OrderServlet extends HttpServlet {
 						soldcheck.add(text.getTitle());
 					}
 				}
-				if (soldcheck.size() == 1) {
+				if (soldcheck.size() >= 1) {
 					String msg = String.join(",", soldcheck) + "は売り切れています。";
 					request.setAttribute("message", msg);
 					gotoPage(request, response, "/error.jsp");
