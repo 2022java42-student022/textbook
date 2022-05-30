@@ -23,15 +23,15 @@ public class MemberDAO {
 		}
 	}
 
-	public int searchByUser_id(int user_id) throws DAOException {
-		String sql = "SELECT * FROM member WHERE user_id=?";
-		int pass = 0;
+	public String searchByUser_id(int user_id) throws DAOException {
+		String sql = "SELECT * FROM member WHERE user_id = ?";
+		String pass = null;
 		try (Connection con = DriverManager.getConnection(url, user, passwd);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setInt(1, user_id);
 			try (ResultSet rs = st.executeQuery();) {
 				while (rs.next()) {
-					pass = rs.getInt(1);
+					pass = rs.getString("pass");
 				}
 				return pass;
 			} catch (SQLException e) {

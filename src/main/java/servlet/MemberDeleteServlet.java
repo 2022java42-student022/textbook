@@ -17,7 +17,6 @@ import dao.MemberDAO;
 @WebServlet("/MemberDeleteServlet")
 public class MemberDeleteServlet extends HttpServlet {
 
-	@SuppressWarnings("unlikely-arg-type")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -25,10 +24,8 @@ public class MemberDeleteServlet extends HttpServlet {
 			MemberDAO dao = new MemberDAO();
 			MemberBean2 bean = new MemberBean2();
 			String pass = request.getParameter("pass");
-
 			HttpSession session = request.getSession(false);
 			bean = (MemberBean2) session.getAttribute("memberchange");
-
 			if (pass.equals(dao.searchByUser_id(bean.getUser_id()))) {
 				dao.deleteByPrimaryuser(bean.getUser_id());
 				session.invalidate();
@@ -37,7 +34,7 @@ public class MemberDeleteServlet extends HttpServlet {
 				gotoPage(request, response, "/complete.jsp");
 				return;
 			} else {
-				request.setAttribute("message", "メールまたはパスワードが違います。");
+				request.setAttribute("message", "パスワードが違います。");
 				gotoPage(request, response, "/error.jsp");
 				return;
 			}
