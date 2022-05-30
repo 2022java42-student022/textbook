@@ -44,7 +44,7 @@ public class TextDAO {
 	}
 
 	public List<TextBean> findAllMember() throws DAOException {
-		String sql = "SELECT * FROM text EXCEPT SELECT * FROM WHERE soldout = 1";
+		String sql = "SELECT * FROM text WHERE soldout IS NULL";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);
@@ -98,7 +98,7 @@ public class TextDAO {
 	}
 
 	public List<TextBean> findByTitleMember(String text_title) throws DAOException {
-		String sql = "SELECT * FROM text WHERE title = ? EXCEPT SELECT * FROM WHERE soldout = 1";
+		String sql = "SELECT * FROM text WHERE title = ? AND soldout IS NULL";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
@@ -164,7 +164,7 @@ public class TextDAO {
 	}
 
 	public List<TextBean> findBySort_idMember(int text_sort_id) throws DAOException {
-		String sql = "SELECT * FROM text WHERE sort_id = ? EXCEPT SELECT * FROM WHERE soldout = 1";
+		String sql = "SELECT * FROM text WHERE sort_id = ? AND soldout IS NULL";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
@@ -230,7 +230,7 @@ public class TextDAO {
 	}
 
 	public List<TextBean> findByUser_id(int user_id) throws DAOException {
-		String sql = "SElECT * FROM text WHERE user_id = ? EXCEPT SELECT * FROM WHERE soldout = 1";
+		String sql = "SElECT * FROM text WHERE user_id = ? AND soldout IS NULL";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
@@ -363,7 +363,7 @@ public class TextDAO {
 	}
 
 	public TextBean findByTextID(int id) throws DAOException {
-		String sql = "SELECT * FROM text WHERE text_id = ? EXCEPT SELECT * FROM WHERE soldout = 1";
+		String sql = "SELECT * FROM text WHERE text_id = ?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setInt(1, id);
