@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Complete</title>
+<link rel="stylesheet" type="text/css"
+	href="/textbook/CSS/memberInfo.css">
 </head>
 <body>
 
@@ -19,20 +21,20 @@
 	</c:when>
 	--%>
 	<c:when test="${login eq 'manager'}">
-		<input type="button" name="restart" value="ホームページへ"
-			onclick="javascript:location.href='/textbook/Login/mgHome.jsp'">
+		<button class = "goodbye" type="button" name="restart" value="ホームページへ"
+			onclick="javascript:location.href='/textbook/Login/mgHome.jsp'">ホームページへ</button>
 	</c:when>
 	<c:when test="${login eq 'member'}">
-		<input type="button" name="restart" value="ホームページへ"
-			onclick="javascript:location.href='/textbook/Login/memHome.jsp'">
+		<button class = "goodbye" type="button" name="restart" value="ホームページへ"
+			onclick="javascript:location.href='/textbook/Login/memHome.jsp'">ホームページへ</button>
 	</c:when>
 	<c:when test="${login eq 'register'}">
-			<input type="button" name="restart" value="ログインページへ"
-				onclick="javascript:location.href='/textbook/LoginServlet?action=registered'">
+			<button class = "goodbye" type="button" name="restart" value="ログインページへ"
+				onclick="javascript:location.href='/textbook/LoginServlet?action=registered'">ログインページへ</button>
 		</c:when>
 	<c:otherwise>
-		<input type="button" name="restart" value="ログインページへ"
-			onclick="javascript:location.href='/textbook/Login/top.jsp'">
+		<button class = "goodbye" type="button" name="restart" value="ログインページへ"
+			onclick="javascript:location.href='/textbook/Login/top.jsp'">ログインページへ</button>
 	</c:otherwise >
 	
 </c:choose>
