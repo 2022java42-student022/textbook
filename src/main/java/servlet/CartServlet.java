@@ -85,7 +85,6 @@ public class CartServlet extends HttpServlet {
 			request.setAttribute("message", "内部エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");
 		} catch (ParseException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			request.setAttribute("message", "エラーが発生しました。");
 			gotoPage(request, response, "/error.jsp");

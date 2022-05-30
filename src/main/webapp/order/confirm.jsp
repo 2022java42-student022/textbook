@@ -7,72 +7,75 @@
 <head>
 <meta charset="UTF-8">
 <title>注文内容確認</title>
+<link rel="stylesheet" type="text/css"
+	href="/textbook/CSS/memberInfo.css">
 </head>
 <body>
 
-	<h4>下記の内容で注文を行いますか？</h4>
-	<h4>ご注文商品</h4>
-	<c:if test="${not empty cart.texts}">
-		<table border="1">
-			<tr>
-				<td>ISBN</td>
-				<td>タイトル</td>
-				<td>分類</td>
-				<td>著者</td>
-				<td>金額</td>
-				<td>使用状況</td>
-			</tr>
+	<div class="contact">
 
-			<c:forEach items="${cart.texts}" var="text">
+		<h3>下記の内容で注文を行いますか？</h3>
+		<h3>ご注文商品</h3>
+		<form action="/textbook/OrderServlet?action=order" method="post">
+			<c:if test="${not empty cart.texts}">
+				<table class="order-table">
+					<tr>
+						<th class="order-th">ISBN</th>
+						<th class="order-th">タイトル</th>
+						<th class="order-th">分類</th>
+						<th class="order-th">著者</th>
+						<th class="order-th">金額</th>
+						<th class="order-th">使用状況</th>
+					</tr>
+
+					<c:forEach items="${cart.texts}" var="text">
+						<tr>
+							<td class="order-body">${text.ISBN}</td>
+							<td class="order-body">${text.title}</td>
+							<td class="order-body">${text.dep_name}</td>
+							<td class="order-body">${text.author}</td>
+							<td class="order-body">${text.price}</td>
+							<td class="order-body">${text.use}</td>
+						</tr>
+					</c:forEach>
+					<tr>
+						<td align="right" colspan="7">総計：${cart.total}円</td>
+					</tr>
+				</table>
+			</c:if>
+
+			<h3>お客様情報</h3>
+			<table class = "customer">
 				<tr>
-					<td align="center">${text.ISBN}</td>
-					<td align="center">${text.title}</td>
-					<td align="center">${text.dep_name}</td>
-					<td align="center">${text.author}</td>
-					<td align="center">${text.price}</td>
-					<td align="center">${text.use}</td>
+					<th class="customer-item">名前</th>
+					<td class="customer-body">${check.name}</td>
 				</tr>
-			</c:forEach>
-			<tr>
-				<td align="right" colspan="7">総計：${cart.total}円</td>
-			</tr>
-		</table>
-
-		<br>
-
-
-	</c:if>
-
-	<h4>お客様情報</h4>
-	<form action="/textbook/OrderServlet?action=order" method="post">
-		<table border="1">
-			<tr>
-				<td>名前</td>
-				<td>${check.name}</td>
-			</tr>
-			<tr>
-				<td>住所</td>
-				<td>${check.address}</td>
-			</tr>
-			<tr>
-				<td>電話番号</td>
-				<td>${check.tel}</td>
-			</tr>
-			<tr>
-				<td>メールアドレス</td>
-				<td>${check.email}</td>
-			</tr>
-			<tr>
-				<td>お支払方法</td>
-				<td>${check.pay}</td>
-			</tr>
-		</table>
-		<br> <input type="submit" value="この内容で注文"><br> 
-	</form>
-	<input type="button" name="back" value="前ページに戻る"
-		onclick="javascript:location.href='/textbook/order/memberInfo.jsp'">
-	<input type="button" name="logout" value="ログアウト"
-		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
-
+				<tr>
+					<th class="customer-item">住所</th>
+					<td class="customer-body">${check.address}</td>
+				</tr>
+				<tr>
+					<th class="customer-item">電話番号</th>
+					<td class="customer-body">${check.tel}</td>
+				</tr>
+				<tr>
+					<th class="customer-item">メールアドレス</th>
+					<td class="customer-body">${check.email}</td>
+				</tr>
+				<tr>
+					<th class="customer-item">お支払方法</th>
+					<td class="customer-body">${check.pay}</td>
+				</tr>
+			</table>
+			<br>
+			<div class="buttons">
+				<button class="button2" type="button" name="back" value="前ページに戻る"
+					onclick="javascript:location.href='/textbook/order/memberInfo.jsp'">前ページに戻る</button>
+				<button class="goodbye" type="button" name="logout" value="ログアウト"
+					onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
+				<button class="button1" type="submit" value="この内容で注文">この内容で注文</button>
+			</div>
+		</form>
+	</div>
 </body>
 </html>
