@@ -27,29 +27,67 @@ public class OrderDAO {
 		}
 	}
 
-	public int orderMem(OrderCheckBean check, CartBean cart,int user_id) throws DAOException {
-		String sql = "UPDATE member SET name = ?, address = ?, email = ?, tel_no = ?, pay = ? WHERE user_id = ?";
-		try(
+	//textテーブルのsoldoutの値を取得する
+	public int checkSoldOut(int le_textid) throws DAOException {
+		String sql = "SELECT soldout FROM text WHERE text_id = ?";
+		int soldout = 0;
+		try (
+				Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
+				st.setInt(1, le_textid);
+				
+			try (
+				ResultSet rs = st.executeQuery();) {
+				if (rs.next()) {
+					soldout = rs.getInt("soldout");
+				}
+				return soldout;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
+		
+	}
+	
+	//購入した時にtextテーブルのsoldoutの値を更新する
+	public void sendSoldOut(int le_textid) throws DAOException {
+		String sql = "UPDATE text SET soldout = 1 WHERE text_id = ?";
+		
+		try (
 			Connection con = DriverManager.getConnection(url, user, pass);
 			PreparedStatement st = con.prepareStatement(sql);) {
+			st.setInt(1, le_textid);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int orderMem(OrderCheckBean check, CartBean cart, int user_id) throws DAOException {
+		String sql = "UPDATE member SET name = ?, address = ?, email = ?, tel_no = ?, pay = ? WHERE user_id = ?";
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, check.getName());
 			st.setString(2, check.getAddress());
 			st.setString(3, check.getEmail());
 			st.setString(4, check.getTel());
 			st.setString(5, check.getPay());
-			st.setInt(6, check.getUser_id());			
+			st.setInt(6, check.getUser_id());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました。");
 		}
-		
+
 		int orderID = 0;
 		sql = "SELECT nextval('ordered_order_id_seq')";
-		try (
-			Connection con = DriverManager.getConnection(url, user, pass);
-			PreparedStatement st = con.prepareStatement(sql);
-			ResultSet rs = st.executeQuery();)  {
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);
+				ResultSet rs = st.executeQuery();) {
 			if (rs.next()) {
 				orderID = rs.getInt(1);
 			}
@@ -57,13 +95,11 @@ public class OrderDAO {
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました。");
 		}
-		
-		
+
 		sql = "INSERT INTO ordered VALUES(?,current_date,?,?)";
-		
-		try (
-			Connection con = DriverManager.getConnection(url, user, pass);
-			PreparedStatement st = con.prepareStatement(sql);) {
+
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setInt(1, orderID);
 			st.setInt(2, user_id);
 			st.setInt(3, cart.getTotal());
@@ -72,12 +108,11 @@ public class OrderDAO {
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました。");
 		}
-		
+
 		sql = "INSERT INTO ordered_detail VALUES(?, ? , ?)";
-		
-		try (
-			Connection con = DriverManager.getConnection(url, user, pass);
-			PreparedStatement st = con.prepareStatement(sql);) {
+
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
 			List<TextBean> texts = cart.getTexts();
 			for (TextBean text : texts) {
 				st.setInt(1, text.getText_id());
@@ -90,7 +125,7 @@ public class OrderDAO {
 			e.printStackTrace();
 			throw new DAOException("レコードの操作に失敗しました。");
 		}
-		
+
 	}
 
 }

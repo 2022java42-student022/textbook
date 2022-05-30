@@ -28,6 +28,7 @@ public class TextBean {
 		this.price = price;
 		this.use = use;
 	}
+
 	
 	public TextBean(int text_id, int user_id, String ISBN, String title, int sort_id, String dep_name, String author, int price,
 			String use) {
@@ -53,6 +54,8 @@ public class TextBean {
 		this.author = author;
 		this.price = price;
 	}
+	
+	
 	public TextBean() {
 
 	}
