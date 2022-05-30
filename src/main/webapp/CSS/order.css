@@ -27,9 +27,17 @@ body {
 
 .order-th {
   text-align: center;
-  width: 10%;
+  width: 30%;
   background-color: #eee;
 }
+
+.order-td {
+  text-align: center;
+  width: 30%;
+
+}
+
+
 
 .order-body {
   text-align: center;

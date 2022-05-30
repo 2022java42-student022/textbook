@@ -51,6 +51,7 @@ public class LoginServlet extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("login", "member");
 					MemberBean2 bean = memberdao.SearchMember2(email);
+					session.setAttribute("user_id", bean.getUser_id());
 					session.setAttribute("memberchange", bean);
 					gotoPage(request, response, "Login/memHome.jsp");
 				} else {
