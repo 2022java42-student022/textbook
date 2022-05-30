@@ -1,9 +1,95 @@
-h4 {
-	font-size:30px;
-	font-weight:bold;
-	margin-bottom:40px;
-	text-align:center;	
+* {
+  box-sizing: border-box;
 }
+
+body {
+  color: #333;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+
+.contact {
+  width: 960px; 
+  margin: 0 auto; /*中央寄せ */
+  padding: 60px 0;
+}
+
+.order-table {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.order-th,
+.order-body,
+.order-total {
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.order-th {
+  text-align: center;
+  width: 30%;
+  background-color: #eee;
+}
+
+.order-body {
+  text-align: center;
+}
+
+.order-total {
+  text-align: right;
+}
+
+.customer-item,
+.customer-body {
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.customer-item {
+  text-align: left;
+  width: 30%;
+  background-color:#eee;
+}
+
+.customer-body {
+  width: 70%;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.customer {
+  width: 70%;
+  margin-bottom: 20px;
+  margin: 0 auto;
+}
+
+.form-text {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  max-width: 400px;
+}
+
+.contact-pay + .contact-pay {
+  margin-right: 10px;
+}
+
+/* .contact-pay + .contact-pay {
+  margin-top: 10px;
+} */
+
+/* .contact-pay-txt {
+  margin-left: 5px;
+} */
 
 .column,
 .body {
@@ -21,10 +107,16 @@ h4 {
 	width: 70%;
 }
 
+.buttons { /*横並び*/
+  display: flex;
+  /* justify-content: center; */
+}
+
 button{
+    display: flex;
     appearance: none;
-    /*margin: 0;
-    padding: 0;*/
+    margin: 0 auto;
+    padding: 0;
     background: none;
     border: none;
     border-radius: 0;
@@ -34,17 +126,31 @@ button{
 button {
   position: relative;
   display: block;
-  padding: 1em 2em 1em 1em;
+  /* padding: 1em 2em 1em 1em; */
   width: 200px;
   font-size: 14px;
   color: #fff;
   text-align: center;
-    line-height: 1;
+  line-height: 1;
   background: #5bbee5;
   background: linear-gradient(to right, #5bbee5, #52ddae);
   text-indent: 0.1em;
   letter-spacing: 0.1em;
   border-radius: 1.5em;
+}
+
+button:hover {
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+
+.button1 {
+  padding: 1em 2em 1em 1em; /*上右下左*/
+}
+
+.button2 {
+  padding: 1em 1em 1em 2em;
 }
 
 .button1:after {
@@ -87,46 +193,9 @@ button {
   left: 1em;
 }
 
-/*table{
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table tr{
-  border-bottom: solid 2px white;
-}
-
-table tr:last-child{
-  border-bottom: none;
-}
-
-table th{
-  position: relative;
-  text-align: left;
-  width: 30%;
-  background-color: #52c2d0;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-}
-
-table th:after{
+.goodbye {
   display: block;
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  top:calc(50% - 10px);
-  right:-10px;
-  border-left: 10px solid #52c2d0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
+  margin: 0 auto;
+  padding: 1em 1em 1em 1em;
 }
 
-table td{
-  text-align: left;
-  width: 70%;
-  text-align: center;
-  background-color: #eee;
-  padding: 10px 0;
-}*/
