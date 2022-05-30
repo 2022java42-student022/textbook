@@ -34,6 +34,14 @@
 			</tr>
 		</table>
 
+		<div class="buttons">
+			<button class="button1" type="submit" value="送信" type="button"
+				name="back" value="前ページに戻る"
+				onclick="javascript:location.href='/textbook/MemberServlet?action=preRegister'">登録
+			</button>
+		</div>
+		<br>
+
 
 		<div class="buttons">
 			<button class="button2" type="submit" value="送信" type="button"
@@ -41,12 +49,6 @@
 
 			</button>
 		</div>
-		<br>
-		<div class="buttons">
-			<button class="goodbye" type="button" name="logout" value="ログアウト"
-				onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
-		</div>
-
 
 	</form>
 
