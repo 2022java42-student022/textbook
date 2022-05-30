@@ -100,7 +100,7 @@ public class TextServlet extends HttpServlet {
 				// 全ての教科書表示(会員)
 			} else if (action.equals("searchAll_member")) {
 				List<TextBean> list = dao.findAllMember();
-				if (list != null) {
+				if (list.size() != 0) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMember.jsp");
 				} else {
@@ -111,7 +111,7 @@ public class TextServlet extends HttpServlet {
 				// 全ての教科書表示(管理者)
 			} else if (action.equals("searchAll_mg")) {
 				List<TextBean> list = dao.findAllMg();
-				if (list != null) {
+				if (list.size() != 0) {
 					request.setAttribute("texts", list);
 					gotoPage(request, response, "/Text/textSearchResultMg.jsp");
 				} else {
