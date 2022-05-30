@@ -5,38 +5,55 @@
 <head>
 <meta charset="UTF-8">
 <title>DeleteConfirmation</title>
+<link rel="stylesheet" type="text/css"
+	href="/textbook/CSS/memDelete.css">
 </head>
 <body>
 
-	<h3>退会確認画面</h3>
-
+	<h1>退会確認画面</h1>
+	
 	<form action="/textbook/MemberServlet?action=decision" method="post">
-		<table border="1">
-			<tr>
-				<td>ID</td>
-				<td>名前</td>
-				<td>メール</td>
-				<td>パスワード</td>
-			</tr>
+	
+	<table class="customer">
+		<tr>
+			<th class="customer-item">ID</th>
+			<td class="customer-body">${member_search.user_id}</td>
+		</tr>
+
+		<tr>
+			<th class="customer-item">名前</th>
+			<td class="customer-body">${member_search.name}</td>
+		</tr>
+
+		<tr>
+			<th class="customer-item">メールアドレス</th>
+			<td class="customer-body">${member_search.email}</td>
+		</tr>
+
+		<tr>
+			<th class="customer-item">パスワード</th>
+			<td class="customer-body">${member_search.pass}</td>
+		</tr>
 
 
+	</table>
+<br>
+		<div class="buttons">
+			<button class="button2" type="button" name="back" value="前ページに戻る"
+				onclick="javascript:location.href='/textbook/Member/memSearchResult.jsp'">前ページに戻る</button>
+			<br>
+			<button class="button1" type="submit" value="削除">削除</button>
+		</div>
+		<button class="goodbye" type="button" name="logout" value="ログアウト"
+			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
 
-			<tr>
-				<td>${member_search.user_id}</td>
-				<td>${member_search.name}</td>
-				<td>${member_search.email}</td>
-				<td>${member_search.pass}</td>
-			</tr>
+	
+		
 
-		</table>
-		<br>
-		<table border="0">
+		</form>
+	
+		
 			<input type="hidden" name="user_id" value="${member2.user_id}">
-			<tr>
-				<td><input type="submit" value="削除">
-					</form> <input type="button" name="back" value="前ページに戻る"
-					onclick="javascript:history.back()"> <input type="button"
-					name="logout" value="ログアウト"
-					onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+			
 </body>
 </html>
