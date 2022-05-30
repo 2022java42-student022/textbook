@@ -74,9 +74,16 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession(false);
 			if (session != null) {
 				CartBean cart = (CartBean) session.getAttribute("cart");
+				if (cart == null) {
+					session.invalidate();
+					request.setAttribute("message", "ログアウトが完了しました。");
+					gotoPage(request, response, "complete.jsp");
+					return;
+				}
 				AppCartBean app_cart = (AppCartBean) getServletContext().getAttribute("app_cart");
 				for (TextBean text : cart.getTexts()) {
 					app_cart.removeApp_cart(Integer.valueOf(text.getText_id()));
+					break;
 				}
 				session.invalidate();
 				request.setAttribute("message", "ログアウトが完了しました。");

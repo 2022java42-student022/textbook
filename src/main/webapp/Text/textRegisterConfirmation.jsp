@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,9 @@
 <h2>教科書登録確認画面</h2>
 
 <form action="/textbook/TextServlet?action=register" method="post">
-			<p>ISBN:${text.ISBN}<p>
+			<p>ISBN:
+			<fmt:formatNumber value="${text.ISBN}" pattern="0000000000000" />
+			<p>
 			<p>タイトル:${text.title}<p>
 			<p>分類:${text.dep_name}<p>
 			<p>著者:${text.author}<p>
