@@ -191,4 +191,5 @@
   .goodbye {
     display: block;
     margin: 0 auto;
+    padding: 1em 1em 1em 1em;
   }
