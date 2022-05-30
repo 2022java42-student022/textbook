@@ -1,7 +1,6 @@
 package bean;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Timer;
@@ -27,13 +26,13 @@ public class AppCartBean {
 	}
 
 	public void removeApp_cartTimerTask(CartBean cart) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Timer timer = new Timer(false);
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
 				for (TextBean text : cart.getTexts()) {
 					app_cart.remove(Integer.valueOf(text.getText_id()));
+					break;
 				}
 				timer.cancel();
 			}

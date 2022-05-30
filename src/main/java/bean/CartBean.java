@@ -2,7 +2,6 @@ package bean;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -36,18 +35,19 @@ public class CartBean implements Serializable {
 	}
 
 	public void removeCartTimerTask(CartBean cart) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Timer timer = new Timer(false);
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
 				for (TextBean text : cart.getTexts()) {
-					texts.remove(text.getText_id());
+					texts.remove(text);
+					break;
 				}
+				recalcTotal();
 				timer.cancel();
 			}
 		};
-		timer.schedule(task, 1800000);
+		timer.schedule(task, 1800000);// 30分=1800000
 	}
 
 	public int getTotal() {
