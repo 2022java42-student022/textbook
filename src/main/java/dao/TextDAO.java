@@ -29,7 +29,7 @@ public class TextDAO {
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, bean.getISBN());
+			st.setInt(1, bean.getISBN());
 			st.setInt(2, bean.getSort_id());
 			st.setString(3, bean.getTitle());
 			st.setString(4, bean.getAuthor());
@@ -52,7 +52,7 @@ public class TextDAO {
 			List<TextBean> list = new ArrayList<TextBean>();
 			while (rs.next()) {
 				int text_id = rs.getInt("text_id");
-				String ISBN = rs.getString("ISBN");
+				int ISBN = rs.getInt("ISBN");
 				String title = rs.getString("title");
 				int sort_id = rs.getInt("sort_id");
 				SortDAO sortDAO = new SortDAO();
@@ -80,7 +80,7 @@ public class TextDAO {
 				List<TextBean> list = new ArrayList<TextBean>();
 				while (rs.next()) {
 					int text_id = rs.getInt("text_id");
-					String ISBN = rs.getString("ISBN");
+					int ISBN = rs.getInt("ISBN");
 					String title = rs.getString("title");
 					int sort_id = rs.getInt("sort_id");
 					SortDAO sortDAO = new SortDAO();
@@ -113,7 +113,7 @@ public class TextDAO {
 				List<TextBean> list = new ArrayList<TextBean>();
 				while (rs.next()) {
 					int text_id = rs.getInt("text_id");
-					String ISBN = rs.getString("ISBN");
+					int ISBN = rs.getInt("ISBN");
 					String title = rs.getString("title");
 					int sort_id = rs.getInt("sort_id");
 					SortDAO sortDAO = new SortDAO();
@@ -147,7 +147,7 @@ public class TextDAO {
 				List<TextBean> list = new ArrayList<TextBean>();
 				while (rs.next()) {
 					int text_id = rs.getInt("text_id");
-					String ISBN = rs.getString("ISBN");
+					int ISBN = rs.getInt("ISBN");
 					String title = rs.getString("title");
 					int sort_id = rs.getInt("sort_id");
 					SortDAO sortDAO = new SortDAO();
@@ -182,7 +182,7 @@ public class TextDAO {
 				List<TextBean> list = new ArrayList<TextBean>();
 				while (rs.next()) {
 					int text_id = rs.getInt("text_id");
-					String ISBN = rs.getString("ISBN");
+					int ISBN = rs.getInt("ISBN");
 					String title = rs.getString("title");
 					int sort_id = rs.getInt("sort_id");
 					SortDAO sortDAO = new SortDAO();
@@ -213,7 +213,7 @@ public class TextDAO {
 			st.setInt(1, text_id);
 			try (ResultSet rs = st.executeQuery();) {
 				while (rs.next()) {
-					String ISBN = rs.getString("ISBN");
+					int ISBN = rs.getInt("ISBN");
 					String title = rs.getString("title");
 					int sort_id = rs.getInt("sort_id");
 					SortDAO sortDAO = new SortDAO();
@@ -241,7 +241,7 @@ public class TextDAO {
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, bean.getISBN());
+			st.setInt(1, bean.getISBN());
 			st.setString(2, bean.getTitle());
 			st.setInt(3, bean.getSort_id());
 			st.setString(4, bean.getAuthor());
@@ -267,7 +267,7 @@ public class TextDAO {
 			try (ResultSet rs = st.executeQuery();) {
 				TextBean bean = null;
 				while (rs.next()) {
-					String ISBN = rs.getString("ISBN");
+					int ISBN = rs.getInt("ISBN");
 					String title = rs.getString("title");
 					int sort_id = rs.getInt("sort_id");
 					SortDAO sortDAO = new SortDAO();
@@ -322,7 +322,7 @@ public class TextDAO {
 					int sort_id = rs.getInt("sort_id");
 					SortDAO sortDAO = new SortDAO();
 					String dep_name = sortDAO.findDep_name(sort_id);
-					String ISBN = rs.getString("ISBN");
+					int ISBN = rs.getInt("ISBN");
 					String title = rs.getString("title");
 					String author = rs.getString("author");
 					int price = rs.getInt("price");

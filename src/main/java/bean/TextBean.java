@@ -3,7 +3,7 @@ package bean;
 public class TextBean {
 
 	private int text_id;
-	private String ISBN ;
+	private int ISBN ;
 	private String title;
 	private int sort_id ;
 	private String author;
@@ -17,7 +17,7 @@ public class TextBean {
 		this.title = title;
 	}
 
-	public TextBean(int text_id, String ISBN, String title, int sort_id, String dep_name, String author, int price,
+	public TextBean(int text_id, int ISBN, String title, int sort_id, String dep_name, String author, int price,
 			String use) {
 		this.text_id = text_id;
 		this.ISBN = ISBN;
@@ -30,7 +30,7 @@ public class TextBean {
 	}
 
 	
-	public TextBean(int text_id, int user_id, String ISBN, String title, int sort_id, String dep_name, String author, int price,
+	public TextBean(int text_id, int user_id, int ISBN, String title, int sort_id, String dep_name, String author, int price,
 			String use) {
 		this.text_id = text_id;
 		this.user_id = user_id;
@@ -45,7 +45,7 @@ public class TextBean {
 	
 
 
-	public TextBean(int text_id, String ISBN, String title, int sort_id, String dep_name, String author, int price) {
+	public TextBean(int text_id, int ISBN, String title, int sort_id, String dep_name, String author, int price) {
 		this.text_id = text_id;
 		this.ISBN = ISBN;
 		this.title = title;
@@ -72,7 +72,7 @@ public class TextBean {
 		this.user_id = user_id;
 	}
 
-	public TextBean(String ISBN, String title, int sort_id, String author, int price) {
+	public TextBean(int ISBN, String title, int sort_id, String author, int price) {
 
 		this.ISBN = ISBN;
 		this.title = title;
@@ -82,11 +82,11 @@ public class TextBean {
 	}
 
 	
-	public String getISBN() {
+	public int getISBN() {
 		return ISBN;
 	}
 
-	public void setISBN(String ISBN) {
+	public void setISBN(int ISBN) {
 		this.ISBN = ISBN;
 	}
 
