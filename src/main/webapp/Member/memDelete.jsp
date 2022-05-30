@@ -26,7 +26,7 @@
 <br>
 		<div class="buttons">
 			<button class="button2" type="button" name="back" value="前ページに戻る"
-				onclick="javascript:location.href='/textbook/Login/memHome.jsp'">前ページに戻る</button>
+				onclick="javascript:history.back()">前ページに戻る</button>
 			<br>
 			<button class="button1" type="submit" value="退会">退会</button>
 		</div>
