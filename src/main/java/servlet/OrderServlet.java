@@ -78,12 +78,12 @@ public class OrderServlet extends HttpServlet {
 				ArrayList<String> soldcheck = new ArrayList<String>();
 				List<TextBean> texts = cart.getTexts();
 				for (TextBean text : texts) {
-					int soldout = order.checkSoldOut(text_id);
-					if (soldout != 1) {
+					int soldout = order.checkSoldOut(text.getText_id());
+					if (soldout == 1) {
 						soldcheck.add(text.getTitle());
 					}
 				}
-				if (soldcheck.size() != 0) {
+				if (soldcheck.size() == 1) {
 					String msg = String.join(",", soldcheck) + "は売り切れています。";
 					request.setAttribute("message", msg);
 					gotoPage(request, response, "/error.jsp");
@@ -93,6 +93,9 @@ public class OrderServlet extends HttpServlet {
 				 
 					int user_id = (Integer)session.getAttribute("user_id"); 
 					int orderID = order.orderMem(check, cart, user_id);
+					for (TextBean text : texts) {
+						order.sendSoldOut(text.getText_id());
+					}
 					
 					session.removeAttribute("cart");
 					session.removeAttribute("check");

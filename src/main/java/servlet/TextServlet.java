@@ -36,7 +36,7 @@ public class TextServlet extends HttpServlet {
 				ISBN = String.format("%013d", Integer.parseInt(request.getParameter("ISBN")));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
-				request.setAttribute("message", "ISBNに数値を入力してください(13桁)");
+				request.setAttribute("message", "ISBNに13桁の数値を入力してください");
 				gotoPage(request, response, "/error.jsp");
 			}
 		}

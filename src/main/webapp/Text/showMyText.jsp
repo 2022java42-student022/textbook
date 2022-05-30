@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,7 @@
 			</tr>
 			<c:forEach items="${textbooks}" var="textbooks">
 				<tr>
-					<td align="center">${textbooks.ISBN}</td>
+					<td align="center"><fmt:formatNumber value="${textbooks.ISBN}" pattern="0000000000000" /></td>
 					<td align="center">${textbooks.title}</td>
 					<td align="center">${textbooks.dep_name}</td>
 					<td align="center">${textbooks.author}</td>
