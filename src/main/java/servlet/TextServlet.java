@@ -33,7 +33,7 @@ public class TextServlet extends HttpServlet {
 			ISBN = "";
 		} else if (request.getParameter("ISBN").length() != 0) {
 			try {
-				ISBN = String.format("%013d", Integer.parseInt(request.getParameter("ISBN")));
+				ISBN = String.format("%013d", Long.parseLong(request.getParameter("ISBN")));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 				request.setAttribute("message", "ISBNに13桁の数値を入力してください");
@@ -67,7 +67,7 @@ public class TextServlet extends HttpServlet {
 					try {
 						int text_price = Integer.parseInt(price);
 						int text_sort_id = Integer.parseInt(sort_id);
-						int text_ISBN = Integer.parseInt(ISBN);
+						long text_ISBN = Long.parseLong(ISBN);
 
 						TextBean bean = new TextBean();
 						bean.setPrice(text_price);
@@ -201,7 +201,7 @@ public class TextServlet extends HttpServlet {
 					try {
 						int text_price = Integer.parseInt(price);
 						int text_sort_id = Integer.parseInt(sort_id);
-						int text_ISBN = Integer.parseInt(ISBN);
+						long text_ISBN = Long.parseLong(ISBN);
 
 						TextBean bean = new TextBean();
 						bean.setPrice(text_price);
