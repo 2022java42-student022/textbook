@@ -28,7 +28,7 @@
 			</tr>
 			<c:forEach items="${textbooks}" var="textbooks">
 				<tr>
-					<td align="center"><fmt:formatNumber value="${text.ISBN}" pattern="0000000000000" /></td>
+					<td align="center"><fmt:formatNumber value="${textbooks.ISBN}" pattern="0000000000000" /></td>
 					<td align="center">${textbooks.title}</td>
 					<td align="center">${textbooks.dep_name}</td>
 					<td align="center">${textbooks.author}</td>
