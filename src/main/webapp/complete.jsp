@@ -22,11 +22,11 @@
 	--%>
 	<c:when test="${login eq 'manager'}">
 		<button class = "goodbye" type="button" name="restart" value="ホームページへ"
-			onclick="javascript:location.href='/textbook/Login/mgHome.jsp'">ホームページへ</button>
+			onclick="javascript:location.href='/textbook/Login/mgHome.jsp'">ホームへ</button><br>
 	</c:when>
 	<c:when test="${login eq 'member'}">
 		<button class = "goodbye" type="button" name="restart" value="ホームページへ"
-			onclick="javascript:location.href='/textbook/Login/memHome.jsp'">ホームページへ</button>
+			onclick="javascript:location.href='/textbook/Login/memHome.jsp'">ホームへ</button><br>
 	</c:when>
 	<c:when test="${login eq 'register'}">
 			<button class = "goodbye" type="button" name="restart" value="ログインページへ"
