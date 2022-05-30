@@ -10,6 +10,7 @@
 </head>
 <body>
 	<div align="center">
+	<br>
 		<h1>会員登録</h1>
 	</div>
 
