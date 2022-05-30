@@ -24,22 +24,22 @@ public class MemberDeleteServlet extends HttpServlet {
 
 			String email = request.getParameter("email");
 			String pass = request.getParameter("pass");
-			
+
 			HttpSession session = request.getSession(false);
 			String str = (String) session.getAttribute("email");
 			String userpass = (String) session.getAttribute("pass");
 			int userid = (int) session.getAttribute("user_id");
-			
-			if (email.equals(str)&& pass.equals(userpass)) {
-				dao.deleteByPrimaryuser(userid);
 
+			if (email.equals(str) && pass.equals(userpass)) {
+				dao.deleteByPrimaryuser(userid);
+				session.invalidate();
 				request.setAttribute("message", "削除されました。");
 
 				gotoPage(request, response, "/complete.jsp");
 				return;
 			} else {
 				request.setAttribute("message", "メールまたはパスワードが違います。");
-				gotoPage(request, response, "/error.jsp"); 
+				gotoPage(request, response, "/error.jsp");
 				return;
 			}
 		} catch (DAOException e) {

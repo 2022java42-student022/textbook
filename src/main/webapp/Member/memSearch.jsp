@@ -11,15 +11,14 @@
 <h3>会員検索</h3>
 
 <form action="/textbook/MemberServlet?action=search" method="post">
-			<p>メールアドレス<input type="text" name="email" size="40"> <p>
+			<p>メールアドレス<input type="text" name="email" size="40" placeholder="メールアドレスを入力してください" required> <p>
 			
-		<p><input type="submit" value="検索"></p>
-		
-	</form>
-	<input type="button" name="back" value="前ページに戻る"
+		<input type="submit" value="検索">
+		<input type="button" name="back" value="前ページに戻る"
 			onclick="javascript:history.back()">
 	<input type="button" name="logout" value="ログアウト"
 		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
-
+	</form>
+	
 </body>
 </html>

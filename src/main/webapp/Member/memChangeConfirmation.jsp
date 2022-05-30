@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,13 +32,12 @@
 		<h5>上記の内容でお間違えありませんか？</h5>
 
 
-<input type="submit" value="変更">
-
+		<input type="submit" value="変更"> <input type="button"
+			name="back" value="前ページに戻る" onclick="javascript:history.back()">
+		<input type="button" name="logout" value="ログアウト"
+			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 
 	</form>
-	<input type="button" name="back" value="前ページに戻る"
-			onclick="javascript:history.back()">
-	<input type="button" name="logout" value="ログアウト"
-		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+
 </body>
 </html>

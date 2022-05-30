@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,7 @@
 		</tr>
 		<c:forEach items="${texts}" var="text">
 			<tr>
-				<td>${text.ISBN}</td>
+				<td><fmt:formatNumber value="${text.ISBN}" pattern="0000000000000" /></td>
 				<td>${text.title}</td>
 				<td>${text.dep_name}</td>
 				<td>${text.author}</td>
@@ -42,10 +42,12 @@
 
 	<br>
 	<br>
-
+	<input type="button" name="logout" value="カートの確認"
+		onclick="javascript:location.href='/textbook/CartServlet?action=show'">
+	<br>
 	<input type="button" name="back" value="前ページに戻る"
-			onclick="javascript:history.back()">
-    <input type="button" name="logout" value="ログアウト"
-		    onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+		onclick="javascript:history.back()">
+	<input type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
 </body>
 </html>
