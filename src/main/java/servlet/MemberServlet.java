@@ -155,6 +155,7 @@ public class MemberServlet extends HttpServlet {
 				// 変更確認画面→完了画面
 				if (member2 != null) {
 					dao.changeByPrimaryuser(member2);
+					session.setAttribute("memberchange", member2);
 					request.setAttribute("message", "変更が完了しました。");
 					gotoPage(request, response, "/complete.jsp");
 				}

@@ -15,19 +15,10 @@
 	<form action="/textbook/MemberDeleteServlet" method="post">
 	<table class="customer">
 
-		<tr>
-				<th class="customer-item">メールアドレス</th>
-				<td class="customer-body"><input type="email" name="email"
-					value="${member_search.email}" size="40"
-					placeholder="メールアドレスを入力してください" class="form-text" required></td>
-			</tr>
-
-
-
 			<tr>
 				<th class="customer-item">パスワード</th>
 				<td class="customer-body"><input type="pass" name="pass"
-					class="form-text" value="${member_search.pass}" size="25"
+					class="form-text" size="25"
 					placeholder="パスワードを入力してください" required></td>
 			</tr>
 
@@ -35,7 +26,7 @@
 <br>
 		<div class="buttons">
 			<button class="button2" type="button" name="back" value="前ページに戻る"
-				onclick="javascript:location.href='/textbook/Login/memHome.jsp'">前ページに戻る</button>
+				onclick="javascript:history.back()">前ページに戻る</button>
 			<br>
 			<button class="button1" type="submit" value="退会">退会</button>
 		</div>
