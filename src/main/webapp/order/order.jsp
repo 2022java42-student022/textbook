@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>注文完了</title>
 <link rel="stylesheet" type="text/css"
-	href="/textbook/CSS/memberInfo.css">
+	href="/textbook/CSS/order.css">
 </head>
 <body>
 <% LocalDate today = LocalDate.now(); %>
@@ -28,8 +28,8 @@
 				<td class="order-body">${orderID}</td>
 			</tr>
 			<tr>
-				<th class="order-th">注文の合計</th>
-				<td class="order-body">${cart.total}</td>
+				<%--<th class="order-th">注文の合計</th>
+				<td class="order-body">${cart.total}</td>--%>
 			</tr>
 		</table>
 		<br>
