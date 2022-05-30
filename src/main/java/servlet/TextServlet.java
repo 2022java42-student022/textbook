@@ -25,18 +25,22 @@ public class TextServlet extends HttpServlet {
 
 		String action = request.getParameter("action");
 		String sort_id = request.getParameter("sort_id");
-		String ISBN;
-		
-		//ISBNを13桁に指定
-		//桁数が未満の数値は0を自動的に追加
+		String ISBN = request.getParameter("ISBN");
+
+		// ISBNを13桁に指定
+		// 桁数が未満の数値は0を自動的に追加
 		if (request.getParameter("ISBN") == null) {
 			ISBN = "";
 		} else if (request.getParameter("ISBN").length() != 0) {
-			ISBN = String.format("%013d", Integer.parseInt(request.getParameter("ISBN")));
-		} else {
-			ISBN = request.getParameter("ISBN");
+			try {
+				ISBN = String.format("%013d", Integer.parseInt(request.getParameter("ISBN")));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				request.setAttribute("message", "ISBNに数値を入力してください(13桁)");
+				gotoPage(request, response, "/error.jsp");
+			}
 		}
-		
+
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String price = request.getParameter("price");
@@ -56,18 +60,19 @@ public class TextServlet extends HttpServlet {
 				gotoPage(request, response, "/error.jsp");
 
 			} else if (action.equals("preRegister")) {
-				if (ISBN.length() == 0 || title.length() == 0 || author.length() == 0 || use.length() == 0) {
+				if (title.length() == 0 || author.length() == 0 || use.length() == 0) {
 					request.setAttribute("message", "値を入力してください");
 					gotoPage(request, response, "/error.jsp");
 				} else {
 					try {
 						int text_price = Integer.parseInt(price);
 						int text_sort_id = Integer.parseInt(sort_id);
+						int text_ISBN = Integer.parseInt(ISBN);
 
 						TextBean bean = new TextBean();
 						bean.setPrice(text_price);
 						bean.setSort_id(text_sort_id);
-						bean.setISBN(ISBN);
+						bean.setISBN(text_ISBN);
 						bean.setTitle(title);
 						bean.setAuthor(author);
 						bean.setUse(use);
@@ -78,7 +83,7 @@ public class TextServlet extends HttpServlet {
 						gotoPage(request, response, "/Text/textRegisterConfirmation.jsp");
 					} catch (NumberFormatException e) {
 						e.printStackTrace();
-						request.setAttribute("message", "値段に数値を入力してください");
+						request.setAttribute("message", "正しい数値を入力してください");
 						gotoPage(request, response, "/error.jsp");
 					}
 				}
@@ -189,18 +194,19 @@ public class TextServlet extends HttpServlet {
 
 				// 選択した教科書の内容変更
 			} else if (action.equals("preChange")) {
-				if (ISBN.length() == 0 || title.length() == 0 || author.length() == 0 || use.length() == 0) {
+				if (title.length() == 0 || author.length() == 0 || use.length() == 0) {
 					request.setAttribute("message", "値を入力してください");
 					gotoPage(request, response, "/error.jsp");
 				} else {
 					try {
 						int text_price = Integer.parseInt(price);
 						int text_sort_id = Integer.parseInt(sort_id);
+						int text_ISBN = Integer.parseInt(ISBN);
 
 						TextBean bean = new TextBean();
 						bean.setPrice(text_price);
 						bean.setSort_id(text_sort_id);
-						bean.setISBN(ISBN);
+						bean.setISBN(text_ISBN);
 						bean.setTitle(title);
 						bean.setAuthor(author);
 						bean.setUse(use);
