@@ -32,7 +32,7 @@ public class OrderServlet extends HttpServlet {
 		}
 
 		CartBean cart = (CartBean) session.getAttribute("cart");
-		if(cart == null) {   
+		if (cart == null) {
 			request.setAttribute("message", "正しく操作してください。");
 			gotoPage(request, response, "/error.jsp");
 			return;
@@ -46,6 +46,9 @@ public class OrderServlet extends HttpServlet {
 			String email = request.getParameter("email");
 			String pay = request.getParameter("pay");
 			if (action == null || action.length() == 0 || action.equals("input_member")) {
+				int user_id = (int) session.getAttribute("user_id");
+				OrderDAO dao = new OrderDAO();
+				request.setAttribute("mem_detail", dao.shearchByUser_id(user_id));
 				gotoPage(request, response, "/order/memberInfo.jsp");
 			}
 			if (action.equals("confirm")) {
@@ -74,7 +77,7 @@ public class OrderServlet extends HttpServlet {
 				}
 
 				OrderDAO order = new OrderDAO();
-				//購入済みか否か判定する
+				// 購入済みか否か判定する
 				ArrayList<String> soldcheck = new ArrayList<String>();
 				List<TextBean> texts = cart.getTexts();
 				for (TextBean text : texts) {
@@ -89,19 +92,18 @@ public class OrderServlet extends HttpServlet {
 					gotoPage(request, response, "/error.jsp");
 					return;
 				}
-				
-				 
-					int user_id = (Integer)session.getAttribute("user_id"); 
-					int orderID = order.orderMem(check, cart, user_id);
-					for (TextBean text : texts) {
-						order.sendSoldOut(text.getText_id());
-					}
-					
-					session.removeAttribute("cart");
-					session.removeAttribute("check");
-					request.setAttribute("orderID", Integer.valueOf(orderID));
-					gotoPage(request, response, "/order/order.jsp");
-				
+
+				int user_id = (int) session.getAttribute("user_id");
+				int orderID = order.orderMem(check, cart, user_id);
+				for (TextBean text : texts) {
+					order.sendSoldOut(text.getText_id());
+				}
+
+				session.removeAttribute("cart");
+				session.removeAttribute("check");
+				request.setAttribute("orderID", Integer.valueOf(orderID));
+				gotoPage(request, response, "/order/order.jsp");
+
 			} else {
 				request.setAttribute("message", "正しく操作してください。");
 				gotoPage(request, response, "/error.jsp");
