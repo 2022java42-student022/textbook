@@ -10,7 +10,6 @@
 	href="/textbook/CSS/memRegisterConfirmation.css">
 </head>
 <body>
-<div align="center">
 <br>
 <h2>教科書登録確認画面</h2>
 
