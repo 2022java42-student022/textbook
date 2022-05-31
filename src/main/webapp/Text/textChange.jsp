@@ -28,7 +28,9 @@
 
 			<tr>
 				<th class="customer-item">分類</th>
-				<td class="customer-body"><select size="1" name="sort_id">
+				<td class="customer-body">
+				<select size="1" name="sort_id">
+					    <option value="" selected></option>
 						<option value="1">文学部系</option>
 						<option value="2">教育学部系</option>
 						<option value="3">法学部系</option>
@@ -63,13 +65,13 @@
 			<button class=goodbye type="submit" value="変更">変更</button>
 		</div>
 
-		<div class="buttons">
+		<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<button class="button2" type="button" name="back" value="前ページに戻る"
-				onclick="javascript:history.back()">前ページに戻る</button>
+				onclick="javascript:history.back()">前ページに戻る</button><br>
 			<button class="goodbye" type="button" name="logout" value="ログアウト"
 				onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
-		</div>
+		
 	</form>
 
 

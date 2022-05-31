@@ -41,12 +41,12 @@
 
 		</table>
 		<br>
-		<div class="buttons">
-			<button class="button2" type="button" name="back" value="前ページに戻る"
-				onclick="javascript:history.back()">前ページに戻る</button>
-			<br>
-			<button class="button1" type="submit" value="送信">送信</button>
-		</div>
+
+		<button class="button1" type="submit" value="送信">送信</button><br>
+		<button class="button2" type="button" name="back" value="前ページに戻る"
+			onclick="javascript:history.back()">前ページに戻る</button>
+		<br>
+
 		<button class="goodbye" type="button" name="logout" value="ログアウト"
 			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
 
