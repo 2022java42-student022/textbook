@@ -17,8 +17,10 @@
 
 			<tr>
 				<th class="customer-item">パスワード</th>
+
 				<td class="customer-body"><input type="pass" name="pass"
 					class="form-text" size="25" placeholder="パスワードを入力してください" required></td>
+
 			</tr>
 
 		</table>

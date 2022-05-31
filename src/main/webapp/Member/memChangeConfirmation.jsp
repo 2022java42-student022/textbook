@@ -14,11 +14,7 @@
 
 	<form action="/textbook/MemberServlet?action=comfirm" method="post">
 	<table class="customer">
-		<tr>
-			<th class="customer-item">ID</th>
-			<td class="customer-body">${member2.user_id}</td>
-		</tr>
-
+		
 		<tr>
 			<th class="customer-item">名前</th>
 			<td class="customer-body">${member2.name}</td>

@@ -9,7 +9,6 @@
 	href="/textbook/CSS/textChange.css">
 </head>
 <body>
-	<div align="center">
 		<h2>教科書登録画面</h2>
 
 		<form action="/textbook/TextServlet?action=preRegister" method="post">
