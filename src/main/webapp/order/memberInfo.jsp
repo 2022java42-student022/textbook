@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +28,8 @@
 				</tr>
 				<c:forEach items="${cart.texts}" var="text">
 					<tr>
-						<td class="order-body">${text.ISBN}</td>
+						<td class="order-body"><fmt:formatNumber value="${text.ISBN}"
+							pattern="0000000000000" />${text.ISBN}</td>
 						<td class="order-body">${text.title}</td>
 						<td class="order-body">${text.dep_name}</td>
 						<td class="order-body">${text.author}</td>
@@ -69,7 +71,8 @@
 					<th class="customer-item">支払い方法</th>
 					<td class="customer-body"><label class="customer-pay">
 							<input type="radio" name="pay" value="クレジットカード" />クレジットカード
-					</label> <label class="customer-pay"> <input type="radio" name="pay" value="銀行振込" />銀行振込
+					</label> <label class="customer-pay"> <input type="radio"
+							name="pay" value="銀行振込" />銀行振込
 					</label> <label class="customer-pay"> <input type="radio"
 							name="pay" value="代引き" />代引き
 					</label></td>
@@ -77,13 +80,13 @@
 			</table>
 			<br>
 
-			<div class="buttons">
-				<button class="button2" type="button" name="back" value="前ページに戻る"
-					onclick="javascript:location.href='/textbook/cart/cart.jsp'">前ページに戻る</button>
+
+			<button class="button1" type="submit" value="確認画面へ">確認画面へ</button><br>
+			<button class="button2" type="button" name="back" value="前ページに戻る"
+				onclick="javascript:location.href='/textbook/cart/cart.jsp'">前ページに戻る</button><br>
 			<button class="goodbye" type="button" name="logout" value="ログアウト"
-				onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
-				<button class="button1" type="submit" value="確認画面へ">確認画面へ</button>
-			</div>
+				onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button><br>
+
 		</form>
 	</div>
 

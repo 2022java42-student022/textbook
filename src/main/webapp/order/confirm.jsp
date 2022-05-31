@@ -68,13 +68,13 @@
 				</tr>
 			</table>
 			<br>
-			<div class="buttons">
+			
+				<button class="button1" type="submit" value="この内容で注文">この内容で注文</button><br>
 				<button class="button2" type="button" name="back" value="前ページに戻る"
-					onclick="javascript:location.href='/textbook/order/memberInfo.jsp'">前ページに戻る</button>
+					onclick="javascript:location.href='/textbook/order/memberInfo.jsp'">前ページに戻る</button><br>
 				<button class="goodbye" type="button" name="logout" value="ログアウト"
-					onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
-				<button class="button1" type="submit" value="この内容で注文">この内容で注文</button>
-			</div>
+					onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button><br>
+			
 		</form>
 	</div>
 </body>

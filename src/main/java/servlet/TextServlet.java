@@ -34,6 +34,11 @@ public class TextServlet extends HttpServlet {
 		} else if (request.getParameter("ISBN").length() != 0) {
 			try {
 				ISBN = String.format("%013d", Long.parseLong(request.getParameter("ISBN")));
+				if (!ISBN.matches("[0-9]{13}")) {
+					request.setAttribute("message", "ISBNに13桁の数値を入力してください");
+					gotoPage(request, response, "/error.jsp");
+					return;
+				}
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 				request.setAttribute("message", "ISBNに13桁の数値を入力してください");
