@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Text Register</title>
 <link rel="stylesheet" type="text/css"
-	href="/textbook/CSS/memRegisterConfirmation.css">
+	href="/textbook/CSS/textChange.css">
 </head>
 <body>
 	<div align="center">
@@ -55,7 +55,7 @@
 				</tr>
 				<tr>
 					<th class="customer-item">分類</th>
-					<td class="customer-body"><select class="select_dep" size="1"
+					<td class="customer-body"><select  size="1"
 						name="sort_id">
 							<option value="1">文学部系</option>
 							<option value="2">教育学部系</option>
@@ -78,7 +78,7 @@
 				</tr>
 				<tr>
 					<th class="customer-item">金額</th>
-					<td class="customer-body"><input type="text" name="price"
+					<td class="customer-body"><input type="number" name="price"
 						placeholder="金額を入力してください" required class="form-text"></td>
 				</tr>
 

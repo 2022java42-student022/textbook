@@ -50,22 +50,22 @@
 				<tr>
 					<th class="customer-item">名前</th>
 					<td class="customer-body"><input type="text" name="name"
-						class="form-text"></td>
+						class="form-text" value="${mem_detail.name}"></td>
 				</tr>
 				<tr>
 					<th class="customer-item">住所</th>
 					<td class="customer-body"><input type="text" name="address"
-						class="form-text"></td>
+						class="form-text" value="${mem_detail.address}"></td>
 				</tr>
 				<tr>
 					<th class="customer-item">電話番号</th>
 					<td class="customer-body"><input type="text" name="tel"
-						class="form-text"></td>
+						class="form-text" value="${mem_detail.tel}"></td>
 				</tr>
 				<tr>
 					<th class="customer-item">メールアドレス</th>
 					<td class="customer-body"><input type="email" name="email"
-						class="form-text"></td>
+						class="form-text" value="${mem_detail.email}"></td>
 				</tr>
 				<tr>
 					<th class="customer-item">支払い方法</th>

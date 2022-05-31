@@ -28,7 +28,9 @@
 
 			<tr>
 				<th class="customer-item">分類</th>
-				<td class="customer-body"><select size="1" name="sort_id">
+				<td class="customer-body">
+				<select size="1" name="sort_id">
+					    <option value="" selected></option>
 						<option value="1">文学部系</option>
 						<option value="2">教育学部系</option>
 						<option value="3">法学部系</option>
