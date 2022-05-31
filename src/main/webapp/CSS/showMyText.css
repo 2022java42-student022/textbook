@@ -14,7 +14,7 @@ body {
 }
 
 .order-table {
-  width: 500px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -27,19 +27,12 @@ body {
 
 .order-th {
   text-align: center;
-  width: 50px;
+  width: 10%;
   background-color: #eee;
-}
-
-.order-td {
-  text-align: center;
-  width: 30%;
-
 }
 
 .order-body {
   text-align: center;
-  width: 150px;
 }
 
 .order-total {
@@ -69,8 +62,8 @@ h3 {
   text-align: center;
 }
 
-h1 {
-  font-size:30px;
+h5 {
+  font-size:20px;
   font-weight: bold;
   margin-bottom: 40px;
   text-align: center;
