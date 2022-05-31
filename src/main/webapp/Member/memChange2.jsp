@@ -31,7 +31,7 @@
 			
 		<tr>
 				<th class="customer-item">パスワード</th>
-				<td class="customer-body"><input type="pass" name="pass"
+				<td class="customer-body"><input type="password" name="pass"
 					class="form-text" value="${memberchange.pass}" size="25"
 					placeholder="パスワードを入力してください" required></td>
 			</tr>
@@ -45,8 +45,8 @@
 			<br>
 			<button class="button1" type="submit" value="送信">送信</button>
 		</div>
-		<input class="goodbye" type="button" name="logout" value="ログアウト"
-			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+		<button class="goodbye" type="button" name="logout" value="ログアウト"
+			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
 		
 	</form>
 
