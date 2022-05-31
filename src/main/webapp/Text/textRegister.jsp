@@ -88,6 +88,7 @@
 						placeholder="使用状況を入力してください" required class="form-text"></td>
 				</tr>
 			</table>
+			<br>
 
 			<div class="buttons">
 				<button class="button1" type="submit" value="登録" type="button"

@@ -92,7 +92,7 @@
 
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<!-- JavaScript -->
-	<button class = "goodbye" type="button" name="logout" value="カートの確認"
+	<button class = "button1" type="button" name="logout" value="カートの確認"
 		onclick="javascript:location.href='/textbook/CartServlet?action=show'">カートの確認</button>
 	<br>
 	<button class = "button2" type="button" name="back" value="前ページに戻る"
