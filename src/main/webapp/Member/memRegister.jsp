@@ -38,7 +38,7 @@
 		<div class="buttons">
 			<button class="button1" type="submit" value="送信" type="button"
 				name="back" value="前ページに戻る"
-				onclick="javascript:location.href='/textbook/MemberServlet?action=preRegister'">登録
+				onclick="javascript:history.back()">登録
 			</button>
 		</div>
 		<br>
