@@ -33,12 +33,12 @@
 			</tr>
 		</table>
 		<br>
-		<div class="buttons">
+		
 			<button class="goodbye" type="button" name="restart" value="ホームページへ"
-				onclick="javascript:location.href='/textbook/Login/memHome.jsp'">ホームへ</button>
+				onclick="javascript:location.href='/textbook/Login/memHome.jsp'">ホームへ</button><br>
 			<button class="goodbye" type="button" name="logout" value="ログアウト"
 				onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
-		</div>
+		
 	</div>
 </body>
 </html>
