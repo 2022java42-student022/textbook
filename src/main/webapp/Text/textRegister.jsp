@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Text Register</title>
 <link rel="stylesheet" type="text/css"
-	href="/textbook/CSS/textRegister.css">
+	href="/textbook/CSS/memRegisterConfirmation.css">
 </head>
 <body>
 	<div align="center">
