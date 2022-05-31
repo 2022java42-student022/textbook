@@ -40,7 +40,7 @@
 		<br>
 		<div class="buttons">	
 		<button class="goodbye" type="button" name="logout" value="ログインページへ"
-			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログインページへ</button>
+			onclick="javascript:location.href='/textbook/LoginServlet?action=noregister'">ログインページへ</button>
 	</div>
 	</form>
 
