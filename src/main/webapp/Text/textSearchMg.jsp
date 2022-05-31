@@ -12,7 +12,7 @@
 
 	<h2>管理者用教科書検索画面</h2>
 
-	<form action="/textbook/TextServlet?action=search_title_member"
+	<form action="/textbook/TextServlet?action=search_title_mg"
 		method="post">
 		<table class="customer">
 			<tr>
