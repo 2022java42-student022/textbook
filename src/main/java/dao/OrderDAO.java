@@ -76,7 +76,7 @@ public class OrderDAO {
 			st.setString(3, check.getEmail());
 			st.setString(4, check.getTel());
 			st.setString(5, check.getPay());
-			st.setInt(6, check.getUser_id());
+			st.setInt(6, user_id);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,6 +126,33 @@ public class OrderDAO {
 			throw new DAOException("レコードの操作に失敗しました。");
 		}
 
+	}
+	
+	public OrderCheckBean shearchByUser_id(int user_id)  throws DAOException {
+		String sql = "SELECT * FROM member WHERE user_id = ?";
+		OrderCheckBean bean = new OrderCheckBean();
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setInt(1, user_id);
+
+			try (ResultSet rs = st.executeQuery();) {
+				if (rs.next()) {
+					bean.setName(rs.getString("name"));
+					bean.setAddress(rs.getString("address"));
+					bean.setTel(rs.getString("tel_no"));
+					bean.setEmail(rs.getString("email"));
+					return bean;
+				} else {
+					return null;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました。");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。");
+		}
 	}
 
 }
