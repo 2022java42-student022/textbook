@@ -53,18 +53,17 @@
 	<c:if test="${not empty cart.texts }">
 		<form action="/textbook/OrderServlet?action=input_member"
 			method="post">
+			<br>
 			<button class="button1" type="submit" value="注文する">注文する</button>
 		</form>
 	</c:if>
 	<br>
-	<button class="button1" type="button" name="restart" value="教科書再検索"
+	<button class="button2" type="button" name="restart" value="教科書再検索"
 		onclick="javascript:location.href='/textbook/Text/textSearchMember.jsp'">教科書再検索</button>
 	<br>
-	<div class="buttons">
-		<button class="button2" type="button" name="back" value="前ページに戻る"
-			onclick="javascript:history.back()">前ページに戻る</button>
-		<button class="goodbye" type="button" name="logout" value="ログアウト"
-			onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
-	</div>
+
+	<button class="goodbye" type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
+
 </body>
 </html>

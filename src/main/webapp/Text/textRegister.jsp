@@ -9,7 +9,6 @@
 	href="/textbook/CSS/textChange.css">
 </head>
 <body>
-	<div align="center">
 		<h2>教科書登録画面</h2>
 
 		<form action="/textbook/TextServlet?action=preRegister" method="post">
@@ -88,6 +87,7 @@
 						placeholder="使用状況を入力してください" required class="form-text"></td>
 				</tr>
 			</table>
+			<br>
 
 			<div class="buttons">
 				<button class="button1" type="submit" value="登録" type="button"
