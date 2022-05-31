@@ -24,7 +24,7 @@
 		</table>
 	</form>
 
-	<form action="/textbook/TextServlet?action=search_sort_id_member"
+	<form action="/textbook/TextServlet?action=search_sort_id_mg"
 		method="post">
 		<table class="customer">
 			<tr>
