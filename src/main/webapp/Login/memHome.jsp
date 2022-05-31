@@ -15,11 +15,11 @@
 
 	<hr>
 	<div align="center">
-		<a href="/textbook/Text/textSearchMember.jsp">教科書の検索</a> <br> <a
-			href="/textbook/Text/textRegister.jsp">教科書の登録</a> <br> <a
-			href="/textbook/Member/memChange2.jsp">会員情報の変更</a> <br> <a
-			href="/textbook/TextServlet?action=reference">登録済み教科書参照</a> <br>
-		<a href="/textbook/Member/memDelete.jsp">会員の退会</a>
+		 <a href="/textbook/Text/textSearchMember.jsp">教科書の検索</a> <br>
+	   	 <a href="/textbook/Text/textRegister.jsp">教科書の登録</a> <br>
+		 <a href="/textbook/TextServlet?action=reference">登録済み教科書参照</a> <br>
+		 <a href="/textbook/Member/memChange2.jsp">会員情報の変更</a> <br> 
+		 <a href="/textbook/Member/memDelete.jsp">会員の退会</a>
 	</div>
 	<br>
 	<br>
