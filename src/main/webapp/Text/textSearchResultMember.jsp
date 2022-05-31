@@ -6,34 +6,36 @@
 <html>
 <head>
 <title>Test Serch Result Member</title>
+<link rel="stylesheet" type="text/css"
+	href="/textbook/CSS/textChange.css">
 </head>
 <body>
 
 	<h2>教科書検索結果画面</h2>
 
 
-	<table border="1">
+	<table class = "order-table">
 		<tr>
-			<th>ISBN</th>
-			<th>タイトル</th>
-			<th>分類名</th>
-			<th>著者</th>
-			<th>金額</th>
-			<th>使用状況</th>
-			<th>カート</th>
+			<th class="order-th">ISBN</th>
+			<th class="order-th">タイトル</th>
+			<th class="order-th">分類名</th>
+			<th class="order-th">著者</th>
+			<th class="order-th">金額</th>
+			<th class="order-th">使用状況</th>
+			<th class="order-th">カート</th>
 		</tr>
 		<c:forEach items="${texts}" var="text">
 			<tr>
-				<td><fmt:formatNumber value="${text.ISBN}" pattern="0000000000000" /></td>
-				<td>${text.title}</td>
-				<td>${text.dep_name}</td>
-				<td>${text.author}</td>
-				<td>${text.price}</td>
-				<td>${text.use}</td>
-				<td>
+				<td class="order-body"><fmt:formatNumber value="${text.ISBN}" pattern="0000000000000" /></td>
+				<td class="order-body">${text.title}</td>
+				<td class="order-body">${text.dep_name}</td>
+				<td class="order-body">${text.author}</td>
+				<td class="order-body">${text.price}</td>
+				<td class="order-body">${text.use}</td>
+				<td class="order-body">
 					<form action="/textbook/CartServlet?action=add" method="post">
 						<input type="hidden" name="text_id" value="${text.text_id}">
-						<input type="submit" value="追加">
+						<button class = "goodbye" type="submit" value="追加">追加</button>
 					</form>
 				</td>
 			</tr>
@@ -42,12 +44,12 @@
 
 	<br>
 	<br>
-	<input type="button" name="logout" value="カートの確認"
-		onclick="javascript:location.href='/textbook/CartServlet?action=show'">
+	<button class = "goodbye" type="button" name="logout" value="カートの確認"
+		onclick="javascript:location.href='/textbook/CartServlet?action=show'">カートの確認</button>
 	<br>
-	<input type="button" name="back" value="前ページに戻る"
-		onclick="javascript:history.back()">
-	<input type="button" name="logout" value="ログアウト"
-		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">
+	<button class = "button2" type="button" name="back" value="前ページに戻る"
+		onclick="javascript:history.back()">前ページに戻る</button><br>
+	<button class = "goodbye" type="button" name="logout" value="ログアウト"
+		onclick="javascript:location.href='/textbook/LoginServlet?action=logout'">ログアウト</button>
 </body>
 </html>

@@ -14,7 +14,7 @@ body {
 }
 
 .order-table {
-  width: 500px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -27,19 +27,12 @@ body {
 
 .order-th {
   text-align: center;
-  width: 50px;
+  width: 10%;
   background-color: #eee;
-}
-
-.order-td {
-  text-align: center;
-  width: 30%;
-
 }
 
 .order-body {
   text-align: center;
-  width: 150px;
 }
 
 .order-total {
@@ -54,12 +47,16 @@ body {
 
 .customer-item {
   text-align: left;
-  width: 30%;
+  width: 20%;
   background-color:#eee;
 }
 
 .customer-body {
-  width: 70%;
+  width: 30%;
+}
+
+.customer-button {
+	width: 30%
 }
 
 h3 {
@@ -69,7 +66,7 @@ h3 {
   text-align: center;
 }
 
-h1 {
+h2 {
   font-size:30px;
   font-weight: bold;
   margin-bottom: 40px;
