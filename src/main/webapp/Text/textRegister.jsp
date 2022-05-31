@@ -78,7 +78,7 @@
 				</tr>
 				<tr>
 					<th class="customer-item">金額</th>
-					<td class="customer-body"><input type="text" name="price"
+					<td class="customer-body"><input type="number" name="price"
 						placeholder="金額を入力してください" required class="form-text"></td>
 				</tr>
 
