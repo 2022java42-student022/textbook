@@ -67,9 +67,9 @@ public class MemberServlet extends HttpServlet {
 			}
 
 			// 正しい登録情報
-			if (action.equals("preRegister") && request.getParameter("name").equals("")
-					|| action.equals("preRegister") && request.getParameter("email").equals("")
-					|| action.equals("preRegister") && request.getParameter("pass").equals("")) {
+			if (action.equals("preRegister") && request.getParameter("name").length() <= 0
+					|| action.equals("preRegister") && request.getParameter("email").length() <= 0
+					|| action.equals("preRegister") && request.getParameter("pass").length() <= 0) {
 				request.setAttribute("message", "未入力項目があります。");
 				gotoPage(request, response, "/error.jsp");
 
